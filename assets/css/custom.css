@@ -1,0 +1,310 @@
+header{
+    height: auto !important;
+}
+.navbar{
+    min-height: initial !important;
+}
+.header--navbar.navbar .container{
+    display: flex;
+    justify-content: center;
+}
+#sticky-wrapper{
+    height: auto !important;
+}
+.header--navbar.navbar .container #headerNav > ul {
+    height: 100%;
+}
+.header--navbar.navbar .container #headerNav > ul > li {
+    height: 100%;
+}
+.header--navbar.navbar .container #headerNav > ul > li > a{
+    border-top: none;
+    padding: 10px 30px;
+}
+.header--navbar-top .container .logo img, .navbar .logo img{
+    width: 250px;
+}
+.header--navbar-top {
+    margin:10px 0;
+}
+#banner{
+    --height:calc(100vh - 185px);
+    height: var(--height);
+    padding: 0;
+    position: relative;
+}
+
+.banner--form{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    z-index: 11;
+}
+
+.banner--form h2{
+    font-size: 20px;
+}
+
+.service--img-inner .tab-content .tab-pane img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+.footer--section .row.reset--gutter .bg--color-theme, .footer--section .container.bg--overlay:before , .footer--section .bg--color-theme.bg--overlay:before{
+    background-color: #222;
+
+}
+.footer--about .info .nav > li > a:hover {
+    color: white;
+    text-decoration: underline;
+}
+.show-xxs,.show-md{
+    display: none !important;
+}
+.sv-img{
+    --img-size:40px;
+    height: var(--img-size);
+    width: var(--img-size);
+    object-fit: contain !important;
+    object-position: center !important;
+}
+.header-svc a{
+   display: flex !important;
+   justify-content: center;
+   align-items: center;
+}
+
+#appointment {
+    padding-top: 100px !important;
+}
+#appointment .services{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+    width: 80%;
+    margin: 0 auto 30px;
+    padding: 30px 20px;
+}
+#appointment .services .service{
+    flex-basis: 20%;
+    text-align: center;
+    padding: 20px 25px 30px;
+}
+#appointment .services .service:hover{
+    background: #eeeeee;
+}
+#appointment .services .service h4{
+    line-height: initial;
+    padding: 0;
+    margin:0;
+    margin-top: 10px;
+}
+label.error{
+    margin-top: 10px;
+    background-color: rgb(255, 245, 245);
+    color: rgb(255, 44, 44);
+    padding: 1px 5px;
+}
+section.login, section.register{
+    padding: 40px 0;
+    background-color: #eee;
+}
+.login-form{
+    width: 350px;
+    margin: 0 auto;
+    min-height: 300px;
+    padding: 30px;
+    background-color: white;
+}
+.reg-form{
+    width: 380px;
+    margin: 0 auto;
+    min-height: 300px;
+    padding: 30px;
+    background-color: white;
+}
+.map-iframe{
+    width: 100%;
+    min-height: 260px !important;
+}
+.area-select-row{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    background-color: #0F76B7;
+    padding: 15px 0;
+}
+.extra-services--section{
+    padding: 40px 0;
+}
+.area-select-row select{
+    width: 100%;
+}
+.area-select-row .area-select-btn {
+    border-color: white;
+    color: white;
+}
+.area-select-row .area-select-btn:hover {
+    background-color: white;
+    color: #0F76B7;
+}
+.d-flex{
+    display: flex;
+}
+.justify-content-between{
+    justify-content: space-between;
+}
+.d-block{
+    display: block;
+}
+.font-16{
+    font-size: 16px;
+}
+.font-14{
+    font-size: 14px !important;
+}
+.service-select li{
+    border: none;
+    border-radius: 0;
+    margin-bottom: 10px;
+}
+.service-select li i{
+    border: none !important;
+    top: 4px !important;
+    left: 5px !important;
+}
+/* .service-select li.btn-warning{
+    background-color:#337ab7 ;
+} */
+.footer-nav{
+    display: none !important;
+}
+#loc-modal .modal-dialog{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.profile-sidebar{
+    float: left !important;
+}
+
+@media(max-width:992px){
+    #appointment{
+       margin-top: 350px;
+       padding-top: 100px;
+    }
+    .banner--form{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .footer--widget:first-child .h4, .footer--widget:first-child ul li a{
+        margin-left: 0 !important;
+    }
+    .profile-sidebar{
+        float: none !important;
+    }
+    
+}
+
+@media(max-width:920px){
+    .header--navbar.navbar .container #headerNav > ul > li > a{
+        padding: 10px 15px;
+    }
+    .header--navbar.navbar .container #headerNav > ul > li > .vc--child .btn{
+        margin-top: 10px;
+    }
+    .header--navbar.navbar .container{
+       align-items: center;
+    }
+    .header--navbar.navbar .container .logo{
+        padding: 15px 0;
+    }
+    .show-md{
+        display: initial !important;
+    }
+}
+
+@media(max-width:480px){
+    
+    .header--navbar-top .container .logo{
+        float: left ;
+    }
+    .navbar .logo{
+        margin-right: auto !important;
+    }
+    .header--navbar.navbar .container{
+        display: flex;
+        justify-content: space-between;
+    }
+    .header--navbar-top .container .logo img, .navbar .logo img{
+        width: 200px;
+    }
+    .header--navbar-top .container .header--navbar-top-btn{
+        float: right;
+        display: initial !important;
+    }
+    .header--topbar .container ul.float--left{
+        float: none;
+        margin: 0 auto;
+    }
+    #banner{
+        --height:calc(100vh - 124px);
+        /* max-height: auto; */
+    }
+    .banner--content h1{
+        font-size: 30px;
+        line-height: 50px;
+    }
+    .show-xxs{
+        display: initial !important;
+    }
+    li.show-xxs{
+        display: initial !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    li.show-xxs::before{
+        content: '' !important;
+    }
+    .header--topbar ul{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .banner--form{
+        top: 65%;
+        width: 80%;
+        display: none;
+    }
+    #appointment{
+        margin-top: 0;
+        padding-top: 40px;
+    }
+    #appointment .services{
+        width: 100%;
+    }
+    #appointment .services .service{
+        flex-basis: 50%;
+    }
+    .d-xxs-block{
+        display: block !important;
+    }
+    .d-xxs-flex{
+        display: flex !important;
+        justify-content: center;
+    }
+    .footer-nav a{
+        flex: 1 !important;
+    }
+    #loc-modal .d-flex{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #loc-modal .d-flex .btn{
+        margin-top: 20px;
+    }
+}
