@@ -175,9 +175,6 @@ section.login, section.register{
     top: 4px !important;
     left: 5px !important;
 }
-/* .service-select li.btn-warning{
-    background-color:#337ab7 ;
-} */
 .footer-nav{
     display: none !important;
 }
@@ -188,6 +185,27 @@ section.login, section.register{
 }
 .profile-sidebar{
     float: left !important;
+}
+.p-relative{
+    position: relative !important;
+}
+.underline:after{
+    content: '';
+    position: absolute;
+    border-top: 1px dashed black;
+    bottom:-4px;
+    right:0;
+    width: 97%;
+    transition: 0.3s;
+    /* height: 3px; */
+}
+.underline:hover::after{
+   border-color:#0F76B7 ;
+}
+.back-to-top-btn{
+    transform: scale(1.4);
+    right: 50px;
+    bottom: 50px;
 }
 
 @media(max-width:992px){
@@ -306,5 +324,10 @@ section.login, section.register{
     }
     #loc-modal .d-flex .btn{
         margin-top: 20px;
+    }
+    .back-to-top-btn{
+        transform: scale(1);
+        right: 15px;
+        bottom: 20px;
     }
 }

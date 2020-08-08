@@ -11,8 +11,7 @@ class Admin extends MY_Controller {
 
         public function index()
         {
-                $fr=$this->fetch->getInfo('farmer_reg');
-                $this->load->view('admin/adminheader',['title'=>'Farmer Reg','fr' => $fr]); 
+                $this->load->view('admin/adminheader',['title'=>'Dashboard']); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/dashboard'); 
                 $this->load->view('admin/adminfooter');  

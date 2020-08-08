@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2020 at 08:45 PM
+-- Generation Time: Aug 08, 2020 at 02:53 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -45,10 +45,20 @@ CREATE TABLE `enquiries` (
 
 CREATE TABLE `feedbacks` (
   `id` int(11) NOT NULL,
-  `img_src` varchar(1024) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `designation` varchar(200) NOT NULL,
+  `rating` int(11) NOT NULL,
   `content` varchar(2048) NOT NULL,
-  `name` varchar(100) NOT NULL
+  `img_src` varchar(1024) NOT NULL DEFAULT 'dummy_feedback_img.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedbacks`
+--
+
+INSERT INTO `feedbacks` (`id`, `name`, `designation`, `rating`, `content`, `img_src`) VALUES
+(4, 'Mr. patwa', '', 5, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage rassing hidden.', 'dummy_feedback_img.png'),
+(5, 'Mr. Jain', '', 4, 'Randomised words which don\'t look even slightly believable. If you are going to use a passage rassing hidden.', 'dummy_feedback_img.png');
 
 -- --------------------------------------------------------
 
@@ -74,6 +84,39 @@ CREATE TABLE `hero_slider` (
   `descr` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `hero_slider`
+--
+
+INSERT INTO `hero_slider` (`id`, `img_src`, `heading`, `descr`) VALUES
+(5, 'carpenter.jpg', 'Now find Carpenters online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
+(6, 'packers.jpg', 'Now find Packers & Movers online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
+(7, 'painter.jpg', 'Now find Painters online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
+(8, 'car-repair.jpg', '...and many more Kaarigar online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locations`
+--
+
+CREATE TABLE `locations` (
+  `id` int(11) NOT NULL,
+  `area` varchar(100) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `state` varchar(100) NOT NULL,
+  `pin_code` varchar(20) NOT NULL,
+  `is_active` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `locations`
+--
+
+INSERT INTO `locations` (`id`, `area`, `city`, `state`, `pin_code`, `is_active`) VALUES
+(1, '', 'Raipur', 'C.G.', '492001', 1),
+(2, '', 'Abhanpur', 'C.G.', '493661', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -84,9 +127,62 @@ CREATE TABLE `services` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `img_src` varchar(500) NOT NULL,
-  `link_src` varchar(300) NOT NULL,
-  `link_text` varchar(50) NOT NULL
+  `icon_src` varchar(200) NOT NULL,
+  `miin_charges` varchar(50) NOT NULL,
+  `min_charge_txt` varchar(300) NOT NULL,
+  `descr` longtext NOT NULL,
+  `can_be_postpaid` int(11) NOT NULL DEFAULT 1,
+  `slug` varchar(50) NOT NULL,
+  `is_active` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `name`, `img_src`, `icon_src`, `miin_charges`, `min_charge_txt`, `descr`, `can_be_postpaid`, `slug`, `is_active`) VALUES
+(1, 'AC repair', 'extra-service-item-03.jpg', 'air-conditioner.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'ac-repair', 1),
+(2, 'Carpenter', 'extra-service-item-04.jpg', 'saw-up.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'carpenter', 1),
+(3, 'Plumber', 'extra-service-item-01.jpg', 'wrench.png', '300', 'Includes consultation and minor repairings. Any parts replaced will be charged extra', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'plumber', 1),
+(4, 'Electrician', 'extra-service-item-02.jpg', 'electricity.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'electrician', 1),
+(5, 'Painter', 'extra-service-item-05.jpg', 'brush.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'painter', 1),
+(6, 'Home hair cut', 'extra-service-item-06.jpg', 'hair-cut.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'home-hair-cut', 1),
+(7, 'Car repair', 'extra-service-item-07.jpg', 'car-repair.png', '300', 'Includes consultation and minor repairings. Any parts replaced will be charged extra', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'car-repair', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscriptions`
+--
+
+CREATE TABLE `subscriptions` (
+  `id` int(11) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_services`
+--
+
+CREATE TABLE `sub_services` (
+  `id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `text` varchar(500) NOT NULL,
+  `min_charges` varchar(50) NOT NULL,
+  `is_active` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sub_services`
+--
+
+INSERT INTO `sub_services` (`id`, `service_id`, `text`, `min_charges`, `is_active`) VALUES
+(1, 3, 'Tap change', '150', 1),
+(2, 3, 'Seapage/Leakeage solution', '', 1),
+(3, 3, 'New pipeline connection', '1000', 1);
 
 -- --------------------------------------------------------
 
@@ -113,7 +209,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `mobile_no`, `username`, `pwd`, `fname`, `lname`, `email`, `role`, `status`, `created_at`, `modified_at`) VALUES
-(1, '', 'adminrrs', '$2y$10$NG9k47y4y8qJWOCKYyd30O45/c2GWe3p2SnMYYVr7W5QWqUwwbUaW', 'Total Agri', 'Solutions', 'ramrajservices@gmail.com', 'admin', '1', '2020-08-06 18:01:55', '2020-08-06 18:01:55');
+(1, '', 'adminkaarigar', '$2y$10$.UUIRzwRCZekPBSpVMtOa.ZI9DVtESdtF1s3aEkdLkuZKdx1iHrVe', 'Demo', 'User', 'connect@kaarigaronline.in', 'admin', '1', '2020-08-06 18:01:55', '2020-08-06 18:01:55');
 
 -- --------------------------------------------------------
 
@@ -153,7 +249,7 @@ CREATE TABLE `webprofile` (
 --
 
 INSERT INTO `webprofile` (`id`, `email`, `phone1`, `phone2`, `whatsapp_no`, `address_line1`, `address_line2`, `fblink`, `instalink`, `twitterlink`, `youtubelink`) VALUES
-(1, 'connect@kaarigaronline.in', '9039310833', '9039310833', '9039310833', 'Raipur, Chhattisgarh', 'Bilaspur Road, Rawabhata, Raipur C.G - 492001', 'https://www.facebook.com/', 'https://instagram.com', 'https://twitter.com', 'https://www.youtube.com/');
+(1, 'connect@kaarigaronline.in', '9039310833', '9039310833', '9039310833', 'Raipur,', 'Chhattisgarh', 'https://www.facebook.com/', 'https://instagram.com', 'https://twitter.com', 'https://www.youtube.com/');
 
 --
 -- Indexes for dumped tables
@@ -184,9 +280,27 @@ ALTER TABLE `hero_slider`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `locations`
+--
+ALTER TABLE `locations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `services`
 --
 ALTER TABLE `services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sub_services`
+--
+ALTER TABLE `sub_services`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -221,7 +335,7 @@ ALTER TABLE `enquiries`
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `gallery`
@@ -233,13 +347,31 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `hero_slider`
 --
 ALTER TABLE `hero_slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `locations`
+--
+ALTER TABLE `locations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `subscriptions`
+--
+ALTER TABLE `subscriptions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sub_services`
+--
+ALTER TABLE `sub_services`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

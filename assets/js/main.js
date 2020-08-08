@@ -126,15 +126,15 @@ Author : themelooks.com
         /* ------------------------------------------------------------------------- *
          * BACK TO TOP BUTTON
          * ------------------------------------------------------------------------- */
-        var $backToTopBtn = $('.back-to-top-btn');
+        // var $backToTopBtn = $('.back-to-top-btn');
 
-        $backToTopBtn.on('click', 'a', function (e) {
-            e.preventDefault();
+        // $backToTopBtn.on('click', 'a', function (e) {
+        //     e.preventDefault();
 
-            $('html, body').animate({
-                scrollTop: 0
-            }, 800);
-        });
+        //     $('html, body').animate({
+        //         scrollTop: 0
+        //     }, 800);
+        // });
         
         /* ------------------------------------------------------------------------- *
          * BACKGROUND IMAGE

@@ -7,7 +7,21 @@ class MY_Controller extends CI_Controller
     }
 
     public function loggedIn(){
-        return isset($this->session->user->user_id) ? true : false;
+        if(isset($this->session->user->user_id) AND $this->session->user->role=="admin"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function userLoggedIn(){
+        if(isset($this->session->reg->user_id) AND $this->session->reg->role=="user"){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     public function redirectIfNotLoggedIn($uri = 'Login'){
@@ -18,6 +32,18 @@ class MY_Controller extends CI_Controller
 
     public function redirectIfLoggedIn($uri = 'Admin'){
         if($this->loggedIn()){
+            redirect($uri);
+        }
+    }
+
+    public function redirectUserLoggedIn($uri = 'profile'){
+        if($this->userLoggedIn()){
+            redirect($uri);
+        }
+    }
+
+    public function redirectUserNotLoggedIn($uri = 'UserLogin'){
+        if(!$this->userLoggedIn()){
             redirect($uri);
         }
     }

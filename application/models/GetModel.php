@@ -2,9 +2,9 @@
 class GetModel extends CI_Model{
 
     // Fetch info
-    public function getInfo($table)
+    public function getInfo($table, $lim=null)
     {
-        return $this->db->get($table)->result();
+        return $this->db->limit($lim)->get($table)->result();
     }
 
     // Fetch info by id
@@ -21,24 +21,6 @@ class GetModel extends CI_Model{
                         ->get($table)
                         ->result();
     }
-    // Fetch info by order
-    public function getInfoByLim($table, $lim)
-    {
-        return $this->db->order_by('id', 'desc')
-                        ->limit($lim)
-                        ->get($table)
-                        ->result();
-    }
-
-    public function getRegInfo()
-    {
-        $this->db->select('*')
-                ->from('partner_reg r')
-                ->join('cities', 'cities.id = r.city_id', 'LEFT')
-                ->join('states', 'cities.state_id = states.id', 'LEFT')
-                ->join('reg_roles', 'reg_roles.role_id = r.role_id', 'LEFT');
-        return $this->db->get()->result();
-    }
 
     public function getRegInfoById($id)
     {
@@ -51,10 +33,9 @@ class GetModel extends CI_Model{
         return $this->db->get()->row();
     }
 
-     // Fetch info with type
-     public function getInfoType($table,$col,$key)
+     public function getInfoConds($table,$conds)
      {
-         $this->db->where($col, $key);
+         $this->db->where($conds);
          return $this->db->get($table)->result();
      }
     

@@ -3,9 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TAS | Admin | <?=isset($title)?$title:''?></title>
+  <title> <?=isset($title)?$title:''?> | Admin Kaarigaronline</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="<?=base_url()?>assets/images/favicon.png" type="image/x-icon">
+  <link rel="icon" href="<?=base_url()?>assets/images/favicon.png" type="image/x-icon">
+  <meta name="theme-color" content="#0F76B7">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="<?=base_url('assets/plugins/fontawesome-free/css/all.css')?>">
@@ -20,7 +23,7 @@
   
   
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" style="font-size:85% !important">
   <a href="<?=base_url('Admin/rootFileUpload')?>" accesskey="r" target="_blank" hidden></a>
 <div class="wrapper">
 

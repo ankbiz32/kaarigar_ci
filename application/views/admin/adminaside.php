@@ -21,7 +21,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <li class="nav-item has-treeview <?php if($this->uri->segment(2)=="PartnerReg" OR $this->uri->segment(2)=="" OR $this->uri->segment(2)=="Roles"){echo ' menu-open';}?>">
+          <!-- <li class="nav-item has-treeview <?php if($this->uri->segment(2)=="PartnerReg" OR $this->uri->segment(2)=="" OR $this->uri->segment(2)=="Roles"){echo ' menu-open';}?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -33,7 +33,7 @@
               <li class="nav-item">
                 <a href="<?=base_url('Admin')?>" class="nav-link <?php if($this->uri->segment(2)==''){echo ' CustomActive';}?>">
                   <i class="fas fa-user nav-icon"></i>
-                  <p>Farmer Registration</p>
+                  <p>User Registrations</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -49,9 +49,27 @@
                 </a>
               </li>
             </ul>
+          </li> -->
+
+
+          <li class="nav-item">
+            <a href="<?=base_url('Admin/Bookings')?>" class="nav-link <?php if($this->uri->segment(2)=="Bookings"){echo ' CustomActive';}?>">
+              <i class="far fa-bookmark nav-icon"></i>
+              <p>Bookings</p>
+            </a>
           </li>
-
-
+          <li class="nav-item">
+            <a href="<?=base_url('Admin/Enquiries')?>" class="nav-link <?php if($this->uri->segment(2)=="Enquiries"){echo ' CustomActive';}?>">
+              <i class="far fa-sticky-note nav-icon"></i>
+              <p>Enquiries</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?=base_url('Admin/Users')?>" class="nav-link <?php if($this->uri->segment(2)=="Users"){echo ' CustomActive';}?>">
+              <i class="far fa-user nav-icon"></i>
+              <p>Registered users</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="<?=base_url('Admin/Hero_sliders')?>" class="nav-link <?php if($this->uri->segment(2)=="Hero_sliders"){echo ' CustomActive';}?>">
               <i class="far fa-film nav-icon"></i>
@@ -65,33 +83,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?=base_url('Admin/Products')?>" class="nav-link <?php if($this->uri->segment(2)=="Products"){echo ' CustomActive';}?>">
-              <i class="far fa-cube nav-icon"></i>
-              <p>Products</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?=base_url('Admin/Projects')?>" class="nav-link <?php if($this->uri->segment(2)=="Projects"){echo ' CustomActive';}?>">
-              <i class="far fa-cubes nav-icon"></i>
-              <p>Projects</p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="<?=base_url('Admin/Feedbacks')?>" class="nav-link <?php if($this->uri->segment(2)=="Feedbacks"){echo ' CustomActive';}?>">
-              <i class="far fa-comment-dots nav-icon"></i>
-              <p>Success Stories</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?=base_url('Admin/Events')?>" class="nav-link <?php if($this->uri->segment(2)=="Events"){echo ' CustomActive';}?>">
-              <i class="far fa-calendar-plus nav-icon"></i>
-              <p>Events</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?=base_url('Admin/Schemes')?>" class="nav-link <?php if($this->uri->segment(2)=="Schemes"){echo ' CustomActive';}?>">
-              <i class="fas fa-handshake nav-icon"></i>
-              <p>Schemes</p>
+              <i class="far fa-quote-left nav-icon"></i>
+              <p>Feedbacks</p>
             </a>
           </li>
           <li class="nav-item">
@@ -109,7 +103,7 @@
           <li class="nav-item">
             <a href="<?=base_url('Admin/webProfile')?>" class="nav-link <?php if($this->uri->segment(2)=="webProfile"){echo ' CustomActive';}?>">
               <i class="fa fa-globe nav-icon"></i>
-              <p>TAS Web profile</p>
+              <p>Web profile</p>
             </a>
           </li>
 

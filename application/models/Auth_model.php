@@ -21,6 +21,17 @@ class Auth_model extends CI_Model {
         // exit;
         return password_verify($data['pwd'], $user->pwd) ? $user : FALSE;
     }
+    
+    public function authenticateUser($data) 
+    {
+        $this->db->where(['email' => $data['email'] , 'status' => 1, 'role' => 'user' ]);
+        $query = $this->db->get('users');
+        if($query->num_rows() == 0)
+            return false;
+
+        $user = $query->row();
+        return password_verify($data['pwd'], $user->pwd) ? $user : FALSE;
+    }
 
 
     public function changeLoginPassword($h, $user_id) {

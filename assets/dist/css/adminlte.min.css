@@ -13,7 +13,7 @@
 
 
 .main-sidebar {
-    background:#37B24899;
+    background:#0b8ddfa0;
     /* background: linear-gradient(to bottom,white, #37B248)!important; */
     overflow-x:hidden !important;
 }
@@ -36,7 +36,7 @@
 }
 
 aside #website-link{
-    border:1px solid white;
+    border:1px solid #333;
     /* border-radius:10px; */
     transition: 0.3s;
 }

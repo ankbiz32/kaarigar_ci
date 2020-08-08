@@ -56,20 +56,33 @@
                     <!-- Header Topbar Links Start -->
                     <ul class="nav links float--left">
                         <li class="hidden-xxs"><a href="#"><i class="fa fa-question"></i>&nbsp; FAQ</a></li>
-                        <li class="hidden-xxs"><a href="#"><i class="fa fa-support"></i>&nbsp; Support</a></li>
-                        <li class="hidden-xxs"><a href="login.html"><i class="fa fa-user"></i>&nbsp; Login</a></li>
-                        <li class="show-xxs top-bar-call"><a href="tel:+919039310833"><i class="fa fa-phone"></i>&nbsp; +919039310833</a></li>
-                        <li class="loc-top-bar show-xxs"><a href="#" data-toggle="modal" data-target="#loc-modal"><i class="fa fa-map-marker"></i>&nbsp; <span id="loc">Location</span></a></li>
-                        <li class="login-top-bar show-xxs"><a href="login.html"><i class="fa fa-user"></i>&nbsp; Login</a></li>
+
+                        <li class="hidden-xxs"><a href="contact-us"><i class="fa fa-support"></i>&nbsp; Support</a></li>
+
+                        <?php if(isset($this->session->reg)){?>
+                        <li class="hidden-xxs"><a href="profile"><i class="fa fa-user"></i>&nbsp; Profile</a></li>
+                        <?php } else{?>
+                        <li class="hidden-xxs"><a href="login"><i class="fa fa-user"></i>&nbsp; Login</a></li>
+                        <?php }?>
+
+                        <li class="show-xxs top-bar-call"><a href="tel:+91<?=$web->phone1?>"><i class="fa fa-phone"></i>&nbsp; +91<?=$web->phone1?></a></li>
+
+                        <li class="loc-top-bar show-xxs"><a href="#" data-toggle="modal" data-target="#loc-modal"><i class="fa fa-map-marker"></i>&nbsp; <span id="loc"><?=isset($this->session->location)?$this->session->location->loc_name:' Your location'?></span></a></li>
+                        
+                        <?php if(isset($this->session->reg)){?>
+                        <li class="login-top-bar show-xxs"><a href="profile"><i class="fa fa-user"></i>&nbsp; Profile</a></li>
+                        <?php } else{?>
+                        <li class="login-top-bar show-xxs"><a href="login"><i class="fa fa-user"></i>&nbsp; Login</a></li>
+                        <?php }?>
                     </ul>
                     <!-- Header Topbar Links End -->
 
                     <!-- Header Topbar Social Start -->
                     <ul class="nav social float--right hidden-xxs">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+                        <li><a href="<?=$web->fblink?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="<?=$web->twitterlink?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="<?=$web->instalink?>" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://api.whatsapp.com/send?phone=91<?=$web->whatsapp_no?>&text=Hi Kaarigaronline. I need your services. Please assist me on this." target="_blank"><i class="fa fa-whatsapp"></i></a></li>
                     </ul>
                     <!-- Header Topbar Social End -->
                 </div>
@@ -83,7 +96,7 @@
                     <div class="logo float--left">
                         <div class="vc--parent">
                             <div class="vc--child">
-                                <a href="index.html"><img src="<?=base_url()?>assets/images/logo.png" alt="Kaarigar Logo" data-rjs="2"></a>
+                                <a href="<?=base_url()?>"><img src="<?=base_url()?>assets/images/logo.png" alt="Kaarigar Logo" data-rjs="2"></a>
                             </div>
                         </div>
                     </div>
@@ -97,22 +110,21 @@
                                     <ul class="nav">
                                         <li>
                                             <div class="content">
-                                                <p>
-                                                    <a href="tel:+919039310833" class="h4">
-                                                        <i class="fa fa-phone text--primary"></i> +919039310833
+                                                <p> 
+                                                    <a href="" class="h4 underline p-relative" data-toggle="modal" data-target="#loc-modal">
+                                                        <i class="fa fa-map-marker text--primary"></i> 
+                                                        <?=isset($this->session->location)?$this->session->location->loc_name:' Your location'?>
                                                     </a>
                                                 </p>
-                                            </div>
+                                             </div>
                                         </li>
                                         <li>
                                             <div class="content">
-                                                <p> 
-                                                    <a href="" class="h4" data-toggle="modal" data-target="#loc-modal">
-                                                        <i class="fa fa-map-marker text--primary"></i> 
-                                                        Location
+                                                <p>
+                                                    <a href="tel:+919039310833" class="h4">
+                                                        <i class="fa fa-phone text--primary"></i> +91<?=$web->phone1?>
                                                     </a>
                                                 </p>
-                                                <!-- <a href="" style="text-decoration:underline;" class="text--primary">Change location</a> -->
                                             </div>
                                         </li>
                                     </ul>
@@ -125,7 +137,7 @@
                         <div class="header--navbar-top-btn float--left">
                             <div class="vc--parent">
                                 <div class="vc--child">
-                                    <a href="#appointment" class="btn btn-default">Book Service</a>
+                                    <a href="<?=base_url('Home')?>#appointment" class="btn btn-default">Book Service</a>
                                 </div>
                             </div>
                         </div>
@@ -155,41 +167,15 @@
                             <a href="contact.html" class="font-14">Contact</a>
                             <a href="index.html" class="font-14">T&C</a>
                         </li>
-                        <li class="header-svc">
-                            <a href="index.html">
-                                <img src="<?=base_url()?>assets/images/services-img/saw-up.png" alt="Carpenter" class="sv-img">
-                                &nbsp;
-                                <span>Carpenters</span>
-                            </a>
-                        </li>
-                        <li class="header-svc">
-                            <a href="index.html">
-                                <img src="<?=base_url()?>assets/images/services-img/air-conditioner.png" class="sv-img">
-                                &nbsp;
-                                <span>AC repair</span>
-                            </a>
-                        </li>
-                        <li class="header-svc">
-                            <a href="index.html">
-                                <img src="<?=base_url()?>assets/images/services-img/electricity.png" alt="Carpenter" class="sv-img">
-                                &nbsp;
-                                <span>Electrician</span>
-                            </a>
-                        </li>
-                        <li class="header-svc">
-                            <a href="service-details.html">
-                                <img src="<?=base_url()?>assets/images/services-img/wrench.png" alt="Carpenter" class="sv-img">
-                                &nbsp;
-                                <span>Plumber</span>
-                            </a>
-                        </li>
-                        <li class="header-svc">
-                            <a href="index.html">
-                                <img src="<?=base_url()?>assets/images/services-img/brush.png" alt="Carpenter" class="sv-img">
-                                &nbsp;
-                                <span>Painter</span>
-                            </a>
-                        </li>
+                        <?php foreach($services_nav as $svc_nav){?>
+                            <li class="header-svc">
+                                <a href="<?=base_url('service/').$svc_nav->id.'/'.$svc_nav->slug?>">
+                                    <img src="<?=base_url()?>assets/images/services-img/<?=$svc_nav->icon_src?>" alt="Carpenter" class="sv-img">
+                                    &nbsp;
+                                    <span><?=$svc_nav->name?></span>
+                                </a>
+                            </li>
+                        <?php }?>
                     </ul>
                     <!-- Header Nav Links End -->
                 </div>
@@ -205,7 +191,7 @@
 
             
             </div>
-        </nav>
-        <!-- Header Navbar End -->
+            </nav>
+            <!-- Header Navbar End -->
         </header>
         <!-- Header Section End -->

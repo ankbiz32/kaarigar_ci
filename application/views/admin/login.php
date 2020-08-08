@@ -17,7 +17,7 @@
 <body class="hold-transition login-page ">
 <div class="login-box">
   <div class="login-logo">
-    <a href="<?=base_url()?>" target="_blank"><img src="<?=base_url()?>assets/images/Total AgriSolutions logo.png" height="50" alt="Ramraj Services Logo"></a> <br>
+    <a href="<?=base_url()?>" target="_blank"><img src="<?=base_url()?>assets/images/logo.png" height="50" alt="Ramraj Services Logo"></a> <br>
       <b>Admin</b>
   </div>
   <!-- /.login-logo -->
@@ -52,9 +52,9 @@
         </div>
       </form>
 
-      <p class="mb-1 mt-3">
+      <!-- <p class="mb-1 mt-3">
         <a href="#">Forgot password ?</a>
-      </p>
+      </p> -->
       <?php if(isset($errors)) : ?>
         <h6 class="alert alert-danger mt-4"><?= $errors ?></h6>
       <?php endif; ?>

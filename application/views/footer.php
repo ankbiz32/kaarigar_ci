@@ -8,25 +8,25 @@
                     <div class="col-md-3 bg--color-theme bg--overlay">
                         <!-- Footer About Start -->
                         <div class="footer--about">
-                            <div class="logo">
+                            <a href="<?=base_url()?>" class="logo d-block">
                                 <img src="<?=base_url()?>assets/images/footer-logo.png" alt="" data-rjs="2">
-                            </div>
+                            </a>
 
                             <div class="content">
                                 <p>There are many variations of passages of Lorem Ipsum available, but the majority have available, its  really but the majority to use a passage rassing hidden.</p>
                             </div>
 
                             <div class="link">
-                                <a href="about.html">Read More<i class="fa flm fa-angle-double-right"></i></a>
+                                <a href="about-us">Read More<i class="fa flm fa-angle-double-right"></i></a>
                             </div>
 
                             <div class="info">
                                 <ul class="nav">
-                                    <li class="fa-home">Raipur, Chhattisgarh</li>
+                                    <li class="fa-home"><?=$web->address_line1?> <?=$web->address_line2?></li>
 
-                                    <li class="fa-envelope"><a href="mailto:connect@kaarigaronline.com">connect@kaarigaronline.com</a></li>
+                                    <li class="fa-envelope"><a href="mailto:connect@kaarigaronline.com"><?=$web->email?></a></li>
 
-                                    <li class="fa-phone-square"><a href="tel:+919039310833">+919039310833</a></li>
+                                    <li class="fa-phone-square"><a href="tel:+91<?=$web->phone1?>">+91<?=$web->phone1?></a></li>
 
                                     <li class="fa-clock-o">Monday - Satarday (09 am to 08 pm) <span>(Sunday Closed)</span></li>
                                 </ul>
@@ -69,11 +69,12 @@
                                 <!-- Links Wdiget Start -->
                                 <div class="links--widget">
                                     <ul class="nav">
-                                        <li><a href="register.html"><i class="fa fa-link"></i>New registration</a></li>
-                                        <li><a href="contact.html"><i class="fa fa-link"></i>Contact us</a></li>
+                                        <li><a href="register"><i class="fa fa-link"></i>New registration</a></li>
+                                        <li><a href="about-us"><i class="fa fa-link"></i>About us</a></li>
+                                        <li><a href="contact-us"><i class="fa fa-link"></i>Contact us</a></li>
                                         <li><a href="#"><i class="fa fa-link"></i>FAQ</a></li>
                                         <li><a href="#"><i class="fa fa-link"></i>Terms & conditions</a></li>
-                                        <li><a href="#"><i class="fa fa-link"></i>Privacy Pilicy</a></li>
+                                        <li><a href="privacy-policy"><i class="fa fa-link"></i>Privacy Policy</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -103,10 +104,10 @@
                                         <h3 class="h6">Find Us On</h3>
 
                                         <ul class="nav">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+                                            <li><a href="<?=$web->fblink?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="<?=$web->twitterlink?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="<?=$web->instalink?>" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a href="https://api.whatsapp.com/send?phone=91<?=$web->whatsapp_no?>&text=Hi Kaarigaronline. I need your services. Please assist me on this." target="_blank"><i class="fa fa-whatsapp"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -130,7 +131,8 @@
 
         <!-- Back To Top Button Start -->
         <div class="back-to-top-btn">
-            <a href="#" class="btn btn-default active"><i class="fa fa-angle-up"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=91<?=$web->whatsapp_no?>&text=Hi Kaarigaronline. I need your services. Please assist me on this." target="_blank" class="btn btn-success active"><i class="fa fa-whatsapp"></i></a>
+            <!-- <a href="#" class="btn btn-success active"><i class="fa fa-angle-up"></i></a> -->
         </div>
         <!-- Back To Top Button End -->
     </div>
@@ -149,8 +151,9 @@
                     <div class="d-flex">
                         <select name="location" class="wide" id="area-select" required>
                             <option value="">-- Select your location --</option>
-                            <option value="raipur">Raipur, C.G.</option>
-                            <option value="abhanpur">Abhanpur, C.G.</option>
+                            <?php foreach($locations as $l){?>
+                                <option value="<?=$l->id?>"><?=$l->city?>, <?=$l->state?> (<?=$l->pin_code?>)</option>
+                            <?php }?>
                         </select>
                         <button type="submit" class="btn btn-default area-select-btn ml--2">Search</button>
                     </div>
@@ -186,22 +189,35 @@
 
     <script>
         $(document).ready(function(){
-
-            $("a").on('click', function(event) {
-                if (this.hash !== "") {
-                event.preventDefault();
-                var hash = this.hash;
-                $('html, body').animate({
-                    scrollTop: 620
-                }, 300, function(){
-                    window.location.hash = hash;
-                });
-                } 
+            
+            // $("a").on('click', function(event) {
+            //     if (this.hash !== "") {
+            //     event.preventDefault();
+            //     var hash = this.hash;
+            //     $('html, body').animate({
+            //         scrollTop: 620
+            //     }, 300, function(){
+            //         window.location.hash = hash;
+            //     });
+            //     } 
+            // });
+                   
+            $( ".service-select li" ).click(function() {
+                var cid=$(this).data('check-id')
+                $('input[data-check-id='+cid+']').click(); 
             });
 
             $("#area-select").niceSelect();
-
+            $("#area2-select").niceSelect();
         });
+ 
+        
+        $(".contact-form").validate();
+        $(".login-form").validate();
+        $(".info-form").validate();
+        $(".pwd-form").validate();
+        $(".reg-form").validate();
+        $(".demo").simsCheckbox();
     </script>
 
 </body>

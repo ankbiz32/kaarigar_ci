@@ -55,13 +55,16 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['about-us'] = 'Home/About';
-$route['products'] = 'Home/Products';
-$route['services'] = 'Home/Services';
-$route['media'] = 'Home/Media';
+$route['contact-us'] = 'Home/Contact';
 $route['privacy-policy'] = 'Home/Privacy';
-$route['projects'] = 'Home/Projects';
-$route['Project/(:num)'] = 'Home/Project/$1';
-$route['events'] = 'Home/Events';
-$route['event/(:num)'] = 'Home/Event/$1';
-$route['event/(:num)/(:any)'] = 'Home/Event/$1';
+$route['profile'] = 'Home/Profile';
 $route['sitemap.xml'] = 'Sitemap';
+
+$route['login'] = 'UserLogin';
+$route['register'] = 'Home/Register';
+$route['forgot-password'] = 'Home/Forgot';
+
+$route['services'] = 'Home/Services';
+$route['service/(:num)/(:any)'] = 'Home/Service_details/$1';
+$route['checkout'] = 'Home/Checkout';
+$route['service-booked'] = 'Home/Booked';

@@ -4,91 +4,27 @@
             <!-- Banner Slider Start -->
             <div class="banner--slider owl-carousel" data-owl-dots="true">
                 <!-- Banner Item Start -->
-                <div class="banner--item" data-bg-img="<?=base_url()?>assets/images/banner-img/carpenter.jpg">
-                    <div class="vc--parent">
-                        <div class="vc--child">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Banner Content Start -->
-                                    <div class="banner--content col-md-8">
-                                        <h1>Now find <span>Carpenters</span> online</h1>
-            
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-            
-                                        <a href="#" class="btn btn-default">Learn More</a>
+                <?php foreach($sliders as $slider){?>
+                    <div class="banner--item" data-bg-img="<?=base_url()?>assets/images/banner-img/<?=$slider->img_src?>">
+                        <div class="vc--parent">
+                            <div class="vc--child">
+                                <div class="container">
+                                    <div class="row">
+                                        <!-- Banner Content Start -->
+                                        <div class="banner--content col-md-8">
+                                            <h1><?=$slider->heading?></h1>
+                
+                                            <p><?=$slider->descr?></p>
+                
+                                            <a href="<?=base_url('about')?>" class="btn btn-default">Learn More</a>
+                                        </div>
+                                        <!-- Banner Content End -->
                                     </div>
-                                    <!-- Banner Content End -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Banner Item End -->
-            
-                <!-- Banner Item Start -->
-                <div class="banner--item" data-bg-img="<?=base_url()?>assets/images/banner-img/painter.jpg">
-                    <div class="vc--parent">
-                        <div class="vc--child">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Banner Content Start -->
-                                    <div class="banner--content col-md-8">
-                                        <h1>Now find <span>Painters</span> online</h1>
-            
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-            
-                                        <a href="#" class="btn btn-default">Learn More</a>
-                                    </div>
-                                    <!-- Banner Content End -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Banner Item End -->
-            
-                <!-- Banner Item Start -->
-                <div class="banner--item" data-bg-img="<?=base_url()?>assets/images/banner-img/packers.jpg">
-                    <div class="vc--parent">
-                        <div class="vc--child">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Banner Content Start -->
-                                    <div class="banner--content col-md-8">
-                                        <h1>Now find <span>Packers & movers</span> online</h1>
-            
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-            
-                                        <a href="#" class="btn btn-default">Learn More</a>
-                                    </div>
-                                    <!-- Banner Content End -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Banner Item End -->
-
-                <!-- Banner Item Start -->
-                <div class="banner--item" data-bg-img="<?=base_url()?>assets/images/banner-img/car-repair.jpg">
-                    <div class="vc--parent">
-                        <div class="vc--child">
-                            <div class="container">
-                                <div class="row">
-                                    <!-- Banner Content Start -->
-                                    <div class="banner--content col-md-8">
-                                        <h1>...and many more <span>Professional Kaarigar</span> online</h1>
-            
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
-            
-                                        <a href="#" class="btn btn-default">Learn More</a>
-                                    </div>
-                                    <!-- Banner Content End -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php }?>
                 <!-- Banner Item End -->
             </div>
             <!-- Banner Slider End -->
@@ -150,37 +86,15 @@
                     <h2 class="h2">Which service do you need?</h2>
                 </div>
                 <div class="services">
-                    <a href="service-details.html" class="service">
-                        <img src="<?=base_url()?>assets/images/services-img/wrench.png" alt="Plumber" class="sv-img">
-                        <h4>Plumber</h4>
-                    </a>
-                    <a href="" class="service">
-                        <img src="<?=base_url()?>assets/images/services-img/saw-up.png" alt="Carpenter" class="sv-img">
-                        <h4>Carpenters</h4>
-                    </a>
-                    <a href="" class="service">
-                        <img src="<?=base_url()?>assets/images/services-img/air-conditioner.png" alt="AC Repair" class="sv-img">
-                        <h4>AC Repair</h4>
-                    </a>
-                    <a href="" class="service">
-                        <img src="<?=base_url()?>assets/images/services-img/electricity.png" alt="Electrician" class="sv-img">
-                        <h4>Electrician</h4>
-                    </a>
-                    <a href="" class="service">
-                        <img src="<?=base_url()?>assets/images/services-img/brush.png" alt="Painter" class="sv-img">
-                        <h4>Painter</h4>
-                    </a>
-                    <a href="" class="service">
-                        <img src="<?=base_url()?>assets/images/services-img/car-repair.png" alt="Car repair" class="sv-img">
-                        <h4>Car Repair</h4>
-                    </a>
-                    <a href="" class="service">
-                        <img src="<?=base_url()?>assets/images/services-img/handyman.png" alt="handyman" class="sv-img">
-                        <h4>Handyman</h4>
-                    </a>
+                    <?php foreach($services as $service){?>
+                        <a href="<?=base_url('service/').$service->id.'/'.$service->slug?>" class="service">
+                            <img src="<?=base_url()?>assets/images/services-img/<?=$service->icon_src?>" alt="<?=$service->name?>" class="sv-img">
+                            <h4><?=$service->name?></h4>
+                        </a>
+                    <?php }?>
                 </div>
                 <div class="section--footer text-center">
-                    <a href="services.html" class="btn btn-default">View All Services</a>
+                    <a href="<?=base_url('services')?>" class="btn btn-default">View All Services</a>
                 </div>
                 <!-- Section Footer End -->
             </div>

@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-3">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark"><i class="fa fa-globe"></i>&nbsp; TAS web profile:</h1>
+            <h1 class="m-0 text-dark"><i class="fa fa-globe"></i>&nbsp; Kaarigar web profile:</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?=base_url('Admin')?>">Home</a></li>
-              <li class="breadcrumb-item active">TAS  profile</li>
+              <li class="breadcrumb-item active">Kaarigar  profile</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

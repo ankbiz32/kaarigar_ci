@@ -7,49 +7,22 @@ class Home extends MY_Controller {
 		$this->load->model('GetModel','fetch');
 	}
 
-	public function index_old()
-	{
-		$slides=$this->fetch->getInfo('hero_slider');
-		$projects=$this->fetch->getInfo('projects');
-		$schemes=$this->fetch->getInfo('schemes');
-		$prods=$this->fetch->getInfoByLim('products',4);
-		$services=$this->fetch->getInfoByLim('services',4);
-		$events=$this->fetch->getInfoByOrder('events');
-		$gallery=$this->fetch->getInfoByOrder('gallery');
-		$states=$this->fetch->getInfo('states');
-		$roles=$this->fetch->getInfo('reg_roles');
-		$gallery_count=$this->fetch->record_count('gallery');
-		if($gallery_count>6){
-			$gallery_count=6;
-		}
-		$feedbacks=$this->fetch->getInfoByOrder('feedbacks');
-		$web=$this->fetch->getWebProfile('webprofile');
-
-		$this->load->view('header',['title'=>'Home','slides'=>$slides,
-						'events'=>$events,
-						'projects'=>$projects,
-						'roles'=>$roles,
-						'prods'=>$prods,
-						'schemes'=>$schemes,
-						'services'=>$services,
-						'states'=>$states,
-						'gallery'=>$gallery,
-						'web'=>$web,
-						'feedbacks'=>$feedbacks,
-						'lim'=> $gallery_count
-						]
-					);
-		$this->load->view('index');
-		$this->load->view('footer');
-	}
-
 	public function index()
 	{
-		$feedbacks=$this->fetch->getInfoByOrder('feedbacks');
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
+
+		$sliders=$this->fetch->getInfo('hero_slider');
+		$services=$this->fetch->getInfo('services');
+		$feedbacks=$this->fetch->getInfoByOrder('feedbacks');
 
 		$this->load->view('header',['title'=>'Home',
 								'web'=>$web,
+								'locations'=>$locations,
+								'services_nav'=>$services_nav,
+								'sliders'=>$sliders,
+								'services'=>$services,
 								'feedbacks'=>$feedbacks
 						]
 					);
@@ -60,40 +33,95 @@ class Home extends MY_Controller {
 	public function About()
 	{
 		$web=$this->fetch->getWebProfile('webprofile');
-		$prods=$this->fetch->getInfoByLim('products',4);
-		$services=$this->fetch->getInfoByLim('services',4);
-		$states=$this->fetch->getInfo('states');
-		$roles=$this->fetch->getInfo('reg_roles');
-		$this->load->view('header',['title'=>'About Us',
-									'roles'=>$roles,
-									'states'=>$states,
-									'prods'=>$prods,
-									'services'=>$services,
-									'web'=>$web
-									]);
+		$this->load->view('header',['title'=>'About us',
+								'web'=>$web
+						]
+					);
 		$this->load->view('about');
 		$this->load->view('footer');
 	}
 
-	public function Events()
+	public function Contact()
 	{
-		$events=$this->fetch->getInfoByOrder('events');
-		$prods=$this->fetch->getInfoByLim('products',4);
-		$services=$this->fetch->getInfoByLim('services',4);
-		$states=$this->fetch->getInfo('states');
-		$roles=$this->fetch->getInfo('reg_roles');
 		$web=$this->fetch->getWebProfile('webprofile');
-		$this->load->view('header',['title'=>'Events',
-									'roles'=>$roles,
-									'states'=>$states,
-									'events'=>$events,
-									'prods'=>$prods,
-									'services'=>$services,
-									'web'=>$web
-									]);
-		$this->load->view('events');
+		$this->load->view('header',['title'=>'Contact us',
+								'web'=>$web
+						]
+					);
+		$this->load->view('contact');
 		$this->load->view('footer');
 	}
+
+	public function Forgot()
+	{
+		$web=$this->fetch->getWebProfile('webprofile');
+		$this->load->view('header',['title'=>'Forgot password',
+								'web'=>$web
+						]
+					);
+		$this->load->view('forgot');
+		$this->load->view('footer');
+	}
+
+	public function Login()
+	{
+		$web=$this->fetch->getWebProfile('webprofile');
+		$this->load->view('header',['title'=>'Login',
+								'web'=>$web
+						]
+					);
+		$this->load->view('login');
+		$this->load->view('footer');
+	}
+
+	public function Register()
+	{
+		$web=$this->fetch->getWebProfile('webprofile');
+		$this->load->view('header',['title'=>'Register',
+								'web'=>$web
+						]
+					);
+		$this->load->view('register');
+		$this->load->view('footer');
+	}
+
+	public function Profile()
+	{
+		$web=$this->fetch->getWebProfile('webprofile');
+		$this->load->view('header',['title'=>'Profile',
+								'web'=>$web
+						]
+					);
+		$this->load->view('profile');
+		$this->load->view('footer');
+	}
+
+	public function Services()
+	{
+		$web=$this->fetch->getWebProfile('webprofile');
+		$this->load->view('header',['title'=>'services',
+								'web'=>$web
+						]
+					);
+		$this->load->view('services');
+		$this->load->view('footer');
+	}
+
+	public function Service_details($id)
+	{
+		$web=$this->fetch->getWebProfile('webprofile');
+		$this->load->view('header',['title'=>'service details',
+								'web'=>$web
+						]
+					);
+		$this->load->view('service-details');
+		$this->load->view('footer');
+	}
+
+
+
+
+	// ---------------- REF --------------------
 
 	public function Event($id)
 	{
@@ -135,24 +163,6 @@ class Home extends MY_Controller {
 									'web'=>$web
 									]);
 		$this->load->view('event');
-		$this->load->view('footer');
-	}
-
-	public function Privacy()
-	{
-		$web=$this->fetch->getWebProfile('webprofile');
-		$prods=$this->fetch->getInfoByLim('products',4);
-		$services=$this->fetch->getInfoByLim('services',4);
-		$states=$this->fetch->getInfo('states');
-		$roles=$this->fetch->getInfo('reg_roles');
-		$this->load->view('header',['title'=>'Privacy Policy',
-									'roles'=>$roles,
-									'states'=>$states,
-									'prods'=>$prods,
-									'services'=>$services,
-									'web'=>$web
-									]);
-		$this->load->view('policies');
 		$this->load->view('footer');
 	}
 

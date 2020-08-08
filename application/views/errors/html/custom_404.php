@@ -4,12 +4,12 @@
         padding:8rem 0;
     }
     .h1{
-        font-size:8rem;
+        font-size:7rem;
         font-weight:800;
         color:#555;
     }
     .h3{
-        font-size:3rem;
+        font-size:2.6rem;
         font-weight:600;
         margin:1rem 0 2rem;
         color:#555;
@@ -17,9 +17,9 @@
     a.track{
         cursor:pointer;
         padding:1.5rem 3rem;
-        background-color:#5cb85c;
+        background-color:#1F6295;
         color:white;
-        font-size:2rem;
+        font-size:1.8rem;
         font-weight:600;
         display:inline-block;
         transition:0.2s;
