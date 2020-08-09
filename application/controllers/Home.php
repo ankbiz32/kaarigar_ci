@@ -63,30 +63,9 @@ class Home extends MY_Controller {
 		$this->load->view('footer');
 	}
 
-	public function Login()
-	{
-		$web=$this->fetch->getWebProfile('webprofile');
-		$this->load->view('header',['title'=>'Login',
-								'web'=>$web
-						]
-					);
-		$this->load->view('login');
-		$this->load->view('footer');
-	}
-
-	public function Register()
-	{
-		$web=$this->fetch->getWebProfile('webprofile');
-		$this->load->view('header',['title'=>'Register',
-								'web'=>$web
-						]
-					);
-		$this->load->view('register');
-		$this->load->view('footer');
-	}
-
 	public function Profile()
 	{
+        $this->redirectUserNotLoggedIn();
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'Profile',
 								'web'=>$web

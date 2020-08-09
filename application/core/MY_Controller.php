@@ -6,17 +6,10 @@ class MY_Controller extends CI_Controller
         parent::__construct();
     }
 
+    // ================= For Admin ==========================
+
     public function loggedIn(){
         if(isset($this->session->user->user_id) AND $this->session->user->role=="admin"){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    public function userLoggedIn(){
-        if(isset($this->session->reg->user_id) AND $this->session->reg->role=="user"){
             return true;
         }
         else{
@@ -36,17 +29,31 @@ class MY_Controller extends CI_Controller
         }
     }
 
+
+
+    // ================ For Users =============================
+
+    public function userLoggedIn(){
+        if(isset($this->session->reg->user_id) AND $this->session->reg->role=="user"){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     public function redirectUserLoggedIn($uri = 'profile'){
         if($this->userLoggedIn()){
             redirect($uri);
         }
     }
 
-    public function redirectUserNotLoggedIn($uri = 'UserLogin'){
+    public function redirectUserNotLoggedIn($uri = 'login'){
         if(!$this->userLoggedIn()){
             redirect($uri);
         }
     }
+
     
     protected function getPaginitionConfig($uri, $total_count, $rows =10){
         // for creating paginition configuration

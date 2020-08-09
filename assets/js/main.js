@@ -1,12 +1,3 @@
-/*
-
-[Main Script]
-
-Project: QuickFix - Multipurpose Servicing and Repairing HTML Template
-Version: 1.3
-Author : themelooks.com
-
-*/
 
 ;(function ($) {
     "use strict";
@@ -90,38 +81,6 @@ Author : themelooks.com
             $t.parent('p').siblings('.checkout--info-form').slideToggle();
         });
 
-        /* ------------------------------------------------------------------------- *
-         * MAP
-         * ------------------------------------------------------------------------- */
-        var $map = $('#map'),
-            setMap = function () {
-                var map = new google.maps.Map($map[0], {
-                    center: {lat: $map.data('map-latitude'), lng: $map.data('map-longitude')},
-                    zoom: $map.data('map-zoom'),
-                    scrollwheel: false,
-                    disableDefaultUI: true,
-                    zoomControl: true,
-                    styles: [{"featureType":"landscape","stylers":[{"hue":"#FFBB00"},{"saturation":43.400000000000006},{"lightness":37.599999999999994},{"gamma":1}]},{"featureType":"road.highway","stylers":[{"hue":"#FFC200"},{"saturation":-61.8},{"lightness":45.599999999999994},{"gamma":1}]},{"featureType":"road.arterial","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":51.19999999999999},{"gamma":1}]},{"featureType":"road.local","stylers":[{"hue":"#FF0300"},{"saturation":-100},{"lightness":52},{"gamma":1}]},{"featureType":"water","stylers":[{"hue":"#0078FF"},{"saturation":-13.200000000000003},{"lightness":2.4000000000000057},{"gamma":1}]},{"featureType":"poi","stylers":[{"hue":"#00FF6A"},{"saturation":-1.0989010989011234},{"lightness":11.200000000000017},{"gamma":1}]}]
-                });
-                
-                if ( typeof $map.data('map-marker') !== 'undefined' ) {
-                    var data = $map.data('map-marker'),
-                        i = 0;
-
-                    for ( i; i < data.length; i++ ) {
-                        new google.maps.Marker({
-                            position: {lat: data[i][0], lng: data[i][1]},
-                            map: map,
-                            animation: google.maps.Animation.DROP,
-                            draggable: true
-                        });
-                    }
-                }
-            };
-        
-        if ( $map.length ) {
-            setMap();
-        }
 
         /* ------------------------------------------------------------------------- *
          * BACK TO TOP BUTTON
@@ -534,5 +493,10 @@ Author : themelooks.com
             $footerCopyrightBorder.css( 'top', $footerCopyright.position().top );
         }
     });
+
+     /* ------------------------------------------------------------------------- *
+     * CUSTOM SCrIPTS
+     * ------------------------------------------------------------------------- */
+
     
 })(jQuery);

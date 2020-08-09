@@ -1,30 +1,29 @@
 <?php
 class AddModel extends CI_Model{
 
-    
-    public function saveInfo($d, $table)
+    public function saveInfo($table,$d)
     {
-        $flag = $this->db->insert($table , $d);
-        if($flag){
-            return true;
+        if(!empty($d)){
+            $this->db->insert($table,$d);
+            return $this->db->insert_id();
         }
-        else{
-            return false;
-        }
+		return false;
     }
 
-
-    public function saveEnquiry($d)
-    {
-        $flag = $this->db->insert('enquiries',$d);
-        if($flag){
-            return true;
+    public function create_user($table,$data) {
+        if(!empty($data)){
+            $this->db->insert($table,$data);
+            return $this->db->insert_id();
         }
-        else{
-            return false;
-        }
+		return false;
     }
 
+    public function create_user_session($data) {
+		if(!empty($data)){
+			$this->db->insert('user_sessions', $data);
+			return $this->db->insert_id();
+		}
+		return false;
+    }
 
-    
 }

@@ -107,6 +107,12 @@ label.error{
     color: rgb(255, 44, 44);
     padding: 1px 5px;
 }
+label.success{
+    margin-top: 10px;
+    background-color: rgb(241, 255, 241);
+    color: rgb(6, 185, 0);
+    padding: 1px 5px;
+}
 section.login, section.register{
     padding: 40px 0;
     background-color: #eee;
