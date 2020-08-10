@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2020 at 07:10 AM
+-- Generation Time: Aug 10, 2020 at 02:43 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -20,6 +20,39 @@ SET time_zone = "+00:00";
 --
 -- Database: `kaarigar`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `amt` varchar(100) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'BOOKED',
+  `created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `modified` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_info`
+--
+
+CREATE TABLE `booking_info` (
+  `id` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL,
+  `sub_service_id` int(11) NOT NULL,
+  `address` varchar(300) NOT NULL,
+  `schedule_date` varchar(50) NOT NULL,
+  `schedule_time` varchar(50) NOT NULL,
+  `user_remarks` varchar(300) NOT NULL,
+  `admin_remarks` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -191,7 +224,7 @@ INSERT INTO `sub_services` (`id`, `service_id`, `text`, `min_charges`, `is_activ
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `mobile_no` varchar(20) NOT NULL,
   `username` varchar(50) NOT NULL,
   `pwd` varchar(255) NOT NULL,
@@ -209,23 +242,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `mobile_no`, `username`, `pwd`, `fname`, `lname`, `email`, `role`, `is_verified`, `status`, `created_at`, `modified_at`) VALUES
+INSERT INTO `users` (`id`, `mobile_no`, `username`, `pwd`, `fname`, `lname`, `email`, `role`, `is_verified`, `status`, `created_at`, `modified_at`) VALUES
 (1, '', 'adminkaarigar', '$2y$10$.UUIRzwRCZekPBSpVMtOa.ZI9DVtESdtF1s3aEkdLkuZKdx1iHrVe', 'Demo', 'User', 'connect@kaarigaronline.in', 'admin', 1, 1, '2020-08-06 18:01:55', '2020-08-06 18:01:55'),
-(13, '7984561324', '', '', 'D sd', '', '', 'user', 0, 1, '2020-08-09 18:58:21', '2020-08-09 18:58:21'),
-(14, '6513200653', '', '', 'dsd', '', '', 'user', 0, 1, '2020-08-09 18:59:43', '2020-08-09 18:59:43'),
-(15, '7984561324', '', '', 'Ankur aa', '', '', 'user', 0, 1, '2020-08-09 19:01:28', '2020-08-09 19:01:28'),
-(16, '7984561324', '', '', 'Ankur aa', '', '', 'user', 0, 1, '2020-08-09 19:07:08', '2020-08-09 19:07:08'),
-(17, '6513200653', '', '', 'dsd', '', '', 'user', 0, 1, '2020-08-09 19:09:05', '2020-08-09 19:09:05'),
-(18, '8746531321', '', '', 'cdvdavdav', '', '', 'user', 0, 1, '2020-08-09 19:10:06', '2020-08-09 19:10:06'),
-(19, '6849874653', '', '', 'd d', '', '', 'user', 0, 1, '2020-08-09 19:11:32', '2020-08-09 19:11:32'),
-(20, '6513200653', '', '', 'dsd', '', '', 'user', 0, 1, '2020-08-09 19:12:32', '2020-08-09 19:12:32'),
-(21, '7894561234', '', '', 'Test', '', '', 'user', 0, 1, '2020-08-09 19:13:57', '2020-08-09 19:13:57'),
-(22, '7984561324', '', '', 'D sd', '', '', 'user', 0, 1, '2020-08-09 19:16:42', '2020-08-09 19:16:42'),
-(23, '8746531321', '', '', 'cdvdavdav', '', '', 'user', 0, 1, '2020-08-09 19:16:56', '2020-08-09 19:16:56'),
-(24, '8746531321', '', '', 'cdvdavdav', '', '', 'user', 0, 1, '2020-08-09 19:16:56', '2020-08-09 19:16:56'),
-(25, '6849874653', '', '', 'd d', '', '', 'user', 0, 1, '2020-08-09 19:17:47', '2020-08-09 19:17:47'),
-(26, '6849874653', '', '', 'd d', '', '', 'user', 0, 1, '2020-08-09 19:17:47', '2020-08-09 19:17:47'),
-(27, '7894561234', '', '', 'Test', '', '', 'user', 0, 1, '2020-08-09 19:18:15', '2020-08-09 19:18:15');
+(45, '7894561230', '', '$2y$10$.0sEFrHroHiJyAfgSVBFk.uhmj8dC1Az2XIEKP.BPpKdeXaGWgW0O', 'Test', '', '', 'user', 1, 1, '2020-08-10 07:53:46', '2020-08-10 07:53:46');
 
 -- --------------------------------------------------------
 
@@ -245,21 +264,7 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`id`, `user_id`, `pin_code`, `address`) VALUES
-(11, 13, '651544', 'sfsfs'),
-(12, 14, '456789', 'ascdcac'),
-(13, 15, '651544', 'sfsfs'),
-(14, 16, '651544', 'sfsfs'),
-(15, 17, '456789', 'ascdcac'),
-(16, 18, '986541', '6854153210'),
-(17, 19, '685431', 'x d da'),
-(18, 20, '456789', 'ascdcac'),
-(19, 21, '492001', 'Shankar Nagar'),
-(20, 22, '651544', 'sfsfs'),
-(21, 23, '986541', '6854153210'),
-(22, 24, '986541', '6854153210'),
-(23, 25, '685431', 'x d da'),
-(24, 26, '685431', 'x d da'),
-(25, 27, '492001', 'Shankar Nagar');
+(43, 45, '492001', 'Budhapara, Raipur (C.G.)');
 
 -- --------------------------------------------------------
 
@@ -291,6 +296,18 @@ INSERT INTO `webprofile` (`id`, `email`, `phone1`, `phone2`, `whatsapp_no`, `add
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `booking_info`
+--
+ALTER TABLE `booking_info`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `enquiries`
@@ -344,7 +361,7 @@ ALTER TABLE `sub_services`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user_info`
@@ -363,10 +380,22 @@ ALTER TABLE `webprofile`
 --
 
 --
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `booking_info`
+--
+ALTER TABLE `booking_info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `enquiries`
 --
 ALTER TABLE `enquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `feedbacks`
@@ -414,13 +443,13 @@ ALTER TABLE `sub_services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `webprofile`
