@@ -46,11 +46,22 @@ class GetModel extends CI_Model{
          $this->db->where($conds);
          return $this->db->get($table)->result();
      }
-    
-     public function getInfoCondsId($table,$conds)
+
+     public function getInfoCondsArr($table,$conds)
      {
          $this->db->where($conds);
-         return $this->db->get($table)->row();
+         return $this->db->get($table)->result_array()->service_id;
+     }
+    
+     public function getServicesInLoc($table,$conds)
+     {
+        return $this->db->select('service_id')->where($conds)->get($table)->result_array();
+     }
+
+     public function getServicesWhereIn($locs)
+     {
+         return $this->db->or_where_in('id', $locs)
+                    ->get('services')->result();
      }
     
     // Fetch Enquiries

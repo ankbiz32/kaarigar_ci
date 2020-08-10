@@ -147,7 +147,7 @@
                 <h4 class="modal-title text-center" ><i class="fa fa-map-marker"></i>&nbsp; Select your location</h4>
             </div>
             <div class="modal-body">
-                <form action="Home/changeLoc" method="POST">
+                <form action="Home/changeLoc" method="GET">
                     <div class="d-flex">
                         <select name="location" class="wide" id="area-select" required>
                             <option value="">-- Select your location --</option>

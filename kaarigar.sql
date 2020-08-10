@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2020 at 02:43 PM
+-- Generation Time: Aug 10, 2020 at 08:23 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -185,6 +185,36 @@ INSERT INTO `services` (`id`, `name`, `img_src`, `icon_src`, `miin_charges`, `mi
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `services_locations`
+--
+
+CREATE TABLE `services_locations` (
+  `id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `services_locations`
+--
+
+INSERT INTO `services_locations` (`id`, `service_id`, `location_id`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
+(6, 6, 1),
+(7, 7, 1),
+(8, 1, 2),
+(9, 2, 2),
+(10, 3, 2),
+(11, 4, 2),
+(12, 5, 2);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subscriptions`
 --
 
@@ -346,6 +376,12 @@ ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `services_locations`
+--
+ALTER TABLE `services_locations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subscriptions`
 --
 ALTER TABLE `subscriptions`
@@ -426,6 +462,12 @@ ALTER TABLE `locations`
 --
 ALTER TABLE `services`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `services_locations`
+--
+ALTER TABLE `services_locations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `subscriptions`

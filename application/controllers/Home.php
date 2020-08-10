@@ -14,7 +14,16 @@ class Home extends MY_Controller {
 		$web=$this->fetch->getWebProfile('webprofile');
 
 		$sliders=$this->fetch->getInfo('hero_slider');
-		$services=$this->fetch->getInfo('services');
+		if(isset($this->session->loc_id)){
+			$svc_ids=$this->fetch->getServicesInLoc('services_locations',['location_id'=>$this->session->loc_id]);
+			foreach($svc_ids as $id){
+				$svc_id[]=$id['service_id'];
+			}
+			$services=$this->fetch->getServicesWhereIn($svc_id);
+
+		}else{
+			$services=$this->fetch->getInfo('services');
+		}
 		$feedbacks=$this->fetch->getInfoByOrder('feedbacks');
 
 		$this->load->view('header',['title'=>'Home',
@@ -84,11 +93,13 @@ class Home extends MY_Controller {
 		$locations=$this->fetch->getInfo('locations');
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
+		$bookings=$this->fetch->getInfoConds('bookings',['user_id'=>$this->session->reg->id]);
 		$profile=$this->fetch->getInfoCondsId('user_info',['user_id'=>$this->session->reg->id]);
 		$this->load->view('header',['title'=>'Profile',
 								'profile'=>$profile,
 								'locations'=>$locations,
 								'services_nav'=>$services_nav,
+								'bookings'=>$bookings,
 								'web'=>$web
 						]
 					);
@@ -101,9 +112,20 @@ class Home extends MY_Controller {
 		$locations=$this->fetch->getInfo('locations');
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
+		if(isset($this->session->loc_id)){
+			$svc_ids=$this->fetch->getServicesInLoc('services_locations',['location_id'=>$this->session->loc_id]);
+			foreach($svc_ids as $id){
+				$svc_id[]=$id['service_id'];
+			}
+			$services=$this->fetch->getServicesWhereIn($svc_id);
+
+		}else{
+			$services=$this->fetch->getInfo('services');
+		}
 		$this->load->view('header',['title'=>'services',
 								'locations'=>$locations,
 								'services_nav'=>$services_nav,
+								'services'=>$services,
 								'web'=>$web
 						]
 					);

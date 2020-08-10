@@ -255,6 +255,12 @@ h6:first-child, .h6:first-child {
 .mt--60 {
     margin-top: 60px;
 }
+.mt---05 {
+    margin-top: -5px !important;
+}
+.mt---1 {
+    margin-top: -10px !important;
+}
 .mt--1 {
     margin-top: 10px !important;
 }
@@ -272,6 +278,9 @@ h6:first-child, .h6:first-child {
 }
 .ml--3 {
     margin-left: 30px !important;
+}
+.mr--05 {
+    margin-right: 5px !important;
 }
 .mr--1 {
     margin-right: 10px !important;
@@ -461,6 +470,9 @@ a:active, .btn-link:active {
 }
 .text--success {
     color: #3dc71a;
+}
+.text--white {
+    color: white;
 }
 
 /* 1.7. BACKGROUND COLORS */

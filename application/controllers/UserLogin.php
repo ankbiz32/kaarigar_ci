@@ -15,8 +15,12 @@ class UserLogin extends MY_Controller {
 
     public function index(){
         $this->redirectUserLoggedIn();
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'Login',
+                                'locations'=>$locations,
+                                'services_nav'=>$services_nav,
 								'web'=>$web
 						]
 					);
@@ -29,8 +33,12 @@ class UserLogin extends MY_Controller {
 	public function Register()
 	{
         $this->redirectUserLoggedIn();
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'Register',
+                                'locations'=>$locations,
+                                'services_nav'=>$services_nav,
 								'web'=>$web
 						]
 					);
