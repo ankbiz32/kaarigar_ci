@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2020 at 02:53 PM
+-- Generation Time: Aug 10, 2020 at 07:10 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -198,8 +198,9 @@ CREATE TABLE `users` (
   `fname` varchar(15) NOT NULL,
   `lname` varchar(15) NOT NULL,
   `email` varchar(500) NOT NULL,
-  `role` varchar(15) NOT NULL DEFAULT '''admin''',
-  `status` varchar(15) NOT NULL DEFAULT 'active',
+  `role` varchar(15) NOT NULL DEFAULT 'user',
+  `is_verified` int(11) NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL DEFAULT 1,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -208,8 +209,23 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `mobile_no`, `username`, `pwd`, `fname`, `lname`, `email`, `role`, `status`, `created_at`, `modified_at`) VALUES
-(1, '', 'adminkaarigar', '$2y$10$.UUIRzwRCZekPBSpVMtOa.ZI9DVtESdtF1s3aEkdLkuZKdx1iHrVe', 'Demo', 'User', 'connect@kaarigaronline.in', 'admin', '1', '2020-08-06 18:01:55', '2020-08-06 18:01:55');
+INSERT INTO `users` (`user_id`, `mobile_no`, `username`, `pwd`, `fname`, `lname`, `email`, `role`, `is_verified`, `status`, `created_at`, `modified_at`) VALUES
+(1, '', 'adminkaarigar', '$2y$10$.UUIRzwRCZekPBSpVMtOa.ZI9DVtESdtF1s3aEkdLkuZKdx1iHrVe', 'Demo', 'User', 'connect@kaarigaronline.in', 'admin', 1, 1, '2020-08-06 18:01:55', '2020-08-06 18:01:55'),
+(13, '7984561324', '', '', 'D sd', '', '', 'user', 0, 1, '2020-08-09 18:58:21', '2020-08-09 18:58:21'),
+(14, '6513200653', '', '', 'dsd', '', '', 'user', 0, 1, '2020-08-09 18:59:43', '2020-08-09 18:59:43'),
+(15, '7984561324', '', '', 'Ankur aa', '', '', 'user', 0, 1, '2020-08-09 19:01:28', '2020-08-09 19:01:28'),
+(16, '7984561324', '', '', 'Ankur aa', '', '', 'user', 0, 1, '2020-08-09 19:07:08', '2020-08-09 19:07:08'),
+(17, '6513200653', '', '', 'dsd', '', '', 'user', 0, 1, '2020-08-09 19:09:05', '2020-08-09 19:09:05'),
+(18, '8746531321', '', '', 'cdvdavdav', '', '', 'user', 0, 1, '2020-08-09 19:10:06', '2020-08-09 19:10:06'),
+(19, '6849874653', '', '', 'd d', '', '', 'user', 0, 1, '2020-08-09 19:11:32', '2020-08-09 19:11:32'),
+(20, '6513200653', '', '', 'dsd', '', '', 'user', 0, 1, '2020-08-09 19:12:32', '2020-08-09 19:12:32'),
+(21, '7894561234', '', '', 'Test', '', '', 'user', 0, 1, '2020-08-09 19:13:57', '2020-08-09 19:13:57'),
+(22, '7984561324', '', '', 'D sd', '', '', 'user', 0, 1, '2020-08-09 19:16:42', '2020-08-09 19:16:42'),
+(23, '8746531321', '', '', 'cdvdavdav', '', '', 'user', 0, 1, '2020-08-09 19:16:56', '2020-08-09 19:16:56'),
+(24, '8746531321', '', '', 'cdvdavdav', '', '', 'user', 0, 1, '2020-08-09 19:16:56', '2020-08-09 19:16:56'),
+(25, '6849874653', '', '', 'd d', '', '', 'user', 0, 1, '2020-08-09 19:17:47', '2020-08-09 19:17:47'),
+(26, '6849874653', '', '', 'd d', '', '', 'user', 0, 1, '2020-08-09 19:17:47', '2020-08-09 19:17:47'),
+(27, '7894561234', '', '', 'Test', '', '', 'user', 0, 1, '2020-08-09 19:18:15', '2020-08-09 19:18:15');
 
 -- --------------------------------------------------------
 
@@ -223,6 +239,27 @@ CREATE TABLE `user_info` (
   `pin_code` varchar(50) NOT NULL,
   `address` tinytext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_info`
+--
+
+INSERT INTO `user_info` (`id`, `user_id`, `pin_code`, `address`) VALUES
+(11, 13, '651544', 'sfsfs'),
+(12, 14, '456789', 'ascdcac'),
+(13, 15, '651544', 'sfsfs'),
+(14, 16, '651544', 'sfsfs'),
+(15, 17, '456789', 'ascdcac'),
+(16, 18, '986541', '6854153210'),
+(17, 19, '685431', 'x d da'),
+(18, 20, '456789', 'ascdcac'),
+(19, 21, '492001', 'Shankar Nagar'),
+(20, 22, '651544', 'sfsfs'),
+(21, 23, '986541', '6854153210'),
+(22, 24, '986541', '6854153210'),
+(23, 25, '685431', 'x d da'),
+(24, 26, '685431', 'x d da'),
+(25, 27, '492001', 'Shankar Nagar');
 
 -- --------------------------------------------------------
 
@@ -377,13 +414,13 @@ ALTER TABLE `sub_services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `webprofile`
