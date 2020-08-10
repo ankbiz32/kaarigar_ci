@@ -61,6 +61,7 @@ $route['profile'] = 'Home/Profile';
 $route['sitemap.xml'] = 'Sitemap';
 
 $route['login'] = 'UserLogin';
+$route['logout'] = 'UserLogin/logout';
 $route['register'] = 'UserLogin/Register';
 $route['forgot-password'] = 'Home/Forgot';
 

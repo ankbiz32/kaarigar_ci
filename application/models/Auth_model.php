@@ -10,7 +10,7 @@ class Auth_model extends CI_Model {
 
     public function authenticate($data) 
     {
-        $this->db->where(['username' => $data['uname'] , 'status' => 1 ]);
+        $this->db->where(['username' => $data['uname'] , 'status' => 1, 'role' => 'admin' ]);
         $query = $this->db->get('users');
         if($query->num_rows() == 0)
             return false;
@@ -24,7 +24,7 @@ class Auth_model extends CI_Model {
     
     public function authenticateUser($data) 
     {
-        $this->db->where(['email' => $data['email'] , 'status' => 1, 'role' => 'user' ]);
+        $this->db->where(['mobile_no' => $data['mobile_no'] , 'status' => 1, 'role' => 'user', 'is_verified' => '1' ]);
         $query = $this->db->get('users');
         if($query->num_rows() == 0)
             return false;
@@ -35,7 +35,7 @@ class Auth_model extends CI_Model {
 
 
     public function changeLoginPassword($h, $user_id) {
-		$this->db->where('user_id', $user_id);
+		$this->db->where('id', $user_id);
 		$flag=$this->db->update('users', $h);
 		if($flag){
             return true;
@@ -44,6 +44,5 @@ class Auth_model extends CI_Model {
             return false;
         }
     }
-    
     
 }

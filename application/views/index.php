@@ -29,53 +29,35 @@
             </div>
             <!-- Banner Slider End -->
 
-            <!-- Banner From Start -->
-            <div class="banner--form" data-form="ajax">
+            <?php if(!isset($this->session->reg)) {?>
+            <div class="banner--form register">
                 <div class="containers">
                     <div class="row">
                         <div class="">
-                            <form action="sendmail.php" method="post">
-                                <h2 class="h4">Register to book your service</h2>
-                                
-                                <div class="status"></div>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input type="text" name="name" placeholder="Your Name" class="form-control" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input type="tel" name="phone" placeholder="Phone" class="form-control" required>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            <input type="text" name="pin_code" placeholder="Pincode" class="form-control" required>
-                                        </div>
-                                    </div>
-                                </div>
-
+                        <form id="reg_form" class="reg-form" onSubmit="return false">
+                            <h3 class="text-center h4">Register to book your service</h3>
+                            <hr>
+                            <div class="form-block">
                                 <div class="form-group">
-                                    <textarea name="address" placeholder="Full address" class="form-control" style="resize: none;" required></textarea>
+                                    <input type="text" class="form-control required" id="name" name="name" placeholder="Your full name" required>
                                 </div>
-                            
-                                <input type="hidden" name="submitType" value="ajax">
-
-                                <button type="submit" class="btn btn-default">Register</button>
-                            </form>
+                                <div class="form-group">
+                                    <input type="text" class="form-control digits required" maxlength="10" minlength="10" id="mobile_no" name="mobile_no" placeholder="10 digit mobile no." required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control digits required" maxlength="6" minlength="6" id="pin_code" name="pin_code" placeholder="Pin code of your address" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="address"  class="form-control required" rows="1" style="resize: none;" placeholder="Your full address"></textarea>
+                                </div>
+                                <button type="button" id="regSubmit" class="btn btn-default">Register</button>
+                            </div>
+                        </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Banner From End -->
+            <?php }?>
         </div>
         <!-- Banner Section End -->
 
@@ -808,101 +790,37 @@
                         <div class="col-md-6">
                             <!-- Testimonial Slider Start -->
                             <div class="testimonial--slider owl-carousel" data-owl-dots="true">
-                                <!-- Testimonial Item Start -->
+                            <?php foreach($feedbacks as $f){?>
                                 <div class="testimonial--item">
                                     <div class="testimonial--content">
                                         <blockquote>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage rassing hidden.</p>
+                                            <p><?=$f->content?></p>
                                         </blockquote>
                                     </div>
 
                                     <div class="testimonial--rating">
                                         <ul class="nav">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star-half-o"></i></li>
+                                        <?php 
+                                        $r=0; 
+                                        while($r<$f->rating){
+                                           echo '<li><i class="fa fa-star"></i></li>';
+                                            $r++; 
+                                            }
+                                        ?>
+                                        <?php $c=0; while($c<5-$f->rating){?>
+                                            <li><i class="fa fa-star-o"></i></li>
+                                        <?php $c++; }?>
                                         </ul>
                                     </div>
 
                                     <div class="testimonial--info">
-                                        <div class="img">
-                                            <img src="<?=base_url()?>assets/images/testimonial-img/client-01.png" alt="" class="img-circle" data-rjs="2">
-                                        </div>
-
-                                        <div class="content">
-                                            <h3 class="h5">Jane Doe</h3>
-
-                                            <p>Professor, United States</p>
+                                        <div class="content pl--0">
+                                            <h3 class="h5">- <?=$f->name?></h3>
+                                            <p><?=$f->designation?></p>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Testimonial Item End -->
-
-                                <!-- Testimonial Item Start -->
-                                <div class="testimonial--item">
-                                    <div class="testimonial--content">
-                                        <blockquote>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage rassing hidden.</p>
-                                        </blockquote>
-                                    </div>
-
-                                    <div class="testimonial--rating">
-                                        <ul class="nav">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star-half-o"></i></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="testimonial--info">
-                                        <div class="img">
-                                            <img src="<?=base_url()?>assets/images/testimonial-img/client-02.png" alt="" class="img-circle" data-rjs="2">
-                                        </div>
-
-                                        <div class="content">
-                                            <h3 class="h5">Jane Roe</h3>
-
-                                            <p>Professor, United States</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Testimonial Item End -->
-
-                                <!-- Testimonial Item Start -->
-                                <div class="testimonial--item">
-                                    <div class="testimonial--content">
-                                        <blockquote>
-                                            <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage rassing hidden.</p>
-                                        </blockquote>
-                                    </div>
-
-                                    <div class="testimonial--rating">
-                                        <ul class="nav">
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star"></i></li>
-                                            <li><i class="fa fa-star-half-o"></i></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="testimonial--info">
-                                        <div class="img">
-                                            <img src="<?=base_url()?>assets/images/testimonial-img/client-03.png" alt="" class="img-circle" data-rjs="2">
-                                        </div>
-
-                                        <div class="content">
-                                            <h3 class="h5">Janie Doe</h3>
-
-                                            <p>Professor, United States</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Testimonial Item End -->
+                            <?php }?>
                             </div>
                             <!-- Testimonial Slider End -->
                         </div>

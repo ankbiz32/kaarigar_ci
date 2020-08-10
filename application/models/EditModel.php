@@ -15,10 +15,9 @@ class EditModel extends CI_Model{
         }
     }
     
-    // Update Info
-    public function updateRole($data, $id, $table)
+    public function updateInfoConds($table, $conds, $data)
     {
-        $this->db->where('role_id', $id);
+        $this->db->where($conds);
         $wpflag = $this->db->update($table , $data);
         if($wpflag){
             return true;
@@ -27,9 +26,6 @@ class EditModel extends CI_Model{
             return false;
         }
     }
-
-   
-
 
    // Update Website Profile
    public function updateWebProfile($data)

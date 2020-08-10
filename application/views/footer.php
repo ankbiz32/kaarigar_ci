@@ -147,12 +147,12 @@
                 <h4 class="modal-title text-center" ><i class="fa fa-map-marker"></i>&nbsp; Select your location</h4>
             </div>
             <div class="modal-body">
-                <form action="" method="GET">
+                <form action="Home/changeLoc" method="POST">
                     <div class="d-flex">
                         <select name="location" class="wide" id="area-select" required>
                             <option value="">-- Select your location --</option>
                             <?php foreach($locations as $l){?>
-                                <option value="<?=$l->id?>"><?=$l->city?>, <?=$l->state?> (<?=$l->pin_code?>)</option>
+                                <option value="<?=$l->id?>" <?=isset($this->session->loc_id)?($this->session->loc_id==$l->id?'selected':''):''?>><?=$l->city?>, <?=$l->state?> (<?=$l->pin_code?>)</option>
                             <?php }?>
                         </select>
                         <button type="submit" class="btn btn-default area-select-btn ml--2">Search</button>
@@ -165,6 +165,8 @@
         </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
+
+
 
 
     <script src="<?=base_url()?>assets/js/jquery.min.js"></script>
@@ -184,6 +186,7 @@
     <script src="<?=base_url()?>assets/js/jquery.counterup.min.js"></script>
     <script src="<?=base_url()?>assets/js/retina.min.js"></script>
     <script src="<?=base_url()?>assets/js/simsCheckbox.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <!-- ==== Main JavaScript ==== -->
     <script src="<?=base_url()?>assets/js/main.js"></script>
 
@@ -218,6 +221,51 @@
         $(".pwd-form").validate();
         $(".reg-form").validate();
         $(".demo").simsCheckbox();
+
+            
+    //  Sweet alert for normal response
+        $(document).ready(function(){
+            const Toast = Swal.mixin({
+                toast: false,
+                position: 'center',
+                showConfirmButton: false,
+                timer: 3000
+            });
+
+            <?php if($this->session->flashdata('success') || $message = $this->session->flashdata('failed')):
+                $class = $this->session->flashdata('success') ? 'success' : 'error';
+            ?>
+                
+                Toast.fire({
+                    icon: '<?=$class?>',
+                    title: '<?= $this->session->flashdata('success'); ?>
+                            <?= $this->session->flashdata('failed'); ?>'
+                });
+            <?php 
+                endif;
+            ?>
+        });
+
+
+    //  Sweet alert for delete
+        function confirmation(ev) {
+            ev.preventDefault();
+            var urlToRedirect = ev.currentTarget.getAttribute('href'); 
+
+            Swal.fire({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                if (result.value) {
+                    window.location = urlToRedirect;
+                }
+            })
+        }
+
     </script>
 
 </body>

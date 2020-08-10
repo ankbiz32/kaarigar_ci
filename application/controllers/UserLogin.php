@@ -24,7 +24,8 @@ class UserLogin extends MY_Controller {
 		$this->load->view('footer');
     }
 
-    
+    //========== For registertration ================
+
 	public function Register()
 	{
         $this->redirectUserLoggedIn();
@@ -53,6 +54,7 @@ class UserLogin extends MY_Controller {
             $data['mobile_no'] = $this->input->post('mobile_no');
             $uid=$this->add->create_user('users',$data);
             if($uid){
+                $response=array();
                 $_SESSION["mobile_no"] =$data['mobile_no'];
                 $response['uid']=$uid;
                 $_SESSION["uid"] =$response['uid'];
@@ -69,72 +71,118 @@ class UserLogin extends MY_Controller {
             }
         }
 	}
+    
+	public function regFinish()
+	{
+        sleep(1);
+        $this->form_validation->set_rules('pwd', 'Password', 'required');
+        $this->form_validation->set_rules('cpwd', 'Confirm pasword', 'required');
+        if($this->form_validation->run() == FALSE){
+            $response=false;
+            echo json_encode($response);
+        }
+        else{
+            $this->load->model('EditModel', 'edit');
+            $data= array();
+            $data['pwd']=password_hash($this->input->post('pwd'), PASSWORD_DEFAULT);
+            $data['is_verified'] = 1;
+            if($this->edit->updateInfo($data,$_SESSION['uid'],'users')){
+                unset($_SESSION['uid']);
+                unset($_SESSION['vno']);
+                unset($_SESSION['mobile_no']);
+                $response=array();
+                $response['error']=false;
+
+                echo json_encode($response);
+            }
+            else{
+                $response['error']=true;
+                echo json_encode($response);
+            }
+        }
+    }
+    
+    public function regPhoneCheck()
+	{
+       if($this->fetch->getPhone($this->input->post('mobile_no')) > 0){
+           echo true;
+       }
+       else{
+           echo false;
+       }
+	}
+    
+	public function VerifyOtp()
+	{
+        if($_POST['otp']==$_SESSION['vno']){
+            echo true;
+        }
+        else{
+            echo false;
+        }
+    }
+
+    
+    //========== For Login authentication ================
 
     public function authenticate(){
         $this->redirectUserLoggedIn();
-        $this->form_validation->set_rules('email', 'Email', 'required|min_length[5]');
+        $this->form_validation->set_rules('mobile_no', 'Phone no.', 'required|min_length[10]|max_length[10]');
         $this->form_validation->set_rules('pwd', 'Password', 'required|min_length[6]');
         $response ['errors'] = '';
         if($this->form_validation->run() == FALSE){
-            $response[ 'errors' ]= validation_errors() ;
+            $response[ 'errors' ]= '* Invalid inputs' ;
         }
         else{
             if($user = $this->auth->authenticateUser($this->input->post()) ){
                 $this->session->set_userdata(['reg' =>  $user]);
                 $this->redirectUserLoggedIn();
             }else{
-                $response['errors'] .= "Invalid E-mail or Password";
+                $response['errors'] .= "* Wrong phone no. or password";
             }
         }
-        $this->load->view('users/userlogin',$response);
+        $this->session->set_flashdata('error', $response['errors']);
+        redirect('login');
     }
 
     public function changePwd(){
-        $this->form_validation->set_rules('oldp', 'Old Password', 'required|min_length[6]');
-        $this->form_validation->set_rules('newp', 'New Password', 'required|min_length[6]');
-        $this->form_validation->set_rules('cnfp', 'Confirm Password', 'required|min_length[6]');
+        $this->form_validation->set_rules('oldp', 'Old Password', 'required');
+        $this->form_validation->set_rules('newp', 'New Password', 'required');
+        $this->form_validation->set_rules('cnfp', 'Confirm Password', 'required|matches[newp]');
         if($this->form_validation->run() == TRUE){
             $data=$this->input->post();
-            $admProfile=$this->fetch->getAdminProfile();
-            if($data['newp']==$data['cnfp']){
-                if( password_verify($data['oldp'], $admProfile->pwd) ){
-                    $hash['pwd'] = password_hash( $this->input->post('cnfp'), PASSWORD_DEFAULT );
-                    $status=$this->auth->changeLoginPassword($hash, $admProfile->user_id);
-
-                    if($status){
-                        $this->session->set_flashdata('success','Password Updated !');
-                        redirect('Admin/adminProfile');
-                    }
-                    else{
-                        $this->session->set_flashdata('failed','Error !');
-                        redirect('Admin/adminProfile');
-                    }
+            if( password_verify($data['oldp'], $this->session->reg->pwd) ){
+                $hash['pwd'] = password_hash( $this->input->post('cnfp'), PASSWORD_DEFAULT );
+                $status=$this->auth->changeLoginPassword($hash, $admProfile->user_id);
+                if($status){
+                    $this->session->reg->pwd=$hash['pwd'];
+                    $response=array();
+                    $response['error']=false;
+                    echo json_encode($response);
                 }
                 else{
-                    $this->session->set_flashdata('failed','Invalid old password !');
-                    redirect('Admin/adminProfile');
+                    $response=array();
+                    $response['error']='* Critical Error.';
+                    echo json_encode($response);
                 }
             }
             else{
-                $this->session->set_flashdata('failed','New & confirm password should be same !');
-                redirect('Admin/adminProfile');
+                $response=array();
+                $response['error']='* Wrong current password.';
+                echo json_encode($response);
             }
-
-            
         }
         else{
-            $admProfile=$this->fetch->getAdminProfile();
-            $this->load->view( 'admin/adminheader', ['admProfile' => $admProfile, 'errors'=> validation_errors()] ); 
-            $this->load->view('admin/adminaside'); 
-            $this->load->view('admin/adminProfile'); 
-            $this->load->view('admin/adminfooter');  
+            $response=array(); 
+            $response['error']='* Invalid data. Please enter correct info.'; 
+            echo json_encode($response);
         }
     }
 
     public function logout(){
         $this->session->unset_userdata(['reg']);
         $this->session->sess_destroy();
-        $this->index();
+        $this->redirectUserNotLoggedIn();
     }
 
 

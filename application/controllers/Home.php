@@ -24,16 +24,22 @@ class Home extends MY_Controller {
 								'sliders'=>$sliders,
 								'services'=>$services,
 								'feedbacks'=>$feedbacks
-						]
+							]
 					);
 		$this->load->view('index');
-		$this->load->view('footer');
+		$this->load->view('footer'); 
+		$this->load->view('custom_scripts'); 
 	}
 
 	public function About()
 	{
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
+
 		$this->load->view('header',['title'=>'About us',
+								'locations'=>$locations,
+								'services_nav'=>$services_nav,
 								'web'=>$web
 						]
 					);
@@ -43,8 +49,13 @@ class Home extends MY_Controller {
 
 	public function Contact()
 	{
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
+		
 		$this->load->view('header',['title'=>'Contact us',
+								'locations'=>$locations,
+								'services_nav'=>$services_nav,
 								'web'=>$web
 						]
 					);
@@ -54,8 +65,12 @@ class Home extends MY_Controller {
 
 	public function Forgot()
 	{
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'Forgot password',
+								'locations'=>$locations,
+								'services_nav'=>$services_nav,
 								'web'=>$web
 						]
 					);
@@ -66,8 +81,14 @@ class Home extends MY_Controller {
 	public function Profile()
 	{
         $this->redirectUserNotLoggedIn();
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
+		$profile=$this->fetch->getInfoCondsId('user_info',['user_id'=>$this->session->reg->id]);
 		$this->load->view('header',['title'=>'Profile',
+								'profile'=>$profile,
+								'locations'=>$locations,
+								'services_nav'=>$services_nav,
 								'web'=>$web
 						]
 					);
@@ -77,8 +98,12 @@ class Home extends MY_Controller {
 
 	public function Services()
 	{
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'services',
+								'locations'=>$locations,
+								'services_nav'=>$services_nav,
 								'web'=>$web
 						]
 					);
@@ -88,8 +113,12 @@ class Home extends MY_Controller {
 
 	public function Service_details($id)
 	{
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'service details',
+								'locations'=>$locations,
+								'services_nav'=>$services_nav,
 								'web'=>$web
 						]
 					);
@@ -97,6 +126,42 @@ class Home extends MY_Controller {
 		$this->load->view('footer');
 	}
 
+	public function updateProfile()
+	{
+        $this->redirectUserNotLoggedIn();
+		$data['fname']=$this->input->post('fname');
+		$data['email']=$this->input->post('email');
+		$data2['pin_code']=$this->input->post('pin_code');
+		$data2['address']=$this->input->post('address');
+		$this->load->model('EditModel','edit');
+		if($this->edit->updateInfoConds('users',['id'=>$this->session->reg->id],$data)){
+			$this->session->reg->fname=$data['fname'];
+			$this->session->reg->email=$data['email'];
+			$this->edit->updateInfoConds('user_info',['user_id'=>$this->session->reg->id],$data2);
+			$this->session->set_flashdata('success','Profile Updated !');
+			redirect('profile');
+		}
+		else{
+			$this->session->set_flashdata('failed','Error !');
+			redirect('profile');
+		}
+	}
+
+	public function changeLoc()
+	{
+		$this->session->loc_id=$_GET['location'];
+		$loc=$this->fetch->getInfoById($this->session->loc_id,'locations');
+		$this->session->loc_area=$loc->area;
+		$this->session->loc_city=$loc->city;
+		$this->session->loc_state=$loc->state;
+		$this->session->loc_pin_code=$loc->pin_code;
+		if(isset($_GET['return_url'])){
+			redirect($_GET['return_url']);
+		}
+		else{
+			redirect('Home');
+		}
+	}
 
 
 
@@ -145,27 +210,28 @@ class Home extends MY_Controller {
 		$this->load->view('footer');
 	}
 
-	public function FarmerReg()
+	public function Enquiry()
 	{
 		$this->form_validation->set_rules('name', 'Name', 'required');
-		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[10]|max_length[10]|regex_match[/^[0-9]{10}$/]');
+		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[10]|max_length[10]');
+		$this->form_validation->set_rules('message', 'Message', 'max_length[300]');
 		if($this->form_validation->run() == true){
 			$data=$this->input->post();
 			$data['date']=date('Y-m-d');
 			$this->load->model('AddModel','save');
-			$status= $this->save->saveInfo($data, 'farmer_reg');
+			$status= $this->save->saveInfo('enquiries',$data);
 			if($status){
-				$this->session->set_flashdata('success','Thank you for registering ! We will contact you soon.' );
-				redirect('Home');
+				$this->session->set_flashdata('success','Thank you for sending us a message. We will contact you soon.' );
+				redirect('contact-us');
 			}
 			else{
-				$this->session->set_flashdata('failed','Error !');
-				redirect('Home');
+				$this->session->set_flashdata('failed','Critical error!');
+				redirect('contact-us');
 			}
 		}
 		else{
 			$this->session->set_flashdata('failed',strip_tags(trim(validation_errors())));
-			redirect('Home');
+			redirect('contact-us');
 		} 
 	}
 

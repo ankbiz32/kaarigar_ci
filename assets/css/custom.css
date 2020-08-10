@@ -213,6 +213,9 @@ section.login, section.register{
     right: 50px;
     bottom: 50px;
 }
+h2.swal2-title{
+    line-height: 24px !important;
+}
 
 @media(max-width:992px){
     #appointment{

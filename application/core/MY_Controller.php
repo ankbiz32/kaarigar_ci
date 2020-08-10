@@ -34,7 +34,7 @@ class MY_Controller extends CI_Controller
     // ================ For Users =============================
 
     public function userLoggedIn(){
-        if(isset($this->session->reg->user_id) AND $this->session->reg->role=="user"){
+        if(isset($this->session->reg->id) AND $this->session->reg->role=="user"){
             return true;
         }
         else{

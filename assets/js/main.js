@@ -498,5 +498,43 @@
      * CUSTOM SCrIPTS
      * ------------------------------------------------------------------------- */
 
+    $('#proPwd').click(function(){
+        $('#pwd_form .error-block').remove();
+        var form=$('#pwd_form');
+        if(form.valid()){
+            var formData = new FormData(document.getElementById("pwd_form"));
+            $.ajax({
+                url: 'UserLogin/changePwd',
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                type: 'POST',
+                beforeSend: function(){
+                    $('#proPwd').html('Processing <i class="fa fa-spin fa-circle-o-notch"></i>');
+                },
+                success: function(data){
+                    $('#proPwd').hide().html('Next').fadeIn(500);
+                    if(!data.error){
+                        $(`
+                        <label class="success d-block mt--1">Password Changed successfully.</label>
+                        `).hide().insertAfter('#proPwd').fadeIn(500);
+                    }
+                    else{
+                        $(`
+                        <label class="error d-block mt--1">`+data.error+`</label>
+                        `).hide().insertAfter('#proPwd').fadeIn(500);
+                    }
+                },
+                error:function(){
+                    $('#proPwd').hide().html('Register').fadeIn(500);
+                    $(`
+                    <label class="error d-block mt--1">* Server error</label>
+                    `).insertAfter('#proPwd');
+                }
+            });
+        }
+    });
+    
     
 })(jQuery);

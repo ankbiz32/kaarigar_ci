@@ -33,10 +33,24 @@ class GetModel extends CI_Model{
         return $this->db->get()->row();
     }
 
+    public function getPhone($phn)
+    {
+        $query= $this->db->select('*')
+                        ->where('mobile_no',$phn)
+                        ->get('users');
+        return $query->num_rows();
+    }
+
      public function getInfoConds($table,$conds)
      {
          $this->db->where($conds);
          return $this->db->get($table)->result();
+     }
+    
+     public function getInfoCondsId($table,$conds)
+     {
+         $this->db->where($conds);
+         return $this->db->get($table)->row();
      }
     
     // Fetch Enquiries

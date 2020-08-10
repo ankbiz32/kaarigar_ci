@@ -36,13 +36,13 @@
                             <div class="col-sm-5">
                                 <ul>
                                     <li class="fa-home">
-                                        <p>Raipur, Chhattisgarh</p>
+                                        <p><?=$web->address_line1?> <?=$web->address_line2?></p>
                                     </li>
                                     <li class="fa-envelope">
-                                        <p><a href="connect@kaarigaronline.com">connect@kaarigaronline.com</a></p>
+                                        <p><a href="<?=$web->email?>"><?=$web->email?></a></p>
                                     </li>
                                     <li class="fa-phone-square">
-                                        <p><a href="tel:+919039310833">+919039310833</a></p>
+                                        <p><a href="tel:+91<?=$web->phone1?>">+91<?=$web->phone1?></a></p>
                                     </li>
                                     <li class="fa-clock-o">
                                         <p>Monday - Satarday (09 am to 08 pm)<span>(Sunday Closed)</span></p>
@@ -58,10 +58,10 @@
                     <!-- Contact Content End -->
 
                     <!-- Contact Form Start -->
-                    <div class="contact--form col-md-4 pb--60" data-form="ajax">
+                    <div class="contact--form col-md-4 pb--60">
                         <h2 class="contact--title h4">Get In Touch</h2>
 
-                        <form action="" method="post" class="contact-form">
+                        <form action="<?=base_url('Home/Enquiry')?>" method="POST" class="contact-form">
                             <div class="status"></div>
 
                             <div class="form-group">
@@ -73,11 +73,11 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="text" name="mobile_no" maxlength="10" class="form-control digits" placeholder="Contact no" required>
+                                <input type="text" name="phone" maxlength="10" minlength="10" class="form-control digits" placeholder="Contact no" required>
                             </div>
 
                             <div class="form-group">
-                                <textarea name="message" class="form-control" placeholder="Write Message" required></textarea>
+                                <textarea name="message" class="form-control" maxlength="300" placeholder="Write Message" required></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-default">Send Message</button>

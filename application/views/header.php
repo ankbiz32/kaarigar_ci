@@ -60,14 +60,14 @@
                         <li class="hidden-xxs"><a href="contact-us"><i class="fa fa-support"></i>&nbsp; Support</a></li>
 
                         <?php if(isset($this->session->reg)){?>
-                        <li class="hidden-xxs"><a href="profile"><i class="fa fa-user"></i>&nbsp; Profile</a></li>
+                        <li class="hidden-xxs"><a href="profile"><i class="fa fa-user"></i>&nbsp; <?=$this->session->reg->fname?></a></li>
                         <?php } else{?>
                         <li class="hidden-xxs"><a href="login"><i class="fa fa-user"></i>&nbsp; Login</a></li>
                         <?php }?>
 
                         <li class="show-xxs top-bar-call"><a href="tel:+91<?=$web->phone1?>"><i class="fa fa-phone"></i>&nbsp; +91<?=$web->phone1?></a></li>
 
-                        <li class="loc-top-bar show-xxs"><a href="#" data-toggle="modal" data-target="#loc-modal"><i class="fa fa-map-marker"></i>&nbsp; <span id="loc"><?=isset($this->session->location)?$this->session->location->loc_name:' Your location'?></span></a></li>
+                        <li class="loc-top-bar show-xxs"><a href="#" data-toggle="modal" data-target="#loc-modal"><i class="fa fa-map-marker"></i>&nbsp; <span id="loc"><?=isset($this->session->loc_id)?$this->session->loc_city:' Your location'?></span></a></li>
                         
                         <?php if(isset($this->session->reg)){?>
                         <li class="login-top-bar show-xxs"><a href="profile"><i class="fa fa-user"></i>&nbsp; Profile</a></li>
@@ -113,7 +113,7 @@
                                                 <p> 
                                                     <a href="" class="h4 underline p-relative" data-toggle="modal" data-target="#loc-modal">
                                                         <i class="fa fa-map-marker text--primary"></i> 
-                                                        <?=isset($this->session->location)?$this->session->location->loc_name:' Your location'?>
+                                                        <?=isset($this->session->loc_id)?$this->session->loc_city:' Your location'?>
                                                     </a>
                                                 </p>
                                              </div>

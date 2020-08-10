@@ -25,12 +25,14 @@
             <div class="container">
                 <div class="row area-select-row">
                     <div class="col-md-6 col-sm-8 col-xs-12">
-                        <form action="" method="GET">
+                        <form action="<?=base_url('Home/changeLoc')?>" method="GET">
                             <div class="d-flex">
+                                <input type="text" name="return_url" value="<?=base_url('services')?>" hidden>
                                 <select name="location" class="wide" id="area2-select" required>
                                     <option value="">-- Select your location --</option>
-                                    <option value="raipur">Raipur, C.G.</option>
-                                    <option value="abhanpur">Abhanpur, C.G.</option>
+                                    <?php foreach($locations as $l){?>
+                                        <option value="<?=$l->id?>" <?=isset($this->session->loc_id)?($this->session->loc_id==$l->id?'selected':''):''?>><?=$l->city?>, <?=$l->state?> (<?=$l->pin_code?>)</option>
+                                    <?php }?>
                                 </select>
                                 <button type="submit" class="btn btn-default area-select-btn ml--2">Search</button>
                             </div>
