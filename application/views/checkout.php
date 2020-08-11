@@ -21,7 +21,7 @@
         </div>
 
 
-        <div class="checkout--section pd--100-0-40">
+        <div class="checkout--section pd--40-0">
             <div class="container">
 
                 <!-- <div class="checkout--info">

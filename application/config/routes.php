@@ -63,9 +63,11 @@ $route['sitemap.xml'] = 'Sitemap';
 $route['login'] = 'UserLogin';
 $route['logout'] = 'UserLogin/logout';
 $route['register'] = 'UserLogin/Register';
+$route['book-service']['post']= 'Home/bookService';
+$route['checkout'] = 'Home/Checkout';
+
 $route['forgot-password'] = 'Home/Forgot';
 
 $route['services'] = 'Home/Services';
 $route['service/(:num)/(:any)'] = 'Home/Service_details/$1';
-$route['checkout'] = 'Home/Checkout';
 $route['service-booked'] = 'Home/Booked';

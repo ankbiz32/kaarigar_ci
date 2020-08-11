@@ -498,6 +498,40 @@
      * CUSTOM SCrIPTS
      * ------------------------------------------------------------------------- */
 
+    $('#svc_loc_submit').click(function(){
+        $('.svc-info').remove();
+        var form=$('#svc_loc_form');
+        if(form.valid()){
+            var formData = new FormData(document.getElementById("svc_loc_form"));
+            $.ajax({
+                url: form.attr('action'),
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                dataType: 'JSON',
+                type: 'POST',
+                success: function(data){
+                    if(!data.error){
+                        $('#svc_loc_modal').modal('toggle');
+                        $(`<label class="success d-block mt--1 pl--1 svc-info"><strong>Service available.</strong></label>`).insertAfter('#svc_submit');
+                        $('#loc_block').html('Location: '+data.area+' '+data.city);
+                        $('#svc_submit').removeAttr('disabled');
+                    }
+                    else{
+                        $('#svc_loc_modal').modal('toggle');
+                        $(`<label class="error d-block mt--1 pl--1 svc-info"><strong>Sorry! Service currently not available in this location.</strong></label>`).insertAfter('#svc_submit');
+                        $('#loc_block').html(data.area+' '+data.city);
+                        $('#svc_submit').attr('disabled','true');
+                    }
+                },
+                error:function(){
+                    alert('server error');
+                }
+            });
+        }
+    });
+
     $('#proPwd').click(function(){
         $('#pwd_form .error-block').remove();
         var form=$('#pwd_form');
@@ -535,6 +569,8 @@
             });
         }
     });
+
+    
     
     
 })(jQuery);

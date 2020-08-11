@@ -147,7 +147,7 @@
                 <h4 class="modal-title text-center" ><i class="fa fa-map-marker"></i>&nbsp; Select your location</h4>
             </div>
             <div class="modal-body">
-                <form action="Home/changeLoc" method="GET">
+                <form action="<?=base_url()?>Home/changeLoc" method="GET">
                     <div class="d-flex">
                         <select name="location" class="wide" id="area-select" required>
                             <option value="">-- Select your location --</option>
@@ -212,6 +212,7 @@
 
             $("#area-select").niceSelect();
             $("#area2-select").niceSelect();
+            $("#area3-select").niceSelect();
         });
  
         
@@ -221,6 +222,21 @@
         $(".pwd-form").validate();
         $(".reg-form").validate();
         $(".demo").simsCheckbox();
+
+        $("#svc-form").submit(function(){
+            var checked = $("#svc-form input:checked").length > 0;
+            if (!checked){
+                $('.errTxt').html("Please select atleast one option")
+                // alert("Please select atleast one option");
+                return false;
+            }
+        });
+        $("#svc-form input").change(function(){
+            var checked = $("#svc-form input:checked").length > 0;
+            if (checked){
+                $('.errTxt').html("")
+            }
+        });
 
             
     //  Sweet alert for normal response

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2020 at 08:23 PM
+-- Generation Time: Aug 11, 2020 at 02:17 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -161,7 +161,7 @@ CREATE TABLE `services` (
   `name` varchar(50) NOT NULL,
   `img_src` varchar(500) NOT NULL,
   `icon_src` varchar(200) NOT NULL,
-  `miin_charges` varchar(50) NOT NULL,
+  `min_charges` varchar(50) DEFAULT NULL,
   `min_charge_txt` varchar(300) NOT NULL,
   `descr` longtext NOT NULL,
   `can_be_postpaid` int(11) NOT NULL DEFAULT 1,
@@ -173,13 +173,13 @@ CREATE TABLE `services` (
 -- Dumping data for table `services`
 --
 
-INSERT INTO `services` (`id`, `name`, `img_src`, `icon_src`, `miin_charges`, `min_charge_txt`, `descr`, `can_be_postpaid`, `slug`, `is_active`) VALUES
-(1, 'AC repair', 'extra-service-item-03.jpg', 'air-conditioner.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'ac-repair', 1),
-(2, 'Carpenter', 'extra-service-item-04.jpg', 'saw-up.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'carpenter', 1),
+INSERT INTO `services` (`id`, `name`, `img_src`, `icon_src`, `min_charges`, `min_charge_txt`, `descr`, `can_be_postpaid`, `slug`, `is_active`) VALUES
+(1, 'AC repair', 'extra-service-item-03.jpg', 'air-conditioner.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'ac-repair', 1),
+(2, 'Carpenter', 'extra-service-item-04.jpg', 'saw-up.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'carpenter', 1),
 (3, 'Plumber', 'extra-service-item-01.jpg', 'wrench.png', '300', 'Includes consultation and minor repairings. Any parts replaced will be charged extra', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'plumber', 1),
-(4, 'Electrician', 'extra-service-item-02.jpg', 'electricity.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'electrician', 1),
-(5, 'Painter', 'extra-service-item-05.jpg', 'brush.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'painter', 1),
-(6, 'Home hair cut', 'extra-service-item-06.jpg', 'hair-cut.png', '', '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'home-hair-cut', 1),
+(4, 'Electrician', 'extra-service-item-02.jpg', 'electricity.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'electrician', 1),
+(5, 'Painter', 'extra-service-item-05.jpg', 'brush.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'painter', 1),
+(6, 'Home hair cut', 'extra-service-item-06.jpg', 'hair-cut.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'home-hair-cut', 1),
 (7, 'Car repair', 'extra-service-item-07.jpg', 'car-repair.png', '300', 'Includes consultation and minor repairings. Any parts replaced will be charged extra', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'car-repair', 1);
 
 -- --------------------------------------------------------
@@ -234,7 +234,8 @@ CREATE TABLE `sub_services` (
   `id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   `text` varchar(500) NOT NULL,
-  `min_charges` varchar(50) NOT NULL,
+  `min_charges` varchar(50) DEFAULT NULL,
+  `can_be_postpaid` int(11) NOT NULL DEFAULT 0,
   `is_active` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -242,10 +243,10 @@ CREATE TABLE `sub_services` (
 -- Dumping data for table `sub_services`
 --
 
-INSERT INTO `sub_services` (`id`, `service_id`, `text`, `min_charges`, `is_active`) VALUES
-(1, 3, 'Tap change', '150', 1),
-(2, 3, 'Seapage/Leakeage solution', '', 1),
-(3, 3, 'New pipeline connection', '1000', 1);
+INSERT INTO `sub_services` (`id`, `service_id`, `text`, `min_charges`, `can_be_postpaid`, `is_active`) VALUES
+(1, 3, 'Tap change', '150', 0, 1),
+(2, 3, 'Seapage/Leakeage solution', NULL, 0, 1),
+(3, 3, 'New pipeline connection', '1000', 0, 1);
 
 -- --------------------------------------------------------
 

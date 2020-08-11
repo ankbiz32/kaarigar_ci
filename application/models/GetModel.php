@@ -22,17 +22,6 @@ class GetModel extends CI_Model{
                         ->result();
     }
 
-    public function getRegInfoById($id)
-    {
-        $this->db->select('*')
-                ->from('partner_reg r')
-                ->join('cities', 'cities.id = r.city_id', 'LEFT')
-                ->join('states', 'cities.state_id = states.id', 'LEFT')
-                ->join('reg_roles', 'reg_roles.role_id = r.role_id', 'LEFT')
-                ->where('r.reg_id', $id);
-        return $this->db->get()->row();
-    }
-
     public function getPhone($phn)
     {
         $query= $this->db->select('*')
@@ -40,6 +29,21 @@ class GetModel extends CI_Model{
                         ->get('users');
         return $query->num_rows();
     }
+    public function checkSvc($sid, $lid)
+    {
+        $query= $this->db->select('*')
+                        ->where('location_id',$lid)
+                        ->where('service_id',$sid)
+                        ->get('services_locations');
+        return $query->num_rows();
+    }
+
+    public function getInfoCondsId($table,$conds)
+    {
+        $this->db->where($conds);
+        return $this->db->get($table)->row();
+    }
+
 
      public function getInfoConds($table,$conds)
      {
@@ -56,6 +60,17 @@ class GetModel extends CI_Model{
      public function getServicesInLoc($table,$conds)
      {
         return $this->db->select('service_id')->where($conds)->get($table)->result_array();
+     }
+    
+     public function getLocationsInSvc($id)
+     {
+        return $this->db->select('l.area, l.city, l.state, l.pin_code')
+                ->from('services_locations sl')
+                ->where('sl.service_id',$id)
+                ->where('l.is_active',1)
+                ->join('locations l', 'l.id = sl.location_id', 'LEFT')
+                ->get()
+                ->result();
      }
 
      public function getServicesWhereIn($locs)

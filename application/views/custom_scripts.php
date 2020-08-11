@@ -12,6 +12,7 @@ $('#regSubmit').click(function(){
             data: formData,
             processData: false,
             contentType: false,
+            cache: false,
             dataType: 'json',
             type: 'POST',
             beforeSend: function(){
@@ -87,6 +88,7 @@ $(".register").on("click", "#finalSubmit", function(){
             data: formData,
             processData: false,
             contentType: false,
+            cache: false,
             dataType: 'json',
             type: 'POST',
             beforeSend: function(){
@@ -133,6 +135,7 @@ $('#mobile_no').keyup(function(){
         $('.phn_msg').remove();
         $.ajax({ 
             type        : 'POST',
+            cache: false,
             data        : {mobile_no : $("#mobile_no").val()},
             url         : base_url+"UserLogin/regPhoneCheck",
             success: function(data) {

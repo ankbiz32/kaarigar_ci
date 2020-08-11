@@ -120,7 +120,7 @@ class Home extends MY_Controller {
 			$services=$this->fetch->getServicesWhereIn($svc_id);
 
 		}else{
-			$services=$this->fetch->getInfo('services');
+			$services=$this->fetch->getInfoConds('services',['is_active'=>1]);
 		}
 		$this->load->view('header',['title'=>'services',
 								'locations'=>$locations,
@@ -138,9 +138,31 @@ class Home extends MY_Controller {
 		$locations=$this->fetch->getInfo('locations');
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
+		if(isset($this->session->loc_id)){
+			$svc_ids=$this->fetch->getServicesInLoc('services_locations',['location_id'=>$this->session->loc_id]);
+			foreach($svc_ids as $ids){
+				$svc_id[]=$ids['service_id'];
+			}
+			if(in_array($id, $svc_id)){
+				$avail_locs=$this->fetch->getLocationsInSvc($id);
+				$service=$this->fetch->getInfoById($id,'services');
+				$sub_services=$this->fetch->getInfoConds('sub_services',['service_id'=>$id, 'is_active'=>1]); 
+				// echo'<pre>';var_dump($sub_services);exit;
+			}else{
+				redirect('services');
+			}
+		}
+		else{
+			$avail_locs=$this->fetch->getLocationsInSvc($id);
+			$service=$this->fetch->getInfoCondsId('services',['id'=>$id]); 
+			$sub_services=$this->fetch->getInfoConds('sub_services',['service_id'=>$id]); 
+		}
 		$this->load->view('header',['title'=>'service details',
 								'locations'=>$locations,
 								'services_nav'=>$services_nav,
+								'avail_locs'=>$avail_locs,
+								'service'=>$service,
+								'sub_services'=>$sub_services,
 								'web'=>$web
 						]
 					);
@@ -166,6 +188,57 @@ class Home extends MY_Controller {
 		else{
 			$this->session->set_flashdata('failed','Error !');
 			redirect('profile');
+		}
+	}
+
+	public function bookService()
+	{
+		// var_dump($_POST);exit;
+		
+		$profile=$this->fetch->getInfoCondsId('user_info',['user_id'=>$this->session->reg->id]);
+		redirect('checkout');
+		
+	}
+
+	public function Checkout()
+	{
+		// var_dump($_POST);exit;
+		$locations=$this->fetch->getInfo('locations');
+		$services_nav=$this->fetch->getInfo('services',5);
+		$web=$this->fetch->getWebProfile('webprofile');
+		$this->load->view('header',['title'=>'Checkout',
+								'locations'=>$locations,
+								'services_nav'=>$services_nav,
+								'web'=>$web
+						]
+					);
+		$this->load->view('checkout');
+		$this->load->view('footer');
+		
+	}
+
+	public function scvCheckInLoc()
+	{
+		$svc_id=$this->input->post('svc_id');
+		$loc_id=$this->input->post('location');
+		$loc=$this->fetch->getInfoById($loc_id,'locations');
+		$this->session->loc_id=$loc->id;
+		$this->session->loc_area=$loc->area;
+		$this->session->loc_city=$loc->city;
+		$this->session->loc_state=$loc->state;
+		$this->session->loc_pin_code=$loc->pin_code;
+		$response=array();
+		$response['area']=$loc->area;
+		$response['city']=$loc->city;
+		$response['state']=$loc->state;
+		$response['pin_code']=$loc->pin_code;
+		if($this->fetch->checkSvc($svc_id,$loc_id)>0){
+			$response['error']=false;
+			echo json_encode($response);
+		}
+		else{
+			$response['error']=true;
+			echo json_encode($response);
 		}
 	}
 

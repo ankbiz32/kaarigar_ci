@@ -46,7 +46,7 @@
                 <?php }?>
 
                 <div class="row AdjustRow mt--3">
-                <?php if(!empty($services)){ foreach($services as $svc){?>
+                <?php if(!empty($services)){ foreach($services as $svc){ if($svc->is_active==1) {?>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="extra-service--item">
                             <img src="<?=base_url()?>assets/images/extra-services-img/<?=$svc->img_src?>" alt="Service" data-rjs="2">
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </div>
-                <?php } } else{?>
+                <?php } } } else{?>
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="extra-service--item">
                             <h5>No services found.</h5>

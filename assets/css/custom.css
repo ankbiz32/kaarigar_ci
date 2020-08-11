@@ -184,10 +184,13 @@ section.login, section.register{
 .footer-nav{
     display: none !important;
 }
-#loc-modal .modal-dialog{
+#loc-modal .modal-dialog,#svc_loc_modal .modal-dialog{
     position: relative;
     top: 50%;
     transform: translateY(-50%);
+}
+.service-select .row::after, .service-select .row::before{
+    content:'';
 }
 .profile-sidebar{
     float: left !important;
@@ -215,6 +218,9 @@ section.login, section.register{
 }
 h2.swal2-title{
     line-height: 24px !important;
+}
+.service-select .btn.disabled{
+    opacity: 1 !important;
 }
 
 @media(max-width:992px){
