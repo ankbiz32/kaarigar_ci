@@ -24,13 +24,13 @@
     <link href="<?=base_url()?>assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/owl.carousel.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/fakeLoader.min.css" rel="stylesheet">
-    <link href="<?=base_url()?>assets/css/jquery.timepicker.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/magnific-popup.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/nice-select.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/simsCheckbox.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/responsive-style.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/css/colors/color-10.css" rel="stylesheet" id="changeColorScheme">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link href="<?=base_url()?>assets/css/custom.css" rel="stylesheet">
 
     <!-- ==== HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries ==== -->
@@ -57,12 +57,18 @@
                     <ul class="nav links float--left">
                         <li class="hidden-xxs"><a href="#"><i class="fa fa-question"></i>&nbsp; FAQ</a></li>
 
-                        <li class="hidden-xxs"><a href="contact-us"><i class="fa fa-support"></i>&nbsp; Support</a></li>
+                        <li class="hidden-xxs"><a href="<?=base_url()?>contact-us"><i class="fa fa-support"></i>&nbsp; Support</a></li>
 
                         <?php if(isset($this->session->reg)){?>
-                        <li class="hidden-xxs"><a href="profile"><i class="fa fa-user"></i>&nbsp; <?=$this->session->reg->fname?></a></li>
+                        <li class="hidden-xxs customDropper"><a href="javascript:;">
+                            <i class="fa fa-user"></i>&nbsp; <?=$this->session->reg->fname?></a>
+                            <div class="customDrop">
+                                <a href="<?=base_url('profile')?>">Profile</a>
+                                <a href="<?=base_url('logout')?>">Logout</a>
+                            </div>
+                        </li>
                         <?php } else{?>
-                        <li class="hidden-xxs"><a href="login"><i class="fa fa-user"></i>&nbsp; Login</a></li>
+                        <li class="hidden-xxs"><a href="<?=base_url()?>login"><i class="fa fa-user"></i>&nbsp; Login</a></li>
                         <?php }?>
 
                         <li class="show-xxs top-bar-call"><a href="tel:+91<?=$web->phone1?>"><i class="fa fa-phone"></i>&nbsp; +91<?=$web->phone1?></a></li>
@@ -70,9 +76,15 @@
                         <li class="loc-top-bar show-xxs"><a href="#" data-toggle="modal" data-target="#loc-modal"><i class="fa fa-map-marker"></i>&nbsp; <span id="loc"><?=isset($this->session->loc_id)?$this->session->loc_city:' Select location'?></span></a></li>
                         
                         <?php if(isset($this->session->reg)){?>
-                        <li class="login-top-bar show-xxs"><a href="profile"><i class="fa fa-user"></i>&nbsp; Profile</a></li>
+                        <li class="login-top-bar customDropper show-xxs">
+                            <a href="javascript:;"><i class="fa fa-user"></i>&nbsp; Profile</a>
+                            <div class="customDrop">
+                                <a href="<?=base_url('profile')?>">Profile</a>
+                                <a href="<?=base_url('logout')?>">Logout</a>
+                            </div>
+                        </li>
                         <?php } else{?>
-                        <li class="login-top-bar show-xxs"><a href="login"><i class="fa fa-user"></i>&nbsp; Login</a></li>
+                        <li class="login-top-bar show-xxs"><a href="<?=base_url()?>login"><i class="fa fa-user"></i>&nbsp; Login</a></li>
                         <?php }?>
                     </ul>
                     <!-- Header Topbar Links End -->

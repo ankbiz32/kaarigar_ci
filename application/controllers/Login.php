@@ -31,7 +31,7 @@ class Login extends MY_Controller {
                 $this->session->set_userdata(['user' =>  $user]);
                 $this->redirectIfLoggedIn();
             }else{
-                $response['errors'] .= "Invalid Username or Password";
+                $response[ 'errors' ]= validation_errors() ;
             }
         }
         
@@ -49,7 +49,7 @@ class Login extends MY_Controller {
             if($data['newp']==$data['cnfp']){
                 if( password_verify($data['oldp'], $admProfile->pwd) ){
                     $hash['pwd'] = password_hash( $this->input->post('cnfp'), PASSWORD_DEFAULT );
-                    $status=$this->auth->changeLoginPassword($hash, $admProfile->user_id);
+                    $status=$this->auth->changeAdminPassword($hash, $admProfile->id);
 
                     if($status){
                         $this->session->set_flashdata('success','Password Updated !');

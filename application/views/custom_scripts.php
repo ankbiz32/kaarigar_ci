@@ -103,7 +103,7 @@ $(".register").on("click", "#finalSubmit", function(){
                             <div class="text-center">
                                 <h5 class="mb--2">You are now registered with Kaarigar online.</h5>
                                 <h6>Please login to continue.</h6>
-                                <a href="`+base_url+`login" class="btn btn-primary">Login now</a>
+                                <a href="`+base_url+`login<?=isset($_GET['return_url'])?'?return_url='.$_GET['return_url']:''?>" class="btn btn-primary">Login now</a>
                             </div>
                         `).fadeIn(500);
                     }

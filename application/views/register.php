@@ -25,7 +25,11 @@
                     </div>
                     <!-- <label for="" class="success">Correct !</label> -->
                     <hr>
-                    <p class="h6 text-center">Already registered? <a href="<?=base_url('login')?>" class="text--primary">Login</a></p>
+                    <?php if(isset($_GET['return_url'])){?>
+                        <p class="h6 text-center">Already registered? <a href="<?=base_url('login?return_url=').$_GET['return_url']?>" class="text--primary">Login</a></p>
+                    <?php } else {?>
+                        <p class="h6 text-center">Already registered? <a href="<?=base_url('login')?>" class="text--primary">Login</a></p>
+                    <?php }?>
                 </form>
             </div>
         </section>

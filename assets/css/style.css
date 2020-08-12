@@ -483,6 +483,12 @@ a:active, .btn-link:active {
 .text--white {
     color: white;
 }
+.text--dark {
+    color: #555;
+}
+.text--black {
+    color: black;
+}
 
 /* 1.7. BACKGROUND COLORS */
 .bg--color-theme {

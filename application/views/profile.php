@@ -96,46 +96,35 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php if(!empty($bookings)){ foreach($bookings as $bo){?>
                                             <tr>
-                                                <td data-label="Booked on">15/05/20</td>
+                                                <td data-label="Booked on"><?=date('d-M-Y',strtotime($bo->created))?></td>
             
                                                 <td data-label="Service">
-                                                    <span>Plumber service</span> 
+                                                    <span><?=$bo->name?> service</span> 
                                                 </td>
             
-                                                <td data-label="Bill amt.">₹350/-</td>
-            
+                                                <td data-label="Bill amt.">₹<?=$bo->amt?>/-</td>
+                                                <?php if($bo->status=='BOOKED'){?>
                                                 <td data-label="Status"><span class="text--primary">BOOKED</span></td>
-            
-                                                <td data-label=" "><button class=" font-14"><i class="fa fa-info"></i>&nbsp; details</a></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td data-label="Booked on">15/05/20</td>
-            
-                                                <td data-label="Service">
-                                                    <span>Electrician service</span> 
-                                                </td>
-            
-                                                <td data-label="Bill amt.">₹350/-</td>
-            
+                                                <?php } elseif($bo->status=='CANCELLED'){?>
                                                 <td data-label="Status"><span class="text--danger">CANCELLED</span></td>
+                                                <?php } else{?>
+                                                    <td data-label="Status"><span class="text--success">COMPLETED</span></td>
+                                                <?php }?>
             
                                                 <td data-label=" "><button class=" font-14"><i class="fa fa-info"></i>&nbsp; details</a></td>
                                             </tr>
-                                            <tr>
-                                                <td data-label="Booked on">15/05/20</td>
-            
-                                                <td data-label="Service">
-                                                    <span>Plumber service</span> 
-                                                </td>
-            
-                                                <td data-label="Bill amt.">₹350/-</td>
-            
-                                                <td data-label="Status"><span class="text--success">COMPLETED</span></td>
-            
-                                                <td data-label=" "><button class=" font-14"><i class="fa fa-info"></i>&nbsp; details</a></td>
-                                            </tr>
+                                            <?php } } else{?>
+                                                <tr>
+                                                    <td colspan="5" class="text--center">You do not have any bookings.</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5" class="text--center">
+                                                        <a class="btn btn-primary" href="<?=base_url('services')?>">Book a service now</a>
+                                                    </td>
+                                                </tr>
+                                            <?php }?>
                                         </tbody>
                                     </table>
                                 </div>

@@ -28,7 +28,7 @@ class UserLogin extends MY_Controller {
 		$this->load->view('footer');
     }
 
-    //========== For registertration ================
+    //========== For registration ================
 
 	public function Register()
 	{
@@ -133,7 +133,7 @@ class UserLogin extends MY_Controller {
     
     //========== For Login authentication ================
 
-    public function authenticate(){
+    public function authenticate($return=NULL){
         $this->redirectUserLoggedIn();
         $this->form_validation->set_rules('mobile_no', 'Phone no.', 'required|min_length[10]|max_length[10]');
         $this->form_validation->set_rules('pwd', 'Password', 'required|min_length[6]');
@@ -144,13 +144,23 @@ class UserLogin extends MY_Controller {
         else{
             if($user = $this->auth->authenticateUser($this->input->post()) ){
                 $this->session->set_userdata(['reg' =>  $user]);
-                $this->redirectUserLoggedIn();
+                if($return!=NULL){
+                    $this->session->set_flashdata('success','You are now logged in !');
+                    redirect(base_url('service/').$return.'/loggedin');
+                }else{
+                    $this->session->set_flashdata('success','You are now logged in !');
+                    redirect('profile');
+                }
             }else{
                 $response['errors'] .= "* Wrong phone no. or password";
             }
         }
         $this->session->set_flashdata('error', $response['errors']);
-        redirect('login');
+        if($return!=NULL){
+            redirect(base_url('login?return_url=').$return);
+        }else{
+            redirect(base_url().'login');
+        }
     }
 
     public function changePwd(){

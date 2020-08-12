@@ -87,7 +87,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="<?=base_url('Edit/adminProfile/').$admProfile->user_id;?>">
+                <form role="form" method="post" action="<?=base_url('Edit/adminProfile/').$admProfile->id;?>">
                     <div class="form-group">
                         <label for="Uname2">Username:</label>
                         <input type="text" class="form-control" name="username" id="Uname2" value="<?=$username1?>" required>
@@ -128,7 +128,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="<?=base_url('Login/changePwd/').$admProfile->user_id;?>">
+                <form role="form" method="post" action="<?=base_url('Login/changePwd/').$admProfile->id;?>">
                     <div class="form-group">
                         <label for="oldp">Old password:</label>
                         <input type="password" class="form-control" name="oldp" id="oldp" required>

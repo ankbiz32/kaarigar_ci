@@ -27,18 +27,6 @@ public function deleteRole($id, $table)
     }
 }
 
-public function deletePartnerReg($id, $table)
-{
-    $this->db->where('reg_id',$id);
-    $del=$this->db->delete($table);
-    if($del){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
 
 
 }

@@ -57,7 +57,7 @@ class EditModel extends CI_Model{
     // Update Website Profile
     public function updateAdminProfile($data, $id)
     {
-        $this->db->where('user_id',$id);
+        $this->db->where('id',$id);
         $flag = $this->db->update('users',$data);
         if($flag){
             return true;

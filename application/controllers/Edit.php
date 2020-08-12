@@ -235,6 +235,7 @@ class Edit extends MY_Controller {
         public function adminProfile($id)
         {
             $data=$this->input->post();
+            // echo'<pre>';var_dump('hi'.$data);exit;
             $status= $this->edit->updateAdminProfile($data,$id);
             $user=$this->fetch->getAdminProfile();
             $this->session->set_userdata(['user' =>  $user]);

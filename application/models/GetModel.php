@@ -72,6 +72,16 @@ class GetModel extends CI_Model{
                 ->get()
                 ->result();
      }
+    
+     public function getBookings($id)
+     {
+        return $this->db->select('*, s.name')
+                ->from('bookings b')
+                ->where('b.user_id',$id)
+                ->join('services s', 's.id = b.service_id', 'LEFT')
+                ->get()
+                ->result();
+     }
 
      public function getServicesWhereIn($locs)
      {
@@ -94,7 +104,7 @@ class GetModel extends CI_Model{
     // Fetch Admin Profile
     public function getAdminProfile()
     {
-        return $this->db->get('users')->row();
+        return $this->db->where('role','admin')->get('users')->row();
     }
 
     // Fetch Website Profile

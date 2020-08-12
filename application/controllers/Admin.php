@@ -16,46 +16,21 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/dashboard'); 
                 $this->load->view('admin/adminfooter');  
         }
-        public function PartnerReg()
-        {
-                $pr=$this->fetch->getRegInfo();
-                $this->load->view('admin/adminheader',['title'=>'Partner Reg','pr' => $pr]); 
-                $this->load->view('admin/adminaside'); 
-                $this->load->view('admin/partner_reg'); 
-                $this->load->view('admin/adminfooter');  
-        }
 
         public function Hero_sliders()
         {
                 $data=$this->fetch->getInfo('hero_slider');
-                $this->load->view('admin/adminheader',['data' => $data]); 
+                $this->load->view('admin/adminheader',['title'=>'Slider images','data' => $data]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/sliders'); 
                 $this->load->view('admin/adminfooter');  
         }
 
-        public function Roles()
-        {
-                $roles=$this->fetch->getInfo('reg_roles');
-                $this->load->view('admin/adminheader',['title'=>'Roles','data'=>$roles]); 
-                $this->load->view('admin/adminaside'); 
-                $this->load->view('admin/roles'); 
-                $this->load->view('admin/adminfooter');  
-        }
-
-        public function Events()
-        {
-                $data=$this->fetch->getInfo('events');
-                $this->load->view('admin/adminheader',['data' => $data]); 
-                $this->load->view('admin/adminaside'); 
-                $this->load->view('admin/events'); 
-                $this->load->view('admin/adminfooter');  
-        }
 
         public function Feedbacks()
         {
                 $data=$this->fetch->getInfo('feedbacks');
-                $this->load->view('admin/adminheader',['data' => $data]); 
+                $this->load->view('admin/adminheader',['title'=>'Feedbacks','data' => $data]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/feedbacks'); 
                 $this->load->view('admin/adminfooter');  
@@ -65,43 +40,17 @@ class Admin extends MY_Controller {
         public function Services()
         {
                 $data=$this->fetch->getInfoByOrder('services');
-                $this->load->view('admin/adminheader',['data' => $data]); 
+                $this->load->view('admin/adminheader',['title'=>'Services','data' => $data]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/services'); 
                 $this->load->view('admin/adminfooter');  
         }
         
-        public function Products()
-        {
-                $data=$this->fetch->getInfoByOrder('products');
-                $this->load->view('admin/adminheader',['data' => $data]); 
-                $this->load->view('admin/adminaside'); 
-                $this->load->view('admin/products'); 
-                $this->load->view('admin/adminfooter');  
-        }
-        
-        public function Schemes()
-        {
-                $data=$this->fetch->getInfoByOrder('schemes');
-                $this->load->view('admin/adminheader',['data' => $data]); 
-                $this->load->view('admin/adminaside'); 
-                $this->load->view('admin/schemes'); 
-                $this->load->view('admin/adminfooter');  
-        }
-        
-        public function Projects()
-        {
-                $data=$this->fetch->getInfoByOrder('projects');
-                $this->load->view('admin/adminheader',['data' => $data]); 
-                $this->load->view('admin/adminaside'); 
-                $this->load->view('admin/projects'); 
-                $this->load->view('admin/adminfooter');  
-        }
 
         public function Gallery()
         {
                 $data=$this->fetch->getInfoByOrder('gallery');
-                $this->load->view('admin/adminheader',['data' => $data]); 
+                $this->load->view('admin/adminheader',['title'=>'Gallery','data' => $data]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/gallery'); 
                 $this->load->view('admin/adminfooter');  
@@ -112,24 +61,6 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/adminheader'); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/header_images'); 
-                $this->load->view('admin/adminfooter');  
-        }
-
-        public function webProfile()
-        {
-                $profile=$this->fetch->getWebProfile();
-                $this->load->view('admin/adminheader', ['profile' => $profile]); 
-                $this->load->view('admin/adminaside'); 
-                $this->load->view('admin/webProfile'); 
-                $this->load->view('admin/adminfooter');  
-        }
-
-        public function adminProfile()
-        {
-                $admProfile=$this->fetch->getAdminProfile();
-                $this->load->view('admin/adminheader', ['admProfile' => $admProfile]); 
-                $this->load->view('admin/adminaside'); 
-                $this->load->view('admin/adminProfile'); 
                 $this->load->view('admin/adminfooter');  
         }
 
@@ -159,40 +90,23 @@ class Admin extends MY_Controller {
                 exit; 
         }
 
-        public function pRegDetails()
+        public function webProfile()
         {
-                $data=$this->fetch->getRegInfoById($this->input->post('id'));
-                $response='
-                        <div class="row mb-3 bg-light py-3 px-2">
-                                <div class="col-md-8"><strong>Reg type:</strong><br>'.$data->role.'</div>
-                                <div class="col-md-4"><strong>Date:</strong><br>'.date('d-m-Y',strtotime($data->date)).'</div>
-                        </div>  
-                        <div class="row mb-3">
-                                <div class="col-md-4"><strong>Name:</strong><br>'.$data->pname.'</div>
-                                <div class="col-md-4"><strong>Contact:</strong><br>'.$data->phone.'</div>
-                                <div class="col-md-4"><strong>E-mail:</strong><br>'.$data->email.'</div>
-                        </div>  
-                        <div class="row mb-3">
-                                <div class="col-md-4"><strong>State:</strong><br>'.$data->state_name.'</div>
-                                <div class="col-md-4"><strong>City:</strong><br>'.$data->name.'</div>
-                                <div class="col-md-4"><strong>Pin code:</strong><br>'.$data->pin.'</div>
-                        </div>  
-                        <div class="row mb-3">
-                                <div class="col-md-4"><strong>Address:</strong><br>'.$data->address.'</div>
-                        </div>  
-                        <div class="row mb-3 bg-light py-3 px-2">
-                                <div class="col-md-4"><strong>Firm name:</strong><br>'.$data->firm_name.'</div>
-                                <div class="col-md-4"><strong>Firm address:</strong><br>'.$data->firm_address.'</div>
-                        </div>  
-                                <div class="row mb-3">
-                                <div class="col-md-6"><strong>Remarks:</strong><br>'.$data->remarks.'</div>
-                        </div>  
-                ';
-                echo $response;
-                exit; 
+                $profile=$this->fetch->getWebProfile();
+                $this->load->view('admin/adminheader', ['title'=>'Web profile','profile' => $profile]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/webProfile'); 
+                $this->load->view('admin/adminfooter');  
         }
 
-
+        public function adminProfile()
+        {
+                $admProfile=$this->fetch->getAdminProfile();
+                $this->load->view('admin/adminheader', ['title'=>'Admin profile','admProfile' => $admProfile]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/adminProfile'); 
+                $this->load->view('admin/adminfooter');  
+        }
 
         public function rootLogin()
         {

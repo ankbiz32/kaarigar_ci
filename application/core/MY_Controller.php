@@ -9,7 +9,7 @@ class MY_Controller extends CI_Controller
     // ================= For Admin ==========================
 
     public function loggedIn(){
-        if(isset($this->session->user->user_id) AND $this->session->user->role=="admin"){
+        if(isset($this->session->user->id) AND $this->session->user->role=="admin"){
             return true;
         }
         else{

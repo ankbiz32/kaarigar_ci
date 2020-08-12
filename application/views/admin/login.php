@@ -26,7 +26,7 @@
       <p class="login-box-msg">Log in</p>
 
       
-      <form method="post" action="<?php echo base_url('Login/authenticate'); ?>">
+      <form method="post" action="<?=base_url('Login/authenticate'); ?>">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Username" name="uname" required>
           <div class="input-group-append">

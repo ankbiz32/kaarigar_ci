@@ -176,21 +176,38 @@
     <script src="<?=base_url()?>assets/js/isotope.min.js"></script>
     <script src="<?=base_url()?>assets/js/fakeLoader.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.sticky.min.js"></script>
-    <script src="<?=base_url()?>assets/js/jquery.timepicker.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.magnific-popup.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.directional-hover.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.validate.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.nice-select.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.form.min.js"></script>
     <script src="<?=base_url()?>assets/js/jquery.waypoints.min.js"></script>
-    <script src="<?=base_url()?>assets/js/jquery.counterup.min.js"></script>
     <script src="<?=base_url()?>assets/js/retina.min.js"></script>
     <script src="<?=base_url()?>assets/js/simsCheckbox.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!-- ==== Main JavaScript ==== -->
     <script src="<?=base_url()?>assets/js/main.js"></script>
 
     <script>
+
+        if(document.querySelector("#date")){
+          document.querySelector("#date").flatpickr({
+            // enableTime: true,
+            altInput: true,
+            altFormat: "d-M-Y",
+            dateFormat: "d-m-Y",
+            minDate: new Date().fp_incr(1), // 1 day after current date
+            maxDate: new Date().fp_incr(30) // 30 day after current date
+        });
+
+        document.querySelector("#time").flatpickr({
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i"
+        });
+        }
+
         $(document).ready(function(){
             
             // $("a").on('click', function(event) {
@@ -221,6 +238,7 @@
         $(".info-form").validate();
         $(".pwd-form").validate();
         $(".reg-form").validate();
+        $("#chkout-form").validate();
         $(".demo").simsCheckbox();
 
         $("#svc-form").submit(function(){
@@ -245,7 +263,7 @@
                 toast: false,
                 position: 'center',
                 showConfirmButton: false,
-                timer: 3000
+                timer: 6000
             });
 
             <?php if($this->session->flashdata('success') || $message = $this->session->flashdata('failed')):

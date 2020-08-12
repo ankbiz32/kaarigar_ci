@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2020 at 02:17 PM
+-- Generation Time: Aug 12, 2020 at 02:40 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -32,10 +32,23 @@ CREATE TABLE `bookings` (
   `user_id` int(11) NOT NULL,
   `amt` varchar(100) NOT NULL,
   `service_id` int(11) NOT NULL,
+  `pin_code` varchar(20) NOT NULL,
+  `address` varchar(300) NOT NULL,
+  `schedule_date` varchar(20) NOT NULL,
+  `schedule_time` varchar(20) NOT NULL,
+  `customer_remarks` varchar(300) NOT NULL,
+  `admin_remarks` varchar(300) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'BOOKED',
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `user_id`, `amt`, `service_id`, `pin_code`, `address`, `schedule_date`, `schedule_time`, `customer_remarks`, `admin_remarks`, `status`, `created`, `modified`) VALUES
+(3, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', '', '', 'BOOKED', '2020-08-12 11:25:25', '2020-08-12 11:25:25');
 
 -- --------------------------------------------------------
 
@@ -46,13 +59,16 @@ CREATE TABLE `bookings` (
 CREATE TABLE `booking_info` (
   `id` int(11) NOT NULL,
   `booking_id` int(11) NOT NULL,
-  `sub_service_id` int(11) NOT NULL,
-  `address` varchar(300) NOT NULL,
-  `schedule_date` varchar(50) NOT NULL,
-  `schedule_time` varchar(50) NOT NULL,
-  `user_remarks` varchar(300) NOT NULL,
-  `admin_remarks` varchar(300) NOT NULL
+  `sub_service_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `booking_info`
+--
+
+INSERT INTO `booking_info` (`id`, `booking_id`, `sub_service_id`) VALUES
+(5, 3, 2),
+(6, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -274,7 +290,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `mobile_no`, `username`, `pwd`, `fname`, `lname`, `email`, `role`, `is_verified`, `status`, `created_at`, `modified_at`) VALUES
-(1, '', 'adminkaarigar', '$2y$10$.UUIRzwRCZekPBSpVMtOa.ZI9DVtESdtF1s3aEkdLkuZKdx1iHrVe', 'Demo', 'User', 'connect@kaarigaronline.in', 'admin', 1, 1, '2020-08-06 18:01:55', '2020-08-06 18:01:55'),
+(1, '', 'admin_kaarigar', '$2y$10$3.f2PnKfTq/J0Y7z2vwOoOc8e5yNj4c1Li6aAo4S/7LqiaizZSXOi', 'Demo', 'User', 'connect@kaarigaronline.in', 'admin', 1, 1, '2020-08-06 18:01:55', '2020-08-06 18:01:55'),
 (45, '7894561230', '', '$2y$10$.0sEFrHroHiJyAfgSVBFk.uhmj8dC1Az2XIEKP.BPpKdeXaGWgW0O', 'Test', '', '', 'user', 1, 1, '2020-08-10 07:53:46', '2020-08-10 07:53:46');
 
 -- --------------------------------------------------------
@@ -420,19 +436,19 @@ ALTER TABLE `webprofile`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `booking_info`
 --
 ALTER TABLE `booking_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `enquiries`
 --
 ALTER TABLE `enquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `feedbacks`
@@ -486,13 +502,13 @@ ALTER TABLE `sub_services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `webprofile`

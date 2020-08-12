@@ -45,4 +45,14 @@ class Auth_model extends CI_Model {
         }
     }
     
+    public function changeAdminPassword($h, $user_id) {
+		$this->db->where('id', $user_id);
+		$flag=$this->db->update('users', $h);
+		if($flag){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

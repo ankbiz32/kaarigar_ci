@@ -201,23 +201,23 @@
         /* ------------------------------------------------------------------------- *
          * DATE
          * ------------------------------------------------------------------------- */
-        var $date = $('[data-trigger="date"]');
+        // var $date = $('[data-trigger="date"]');
 
-        if ( $date.length ) {
-            $date.datepicker({
-                showOtherMonths: true,
-                selectOtherMonths: true
-            });
-        }
+        // if ( $date.length ) {
+        //     $date.datepicker({
+        //         showOtherMonths: true,
+        //         selectOtherMonths: true
+        //     });
+        // }
         
         /* ------------------------------------------------------------------------- *
          * TIME
          * ------------------------------------------------------------------------- */
-        var $time = $('[data-trigger="time"]');
+        // var $time = $('[data-trigger="time"]');
 
-        if ( $date.length ) {
-            $time.timepicker();
-        }
+        // if ( $date.length ) {
+        //     $time.timepicker();
+        // }
 
         /* ------------------------------------------------------------------------- *
          * OWL CAROUSEL

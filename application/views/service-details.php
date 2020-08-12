@@ -79,13 +79,18 @@
                                     <input type="checkbox" class="subServices" value="<?=$ss->id?>" data-check-id="<?=$ss->id?>" name="subsvc[]" style="visibility:hidden; position:absolute">
                                 <?php } ?>
                                 </ul>
+
                                 <div class="row d-flex pl--2 pr--2 mb--1" style="align-items:center">
                                     <p class="mb--0" id="loc_block"><?=isset($this->session->loc_id)?' Location: '.$this->session->loc_area.' '.$this->session->loc_city:'Select your location'?></p>
                                     <button type="button" class="font-14 ml--auto" data-toggle="modal" data-target="#svc_loc_modal" style="line-height:1; padding:0;">Change</button>
                                 </div>
                                 
                                 <label class="error errTxt d-block mb--1"></label>
-                                <button type="submit" class="btn btn-primary" id="svc_submit" <?=isset($this->session->loc_id)?'':' disabled'?>>Book now</button>
+                                <?php if(isset($this->session->reg)){?>
+                                    <button type="submit" class="btn btn-primary" id="svc_submit" <?=isset($this->session->loc_id)?'':' disabled'?>>Book now</button>
+                                <?php } else{?>
+                                    <a href="<?=base_url('login')?>?return_url=<?=$service->id?>" class="btn btn-primary">Login to book service</a>
+                                <?php }?>
                             </form>
 
                         </div>

@@ -2,7 +2,11 @@
 
         <section class="login">
             <div class="container">
-                <form method="POST" action="<?=base_url('UserLogin/authenticate')?>" class="login-form">
+                <?php if(isset($_GET['return_url'])){?>
+                    <form method="POST" action="<?=base_url('UserLogin/authenticate/').$_GET['return_url']?>" class="login-form">
+                <?php } else {?>
+                    <form method="POST" action="<?=base_url('UserLogin/authenticate')?>" class="login-form">
+                <?php }?>
                     <h3 class="text-center">Login </h3>
                     <hr>
                     <div class="form-group">
@@ -21,7 +25,11 @@
                     <label class="error d-block"><?=$this->session->flashdata('error')?></label>
                     <?php }?>
                     <hr>
+                <?php if(isset($_GET['return_url'])){?>
+                    <p class="h6 text-center">New to kaarigaronline.com? <a href="<?=base_url('register?return_url=').$_GET['return_url']?>" class="text--primary">Register now</a></p>
+                <?php } else {?>
                     <p class="h6 text-center">New to kaarigaronline.com? <a href="<?=base_url('register')?>" class="text--primary">Register now</a></p>
+                <?php }?>
                 </form>
             </div>
         </section>

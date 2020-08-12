@@ -9,6 +9,7 @@ class Home extends MY_Controller {
 
 	public function index()
 	{
+		// echo'<pre>';var_dump($_SESSION);exit;
 		$locations=$this->fetch->getInfo('locations');
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
@@ -93,7 +94,8 @@ class Home extends MY_Controller {
 		$locations=$this->fetch->getInfo('locations');
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
-		$bookings=$this->fetch->getInfoConds('bookings',['user_id'=>$this->session->reg->id]);
+		$bookings=$this->fetch->getBookings($this->session->reg->id);
+		// var_dump($bookings);exit;
 		$profile=$this->fetch->getInfoCondsId('user_info',['user_id'=>$this->session->reg->id]);
 		$this->load->view('header',['title'=>'Profile',
 								'profile'=>$profile,
@@ -193,9 +195,13 @@ class Home extends MY_Controller {
 
 	public function bookService()
 	{
-		// var_dump($_POST);exit;
-		
-		$profile=$this->fetch->getInfoCondsId('user_info',['user_id'=>$this->session->reg->id]);
+		$res['profile']=$this->fetch->getInfoCondsId('user_info',['user_id'=>$this->session->reg->id]);
+		$res['service']=$this->fetch->getInfoCondsId('services',['id'=>$this->input->post('service_id')]);
+		foreach($_POST['subsvc'] as $ss){
+			$res['sub_svc'][$ss]=$this->fetch->getInfoCondsId('sub_services',['id'=>$ss]);
+		}
+		$_SESSION['cart']=array();
+		$_SESSION['cart']=$res;
 		redirect('checkout');
 		
 	}
@@ -214,6 +220,40 @@ class Home extends MY_Controller {
 					);
 		$this->load->view('checkout');
 		$this->load->view('footer');
+		
+	}
+
+	public function finishBooking()
+	{
+		// echo'<pre>';var_dump($_SESSION['cart'],$_POST);exit;
+		$data=$this->input->post();
+		unset($data['email']);
+		unset($data['checkoutPayment']);
+		$data['service_id']=$this->session->cart['service']->id;
+		$data['user_id']=$this->session->reg->id;
+		$data['status']='BOOKED';
+		
+		$this->load->model('AddModel','add');
+		$this->db->trans_start();
+		$bid=$this->add->saveInfo('bookings',$data);
+		if($bid){
+			$data2['booking_id']=$bid;
+			foreach($this->session->cart['sub_svc'] as $sub){
+				$data2['sub_service_id']=$sub->id;
+				$flag=$this->add->saveInfo('booking_info',$data2);
+			}
+		}
+		$this->db->trans_complete();
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->session->set_flashdata('failed','Critical error! Please try again.');
+			return false;
+		}
+		else{
+			unset($_SESSION['cart']);
+			$this->session->set_flashdata("success","Booking completed. Please check the booking status under the booking history tab.");
+			redirect('profile');
+		}
 		
 	}
 

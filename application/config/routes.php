@@ -60,11 +60,13 @@ $route['privacy-policy'] = 'Home/Privacy';
 $route['profile'] = 'Home/Profile';
 $route['sitemap.xml'] = 'Sitemap';
 
+$route['admin'] = 'Admin';
 $route['login'] = 'UserLogin';
 $route['logout'] = 'UserLogin/logout';
 $route['register'] = 'UserLogin/Register';
 $route['book-service']['post']= 'Home/bookService';
-$route['checkout'] = 'Home/Checkout';
+$route['checkout']= 'Home/Checkout';
+$route['booking-finish']['post']= 'Home/finishBooking';
 
 $route['forgot-password'] = 'Home/Forgot';
 
