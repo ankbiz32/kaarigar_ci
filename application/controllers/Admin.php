@@ -40,6 +40,7 @@ class Admin extends MY_Controller {
         public function Services()
         {
                 $data=$this->fetch->getInfoByOrder('services');
+                // echo'<pre>';var_dump($data);exit;
                 $this->load->view('admin/adminheader',['title'=>'Services','data' => $data]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/services'); 

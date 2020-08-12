@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2020 at 02:40 PM
+-- Generation Time: Aug 12, 2020 at 08:47 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -196,7 +196,8 @@ INSERT INTO `services` (`id`, `name`, `img_src`, `icon_src`, `min_charges`, `min
 (4, 'Electrician', 'extra-service-item-02.jpg', 'electricity.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'electrician', 1),
 (5, 'Painter', 'extra-service-item-05.jpg', 'brush.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'painter', 1),
 (6, 'Home hair cut', 'extra-service-item-06.jpg', 'hair-cut.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'home-hair-cut', 1),
-(7, 'Car repair', 'extra-service-item-07.jpg', 'car-repair.png', '300', 'Includes consultation and minor repairings. Any parts replaced will be charged extra', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'car-repair', 1);
+(7, 'Car repair', 'extra-service-item-07.jpg', 'car-repair.png', '300', 'Includes consultation and minor repairings. Any parts replaced will be charged extra', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'car-repair', 1),
+(9, 'New service', 'fb.jpg', 'whatsapp.jpg', '', '', 'dcdsdscds', 1, 'new-service', 1);
 
 -- --------------------------------------------------------
 
@@ -478,7 +479,7 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `services_locations`

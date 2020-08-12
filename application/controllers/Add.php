@@ -52,158 +52,75 @@ class Add extends MY_Controller {
             } 
         }
 
-        public function Product()
+        
+        public function Services()
         {
-            $this->form_validation->set_rules('name', 'Name', 'required');
-            $this->form_validation->set_rules('link_src', 'Link text', 'required');
-            $this->form_validation->set_rules('link_text', 'Link', 'required');
-            if($this->form_validation->run() == true){
-                $path ='assets/images';
-                $initialize = array(
-                    "upload_path" => $path,
-                    "allowed_types" => "*",
-                    "remove_spaces" => TRUE,
-                    "max_size" => 350
-                );
-                $this->load->library('upload', $initialize);
-                if (!$this->upload->do_upload('img')) {
-                    $this->session->set_flashdata('failed',strip_tags($this->upload->display_errors()) );
-                    redirect('Admin/Products');
-                }
-                else {
-                    $imgdata = $this->upload->data();
-                    $imagename = $imgdata['file_name'];
-                    $data=array('name'=>$this->input->post('name'),
-                            'link_src'=>$this->input->post('link_src'),
-                            'link_text'=>$this->input->post('link_text'),
-                            'img_src'=>$imagename
-                            );
-                    $status= $this->save->saveInfo($data, 'products');
-
-                    if($status){
-                        $this->session->set_flashdata('success','New Product added !' );
-                        redirect('Admin/Products');
-                    }
-                    else{
-                        $this->session->set_flashdata('failed','Error !');
-                        redirect('Admin/Products');
-                    }
-                } 
-            }
-            else{
-                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
-                redirect('Admin/Products');
-            } 
+                $this->load->view('admin/adminheader',['title'=>'Add service','submissionPath'=>base_url('Add/saveService')]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/service-form'); 
+                $this->load->view('admin/adminfooter');  
         }
 
-        public function Service()
+        public function saveService()
         {
             $this->form_validation->set_rules('name', 'Name', 'required');
-            $this->form_validation->set_rules('link_src', 'Link text', 'required');
-            $this->form_validation->set_rules('link_text', 'Link', 'required');
+            $this->form_validation->set_rules('descr', 'Description', 'required');
             if($this->form_validation->run() == true){
-                $path ='assets/images';
+                $data=$this->input->post();
+                $path ='assets/images/extra-services-img/';
                 $initialize = array(
                     "upload_path" => $path,
                     "allowed_types" => "*",
                     "remove_spaces" => TRUE,
-                    "max_size" => 350
+                    "max_size" => 1100
                 );
-                $this->load->library('upload', $initialize);
-                if (!$this->upload->do_upload('img')) {
+                $this->load->library('upload', $initialize, 'imgupload');
+                $this->imgupload->initialize($initialize);
+                if (!$this->imgupload->do_upload('img')) {
                     $this->session->set_flashdata('failed',strip_tags($this->upload->display_errors()) );
                     redirect('Admin/Services');
                 }
                 else {
-                    $imgdata = $this->upload->data();
+                    $imgdata = $this->imgupload->data();
                     $imagename = $imgdata['file_name'];
-                    $data=array('name'=>$this->input->post('name'),
-                            'link_src'=>$this->input->post('link_src'),
-                            'link_text'=>$this->input->post('link_text'),
-                            'img_src'=>$imagename
-                            );
-                    $status= $this->save->saveInfo($data, 'services');
+                    $data['img_src']=$imagename;
+                }
 
-                    if($status){
-                        $this->session->set_flashdata('success','New Service added !' );
-                        redirect('Admin/Services');
-                    }
-                    else{
-                        $this->session->set_flashdata('failed','Error !');
-                        redirect('Admin/Services');
-                    }
-                } 
-            }
-            else{
-                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
-                redirect('Admin/Services');
-            } 
-        }
-
-        public function Scheme()
-        {
-            $this->form_validation->set_rules('name', 'Name', 'required');
-            $this->form_validation->set_rules('short_name', 'Short form', 'required');
-            $this->form_validation->set_rules('link', 'Link', 'required');
-            if($this->form_validation->run() == true){
-                $path ='assets/images';
+                $path ='assets/images/services-img/';
                 $initialize = array(
                     "upload_path" => $path,
                     "allowed_types" => "*",
                     "remove_spaces" => TRUE,
-                    "max_size" => 350
+                    "max_size" => 300
                 );
-                $this->load->library('upload', $initialize);
-                if (!$this->upload->do_upload('img')) {
+                $this->load->library('upload', $initialize,'iconupload');
+                $this->iconupload->initialize($initialize);
+                if (!$this->iconupload->do_upload('icon')) {
                     $this->session->set_flashdata('failed',strip_tags($this->upload->display_errors()) );
-                    redirect('Admin/Schemes');
+                    redirect('Admin/Services');
                 }
                 else {
-                    $imgdata = $this->upload->data();
+                    $imgdata = $this->iconupload->data();
                     $imagename = $imgdata['file_name'];
-                    $data=array('name'=>$this->input->post('name'),
-                            'short_name'=>$this->input->post('short_name'),
-                            'link'=>$this->input->post('link'),
-                            'img_src'=>$imagename
-                            );
-                    $status= $this->save->saveInfo($data, 'schemes');
+                    $data['icon_src']=$imagename;
+                }
 
-                    if($status){
-                        $this->session->set_flashdata('success','New Scheme added !' );
-                        redirect('Admin/Schemes');
-                    }
-                    else{
-                        $this->session->set_flashdata('failed','Error !');
-                        redirect('Admin/Schemes');
-                    }
-                } 
-            }
-            else{
-                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
-                redirect('Admin/Schemes');
-            } 
-        }
-
-        public function Role()
-        {
-            $this->form_validation->set_rules('role', 'Role name', 'required');
-            if($this->form_validation->run() == true){
-                $data=$this->input->post();
                 // echo '<pre>'; var_dump($data); exit;
-                $status= $this->save->saveInfo($data, 'reg_roles');
-                if($status==true){
-                    $this->session->set_flashdata('success','New Role added !' );
-                    redirect('Admin/Roles');
+
+                $data['slug']=$this->generate_url_slug($data['name'],'services');
+                $status= $this->save->saveInfo('services',$data);
+                if($status){
+                    $this->session->set_flashdata('success','New Service added !' );
+                    redirect('Admin/Services');
                 }
                 else{
                     $this->session->set_flashdata('failed','Error !');
-                    redirect('Admin/Roles');
+                    redirect('Admin/Services');
                 }
             }
             else{
-                $err=trim(strip_tags(validation_errors()));
-                $this->session->set_flashdata('failed',$err);
-                redirect('Admin/Roles');
+                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
+                redirect('Add/Services');
             } 
         }
 
@@ -275,47 +192,7 @@ class Add extends MY_Controller {
             } 
         }
 
-        public function Project()
-        {
-            $this->form_validation->set_rules('heading', 'Heading', 'required');
-            $this->form_validation->set_rules('descr', 'Description', 'required');
-            if($this->form_validation->run() == true){
-                $path ='assets/images';
-                $initialize = array(
-                    "upload_path" => $path,
-                    "allowed_types" => "jpg|jpeg|png|bmp|webp|gif",
-                    "remove_spaces" => TRUE,
-                    "max_size" => 350
-                );
-                $this->load->library('upload', $initialize);
-                if (!$this->upload->do_upload('img')) {
-                    $this->session->set_flashdata('failed',strip_tags($this->upload->display_errors()) );
-                    redirect('Admin/Projects');
-                }
-                else {
-                    $imgdata = $this->upload->data();
-                    $imagename = $imgdata['file_name'];
-                    $data=array('heading'=>$this->input->post('heading'),
-                            'descr'=>$this->input->post('descr'),
-                            'img_src'=>$imagename
-                            );
-                    $status= $this->save->saveInfo($data, 'projects');
-
-                    if($status){
-                        $this->session->set_flashdata('success','New Project added !' );
-                        redirect('Admin/Projects');
-                    }
-                    else{
-                        $this->session->set_flashdata('failed','Error !');
-                        redirect('Admin/Projects');
-                    }
-                } 
-            }
-            else{
-                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
-                redirect('Admin/Projects');
-            } 
-        }
+   
 
         public function Gallery()
         {

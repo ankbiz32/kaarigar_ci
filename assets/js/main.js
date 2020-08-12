@@ -264,14 +264,14 @@
         /* ------------------------------------------------------------------------- *
          * COUNTER UP
          * ------------------------------------------------------------------------- */
-        var $counterUp = $('[data-counter-up="numbers"]');
+        // var $counterUp = $('[data-counter-up="numbers"]');
             
-        if ( $counterUp.length ) {
-            $counterUp.counterUp({
-                delay: 10,
-                time: 1000
-            });
-        }
+        // if ( $counterUp.length ) {
+        //     $counterUp.counterUp({
+        //         delay: 10,
+        //         time: 1000
+        //     });
+        // }
         
         /* -------------------------------------------------------------------------*
          * COUNTDOWN

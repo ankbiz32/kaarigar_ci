@@ -23,7 +23,7 @@ class Home extends MY_Controller {
 			$services=$this->fetch->getServicesWhereIn($svc_id);
 
 		}else{
-			$services=$this->fetch->getInfo('services');
+			$services=$this->fetch->getInfoConds('services',['is_active'=>1]);
 		}
 		$feedbacks=$this->fetch->getInfoByOrder('feedbacks');
 

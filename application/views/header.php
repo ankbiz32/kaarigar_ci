@@ -179,7 +179,7 @@
                             <a href="contact.html" class="font-14">Contact</a>
                             <a href="index.html" class="font-14">T&C</a>
                         </li>
-                        <?php foreach($services_nav as $svc_nav){?>
+                        <?php foreach($services_nav as $svc_nav){ if($svc_nav->is_active==1){?>
                             <li class="header-svc">
                                 <a href="<?=base_url('service/').$svc_nav->id.'/'.$svc_nav->slug?>">
                                     <img src="<?=base_url()?>assets/images/services-img/<?=$svc_nav->icon_src?>" alt="Carpenter" class="sv-img">
@@ -187,7 +187,7 @@
                                     <span><?=$svc_nav->name?></span>
                                 </a>
                             </li>
-                        <?php }?>
+                        <?php } }?>
                     </ul>
                     <!-- Header Nav Links End -->
                 </div>

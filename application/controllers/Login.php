@@ -31,7 +31,7 @@ class Login extends MY_Controller {
                 $this->session->set_userdata(['user' =>  $user]);
                 $this->redirectIfLoggedIn();
             }else{
-                $response[ 'errors' ]= validation_errors() ;
+                $response[ 'errors' ]= 'Invalid Username or password';
             }
         }
         

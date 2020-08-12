@@ -68,12 +68,12 @@
                     <h2 class="h2">Which service do you need?</h2>
                 </div>
                 <div class="services">
-                    <?php foreach($services as $service){?>
+                    <?php foreach($services as $service){ if($service->is_active==1){?>
                         <a href="<?=base_url('service/').$service->id.'/'.$service->slug?>" class="service">
                             <img src="<?=base_url()?>assets/images/services-img/<?=$service->icon_src?>" alt="<?=$service->name?>" class="sv-img">
                             <h4><?=$service->name?></h4>
                         </a>
-                    <?php }?>
+                    <?php } } ?>
                 </div>
                 <div class="section--footer text-center">
                     <a href="<?=base_url('services')?>" class="btn btn-default">View All Services</a>

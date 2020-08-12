@@ -371,3 +371,14 @@ input#date + input.input, input#time.flatpickr-input{
         bottom: 20px;
     }
 }
+
+@media screen and (min-width: 1400px) and (max-width:1920px) {
+    .banner--form{
+        right: 10%;
+    }
+  }
+@media screen and (min-width: 1921px) and (max-width:2420px) {
+    .banner--form{
+        right: 15%;
+    }
+  }

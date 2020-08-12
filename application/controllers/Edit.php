@@ -85,7 +85,6 @@ class Edit extends MY_Controller {
             }
         }
 
-
         public function Scheme($id)
         {
             $data=$this->input->post();
@@ -218,6 +217,32 @@ class Edit extends MY_Controller {
             else{
                 $this->session->set_flashdata('failed','Error !');
                 redirect('Admin/webProfile');
+            }
+        }
+
+        public function deactivateService($id)
+        {
+            $status= $this->edit->updateInfoConds('services',['id'=>$id],['is_active'=>0]);
+            if($status){
+                $this->session->set_flashdata('success','Service status Updated !');
+                redirect('Admin/Services');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Services');
+            }
+        }
+
+        public function activateService($id)
+        {
+            $status= $this->edit->updateInfoConds('services',['id'=>$id],['is_active'=>1]);
+            if($status){
+                $this->session->set_flashdata('success','Service status Updated !');
+                redirect('Admin/Services');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Services');
             }
         }
 
