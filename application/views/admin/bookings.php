@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark"><i class="fa fa-bookmark"></i>&nbsp;&nbsp;Bookings</h1>
+                <h1 class="m-0 text-dark"><i class="fa fa-bookmark"></i>&nbsp;&nbsp; <?=$status?>  Bookings</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -23,10 +23,15 @@
       <div class="container-fluid">
 
         <div class="row mt-3">
+          <div class="col-md-12 text-right mb-2">
+            <a class="btn btn-default" href="<?=base_url('Admin/approvedBookings')?>"><span class="text-success">●</span> See Approved bookings</a>
+            <a class="btn btn-default my-1 mx-1" href="<?=base_url('Admin/rejectedBookings')?>"><span class="text-danger">●</span> See Rejected bookings</a>
+            <a class="btn btn-default" href="<?=base_url('Admin/Bookings')?>"><span class="text-warning">●</span> See New bookings</a>
+          </div>
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card">
               <div class="card-header row">
-                <h2 class="card-title col">List of bookings:</h2>
+                <h2 class="card-title col">List of <?=$status?> bookings:</h2>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -50,11 +55,16 @@
                         <td class=""><?=$d->name?></td>
                         <td>Date:- <?=date('d-M-Y',strtotime($d->schedule_date))?> <br> Time:- <?=date('g:i a',strtotime($d->schedule_time))?></td>
                         <td><?=$d->customer_remarks?></td>
-                        <td>
-                          <button class="btn btn-success mb-1" data-id="<?=$d->id?>" title="Approve"><i class="fa fa-check"></i></button>
-                          <button class="btn btn-danger mb-1" data-id="<?=$d->id?>" title="Reject"><i class="fa fa-times"></i></button>
-                          <button class="btn btn-primary mb-1 bookingDetails" data-id="<?=$d->id?>" title="Details"><i class="fa fa-info-circle"></i></button>
-                        </td>
+                        <?php if($d->status=='BOOKED') { ?>
+                          <td>
+                            <button class="btn btn-success mb-1 approve" data-id="<?=$d->id?>" data-base_url="<?=base_url()?>" title="Approve"><i class="fa fa-check"></i></button>
+                            <button class="btn btn-danger mb-1 reject" data-id="<?=$d->id?>" data-base_url="<?=base_url()?>" title="Reject"><i class="fa fa-times"></i></button>
+                          </td>
+                        <?php } else{?>
+                          <td>
+                            <button class="btn btn-primary mb-1 details" data-id="<?=$d->id?>" data-base_url="<?=base_url()?>" title="Details"><i class="fa fa-info-circle"></i></button>
+                          </td>
+                        <?php }?>
                       </tr>
 
                     <?php }?>

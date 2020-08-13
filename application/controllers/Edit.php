@@ -187,6 +187,36 @@ class Edit extends MY_Controller {
         }
    
 
+        public function approveBooking($id)
+        {
+            $data=$this->input->post();
+            $data['status']='APPROVED';
+            $status= $this->edit->updateInfo($data, $id, 'bookings');
+            if($status){
+                $this->session->set_flashdata('success','Booking approved !');
+                redirect('Admin/Bookings');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Bookings');
+            }
+        }
+
+        public function rejectBooking($id)
+        {
+            $data=$this->input->post();
+            $data['status']='REJECTED';
+            $status= $this->edit->updateInfo($data, $id, 'bookings');
+            if($status){
+                $this->session->set_flashdata('success','Booking rejected !');
+                redirect('Admin/Bookings');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Bookings');
+            }
+        }
+
         public function Feedback($id)
         {
             $data=$this->input->post();

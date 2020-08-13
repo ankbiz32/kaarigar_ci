@@ -73,12 +73,13 @@ class GetModel extends CI_Model{
                 ->result();
      }
     
-     public function getAllBookings()
+     public function getAllBookings($status)
      {
         return $this->db->select('*, b.id, s.name, u.fname, u.mobile_no')
                 ->from('bookings b')
                 ->join('services s', 's.id = b.service_id', 'LEFT')
                 ->join('users u', 'u.id = b.user_id', 'LEFT')
+                ->where('b.status', $status)
                 ->get()
                 ->result();
      }
@@ -95,20 +96,20 @@ class GetModel extends CI_Model{
     
      public function getBookingDetails($booking_id)
      {
-        $booking['info']= $this->db->select('*, b.id, s.name, u.fname, u.mobile_no')
+        $booking['info']= $this->db->select('b.*, s.name, u.fname, u.mobile_no')
                                     ->from('bookings b')
                                     ->join('services s', 's.id = b.service_id', 'LEFT')
                                     ->join('users u', 'u.id = b.user_id', 'LEFT')
                                     ->where('b.id',$booking_id)
                                     ->get()
                                     ->row();
-        // $ids=$this->getInfoConds('booking_info',['booking_id'=>$booking_id]);
-        $booking['sub_svc']= $this->db->select('*, b.id')
+        $booking['sub_svc']= $this->db->select('s.text, s.min_charges')
                                     ->from('booking_info b')
                                     ->join('sub_services s', 's.id = b.sub_service_id', 'LEFT')
-                                    ->where('b.id',$booking_id)
+                                    ->where('b.booking_id',$booking_id)
                                     ->get()
                                     ->result();
+        return $booking;
      }
 
      public function getServicesWhereIn($locs)

@@ -19,8 +19,26 @@ class Admin extends MY_Controller {
 
         public function Bookings()
         {
-                $data=$this->fetch->getAllBookings();
-                $this->load->view('admin/adminheader',['title'=>'Bookings','data' => $data]); 
+                $data=$this->fetch->getAllBookings('BOOKED');
+                $this->load->view('admin/adminheader',['title'=>'Bookings','status'=>'New','data' => $data]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/bookings'); 
+                $this->load->view('admin/adminfooter');  
+        }
+
+        public function approvedBookings()
+        {
+                $data=$this->fetch->getAllBookings('APPROVED');
+                $this->load->view('admin/adminheader',['title'=>'Bookings','status'=>'Approved','data' => $data]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/bookings'); 
+                $this->load->view('admin/adminfooter');  
+        }
+
+        public function rejectedBookings()
+        {
+                $data=$this->fetch->getAllBookings('REJECTED');
+                $this->load->view('admin/adminheader',['title'=>'Bookings','status'=>'Rejected','data' => $data]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/bookings'); 
                 $this->load->view('admin/adminfooter');  
@@ -85,31 +103,172 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/adminfooter');  
         }
 
-        public function bookingDetails()
+        public function approveDetails()
         {
-                echo 'done';
-                // $data=$this->fetch->getBookingDetails($this->input->post('id'));
-                // $response='
-                //         <div class="row mb-3 px-2">
-                //                 <div class="col-md-6"><strong>Name:</strong> '.$data->name.'</div>
-                //                 <div class="col-md-6"><strong>Phone:</strong> '.$data->phone.'</div>
-                //                 <div class="col-md-6"><strong>City:</strong> '.$data->city.'</div>
-                //                 <div class="col-md-6"><strong>Address:</strong> '.$data->address.'</div>
-                //         </div>
-                //         <div class="row mb-3 bg-light py-3 px-2">
-                //                 <div class="col-md-6"><strong>Occupation:</strong> '.$data->occupation.'</div>
-                //                 <div class="col-md-6"><strong>Capacity:</strong> '.$data->capacity.'</div>
-                //                 <div class="col-md-6"><strong>Land:</strong> '.$data->land.'</div>
-                //         </div>
-                //         <div class="row px-2">
-                //                 <div class="col-md-6"><strong>Soil:</strong> '.$data->soil.'</div>
-                //                 <div class="col-md-6"><strong>Source:</strong> '.$data->source.'</div>
-                //                 <div class="col-md-6"><strong>Products:</strong> '.$data->products.'</div>
-                //                 <div class="col-md-6"><strong>Level:</strong> '.$data->level.'</div>
-                //         </div>
-                // ';
-                // echo $response;
+                $bkid=$this->input->post('id');
+                $data=$this->fetch->getBookingDetails($bkid);
+                $response='
+                        <div class="row mb-3 px-2">
+                                <div class="col-md-6">
+                                        <div class="col-md-12 mb-1"><strong>Name:</strong> '.$data['info']->fname.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Phone:</strong> '.$data['info']->mobile_no.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Pin Code:</strong> '.$data['info']->pin_code.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Address:</strong> '.$data['info']->address.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Booked on:</strong> '.date('d-M-Y',strtotime($data['info']->created)).'</div>
+                                        <div class="col-md-12"><strong>Service needed:</strong> '.$data['info']->name.'</div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="col-md-12 mb-1"><strong>Schedule date:</strong> <mark>'.date('d-M-Y',strtotime($data['info']->schedule_date)).'</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Schedule time:</strong> <mark> '.date('g:i a',strtotime($data['info']->schedule_time)).'</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Min bill amt.:</strong> <mark> ₹'.$data['info']->amt.'/-</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Customer remarks:</strong> '.$data['info']->customer_remarks.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Status:</strong> '.$data['info']->status.'</div>
+                                </div>
+                        </div>
+                        <div class="row mb-3 px-2">
+                        <table class="table table-bordered table-striped">
+                                <tr>
+                                  <th>Sub services requested</th>
+                                  <th>Min charges *</th>
+                                </tr>
+                ';
+                foreach($data['sub_svc'] as $sub){
+                        $response.='
+                                <tr>
+                                  <td>'.$sub->text.'</td>
+                                   <td>'.$sub->min_charges.'</td>
+                                </tr>
+                        ';
+                }
+                $response.='</table>
+                        </div>
+                        <form class="" method="POST" action="'.base_url().'Edit/approveBooking/'.$bkid.'">
+                        <div class="row mb-2 px-2">
+                                <label>Enter your remarks:</label>
+                                <textarea class="form-control" name="admin_remarks" placeholder="Add an informative remark (if any)"></textarea>
+                        </div>
+                </div>
+                        <div class="modal-footer justify-content-end">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-check"></i>&nbsp; Approve</button>
+                        </div>
+                        </form>
+                        ';
+                echo json_encode($response);
                 // exit; 
+        }
+
+        public function rejectDetails()
+        {
+                $bkid=$this->input->post('id');
+                $data=$this->fetch->getBookingDetails($bkid);
+                $response='
+                        <div class="row mb-3">
+                                <div class="col-md-6">
+                                        <div class="col-md-12 mb-1"><strong>Name:</strong> '.$data['info']->fname.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Phone:</strong> '.$data['info']->mobile_no.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Pin Code:</strong> '.$data['info']->pin_code.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Address:</strong> '.$data['info']->address.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Booked on:</strong> '.date('d-M-Y',strtotime($data['info']->created)).'</div>
+                                        <div class="col-md-12"><strong>Service needed:</strong> '.$data['info']->name.'</div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="col-md-12 mb-1"><strong>Schedule date:</strong> <mark>'.date('d-M-Y',strtotime($data['info']->schedule_date)).'</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Schedule time:</strong> <mark> '.date('g:i a',strtotime($data['info']->schedule_time)).'</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Min bill amt.:</strong> <mark> ₹'.$data['info']->amt.'/-</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Customer remarks:</strong> '.$data['info']->customer_remarks.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Status:</strong> '.$data['info']->status.'</div>
+                                </div>
+                        </div>
+                        <div class="row mb-3">
+                        <table class="table table-bordered table-striped">
+                                <tr>
+                                  <th>Sub services requested</th>
+                                  <th>Min charges *</th>
+                                </tr>
+                ';
+                foreach($data['sub_svc'] as $sub){
+                        $response.='
+                                <tr>
+                                  <td>'.$sub->text.'</td>
+                                   <td>'.$sub->min_charges.'</td>
+                                </tr>
+                        ';
+                }
+                $response.='</table>
+                        </div>
+                        <form class="" method="POST" action="'.base_url().'Edit/rejectBooking/'.$bkid.'">
+                        <div class="row mb-2">
+                                <label>Enter your remarks:</label>
+                                <textarea class="form-control" name="admin_remarks" placeholder="Add an informative remark (if any)"></textarea>
+                        </div>
+                </div>
+                        <div class="modal-footer justify-content-end">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i>&nbsp; Reject</button>
+                        </div>
+                        </form>
+                        ';
+                echo json_encode($response);
+                // exit; 
+        }
+
+        public function bookDetails()
+        {
+                $bkid=$this->input->post('id');
+                $data=$this->fetch->getBookingDetails($bkid);
+                $response='
+                        <div class="row mb-3">
+                                <div class="col-md-6">
+                                        <div class="col-md-12 mb-1"><strong>Name:</strong> '.$data['info']->fname.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Phone:</strong> '.$data['info']->mobile_no.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Pin Code:</strong> '.$data['info']->pin_code.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Address:</strong> '.$data['info']->address.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Booked on:</strong> '.date('d-M-Y',strtotime($data['info']->created)).'</div>
+                                        <div class="col-md-12"><strong>Service needed:</strong> '.$data['info']->name.'</div>
+                                </div>
+                                <div class="col-md-6">
+                                        <div class="col-md-12 mb-1"><strong>Schedule date:</strong> <mark>'.date('d-M-Y',strtotime($data['info']->schedule_date)).'</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Schedule time:</strong> <mark> '.date('g:i a',strtotime($data['info']->schedule_time)).'</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Min bill amt.:</strong> <mark> ₹'.$data['info']->amt.'/-</mark></div>
+                                        <div class="col-md-12 mb-1"><strong>Customer remarks:</strong> '.$data['info']->customer_remarks.'</div>
+                                        <div class="col-md-12 mb-1"><strong>Status:</strong> '.$data['info']->status.'</div>
+                                </div>
+                        </div>
+                        <div class="row mb-3">
+                        <table class="table table-bordered table-striped">
+                                <tr>
+                                  <th>Sub services requested</th>
+                                  <th>Min charges *</th>
+                                </tr>
+                ';
+                foreach($data['sub_svc'] as $sub){
+                        $response.='
+                                <tr>
+                                  <td>'.$sub->text.'</td>
+                                   <td>'.$sub->min_charges.'</td>
+                                </tr>
+                        ';
+                }
+                $response.='</table>
+                        </div>
+                        <div class="row mb-2">
+                                <div class="col-md-12 mb-1"><strong>Admin remarks:</strong> '.$data['info']->admin_remarks.'</div>
+                        </div>
+                </div>
+                        <div class="modal-footer justify-content-end">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        ';
+                echo json_encode($response);
+                // exit; 
+        }
+
+        public function tester($id)
+        {
+                $data=$this->fetch->getBookingDetails($id);
+                echo'<pre>';var_dump($data);exit;
+               
         }
 
         public function webProfile()

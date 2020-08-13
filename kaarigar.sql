@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2020 at 03:06 PM
+-- Generation Time: Aug 13, 2020 at 08:50 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -48,8 +48,8 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `user_id`, `amt`, `service_id`, `pin_code`, `address`, `schedule_date`, `schedule_time`, `customer_remarks`, `admin_remarks`, `status`, `created`, `modified`) VALUES
-(3, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', '', '', 'BOOKED', '2020-08-12 11:25:25', '2020-08-12 11:25:25'),
-(5, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', 'For testing', '', 'BOOKED', '2020-08-12 11:25:25', '2020-08-12 11:25:25');
+(3, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', '', '', 'APPROVED', '2020-08-12 11:25:25', '2020-08-12 11:25:25'),
+(5, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', 'For testing', '', 'REJECTED', '2020-08-12 11:25:25', '2020-08-12 11:25:25');
 
 -- --------------------------------------------------------
 
