@@ -17,6 +17,15 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/adminfooter');  
         }
 
+        public function Bookings()
+        {
+                $data=$this->fetch->getAllBookings();
+                $this->load->view('admin/adminheader',['title'=>'Bookings','data' => $data]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/bookings'); 
+                $this->load->view('admin/adminfooter');  
+        }
+
         public function Hero_sliders()
         {
                 $data=$this->fetch->getInfo('hero_slider');
@@ -47,6 +56,17 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/adminfooter');  
         }
         
+        public function subService($sid)
+        {
+                $svc=$this->fetch->getInfoById($sid,'services');
+                $data=$this->fetch->getInfoConds('sub_services',['service_id'=>$sid]);
+                // echo'<pre>';var_dump($data,$svc);exit;
+                $this->load->view('admin/adminheader',['title'=>'Sub services','data' => $data,'svc' => $svc]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/sub-services'); 
+                $this->load->view('admin/adminfooter');  
+        }
+        
 
         public function Gallery()
         {
@@ -65,30 +85,31 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/adminfooter');  
         }
 
-        public function RegDetails()
+        public function bookingDetails()
         {
-                $data=$this->fetch->getInfoById($this->input->post('id'),'farmer_reg');
-                $response='
-                        <div class="row mb-3 px-2">
-                                <div class="col-md-6"><strong>Name:</strong> '.$data->name.'</div>
-                                <div class="col-md-6"><strong>Phone:</strong> '.$data->phone.'</div>
-                                <div class="col-md-6"><strong>City:</strong> '.$data->city.'</div>
-                                <div class="col-md-6"><strong>Address:</strong> '.$data->address.'</div>
-                        </div>
-                        <div class="row mb-3 bg-light py-3 px-2">
-                                <div class="col-md-6"><strong>Occupation:</strong> '.$data->occupation.'</div>
-                                <div class="col-md-6"><strong>Capacity:</strong> '.$data->capacity.'</div>
-                                <div class="col-md-6"><strong>Land:</strong> '.$data->land.'</div>
-                        </div>
-                        <div class="row px-2">
-                                <div class="col-md-6"><strong>Soil:</strong> '.$data->soil.'</div>
-                                <div class="col-md-6"><strong>Source:</strong> '.$data->source.'</div>
-                                <div class="col-md-6"><strong>Products:</strong> '.$data->products.'</div>
-                                <div class="col-md-6"><strong>Level:</strong> '.$data->level.'</div>
-                        </div>
-                ';
-                echo $response;
-                exit; 
+                echo 'done';
+                // $data=$this->fetch->getBookingDetails($this->input->post('id'));
+                // $response='
+                //         <div class="row mb-3 px-2">
+                //                 <div class="col-md-6"><strong>Name:</strong> '.$data->name.'</div>
+                //                 <div class="col-md-6"><strong>Phone:</strong> '.$data->phone.'</div>
+                //                 <div class="col-md-6"><strong>City:</strong> '.$data->city.'</div>
+                //                 <div class="col-md-6"><strong>Address:</strong> '.$data->address.'</div>
+                //         </div>
+                //         <div class="row mb-3 bg-light py-3 px-2">
+                //                 <div class="col-md-6"><strong>Occupation:</strong> '.$data->occupation.'</div>
+                //                 <div class="col-md-6"><strong>Capacity:</strong> '.$data->capacity.'</div>
+                //                 <div class="col-md-6"><strong>Land:</strong> '.$data->land.'</div>
+                //         </div>
+                //         <div class="row px-2">
+                //                 <div class="col-md-6"><strong>Soil:</strong> '.$data->soil.'</div>
+                //                 <div class="col-md-6"><strong>Source:</strong> '.$data->source.'</div>
+                //                 <div class="col-md-6"><strong>Products:</strong> '.$data->products.'</div>
+                //                 <div class="col-md-6"><strong>Level:</strong> '.$data->level.'</div>
+                //         </div>
+                // ';
+                // echo $response;
+                // exit; 
         }
 
         public function webProfile()

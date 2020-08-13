@@ -53,6 +53,13 @@
 
 
           <li class="nav-item">
+            <a href="<?=base_url('Admin')?>" class="nav-link <?php if($this->uri->segment(1)=="Admin" && $this->uri->segment(2)==""){echo ' CustomActive';}?>">
+              <i class="fa fa-columns nav-icon"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="<?=base_url('Admin/Bookings')?>" class="nav-link <?php if($this->uri->segment(2)=="Bookings"){echo ' CustomActive';}?>">
               <i class="far fa-bookmark nav-icon"></i>
               <p>Bookings</p>
@@ -107,29 +114,6 @@
             </a>
           </li>
 
-          <!-- <li class="nav-item has-treeview <?php /* if($this->uri->segment(2)=="adminMainGall" OR $this->uri->segment(2)=="adminCaterGall"){echo ' menu-open';} */?>">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-images"></i>
-              <p>
-                Gallery
-                <i class="right fas fa-angle-down"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview ml-3">
-              <li class="nav-item">
-                <a href="<?/* echo base_url('welcome/adminMainGall') */?>" class="nav-link <?php /* if($this->uri->segment(2)=="adminMainGall"){echo ' CustomActive';} */?>">
-                  <i class="fas fa-circle nav-icon"></i>
-                  <p>Main Gallery</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="<?php /* echo base_url('welcome/adminCaterGall') */?>" class="nav-link <?php /* if($this->uri->segment(2)=="adminCaterGall"){echo ' CustomActive';} */?>">
-                  <i class="fas fa-circle nav-icon"></i>
-                  <p class='text-muted'>Catering Gallery</p>
-                </a>
-              </li>
-            </ul>
-          </li> -->
 
           <li class="nav-item mt-4" id="website-link">
             <a href="<?=base_url()?>" target=_blank class="nav-link">

@@ -32,16 +32,34 @@ class Delete extends MY_Controller {
         {
             
             $d= $this->fetch->getInfoById($id, 'services');
-            $path= 'assets/images/'.$d->img_src;
+            $path= 'assets/images/extra-services-img/'.$d->img_src;
+            $path2= 'assets/images/services-img/'.$d->icon_src;
             $status= $this->delete->deleteInfo($id, 'services');
+            $status= $this->delete->deleteInfoConds(['service_id'=>$id], 'sub_services');
+            $status= $this->delete->deleteInfoConds(['service_id'=>$id], 'services_locations');
             if($status){
                 unlink("$path");
+                unlink("$path2");
                 $this->session->set_flashdata('success','Service Deleted!');
                 redirect('Admin/Services');
             }
             else{
                 $this->session->set_flashdata('failed','Error!');
                 redirect('Admin/Services');
+            }
+        }
+
+        public function subService($svid,$id)
+        {
+            
+            $status= $this->delete->deleteInfo($id, 'sub_services');
+            if($status){
+                $this->session->set_flashdata('success','Sub Service Deleted!');
+                redirect('Admin/subService/'.$svid);
+            }
+            else{
+                $this->session->set_flashdata('failed','Error!');
+                redirect('Admin/subService/'.$svid);
             }
         }
 

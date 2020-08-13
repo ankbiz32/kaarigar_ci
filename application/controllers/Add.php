@@ -55,7 +55,8 @@ class Add extends MY_Controller {
         
         public function Services()
         {
-                $this->load->view('admin/adminheader',['title'=>'Add service','submissionPath'=>base_url('Add/saveService')]); 
+                $locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
+                $this->load->view('admin/adminheader',['title'=>'Add service','locations'=>$locations,'submissionPath'=>base_url('Add/saveService')]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/service-form'); 
                 $this->load->view('admin/adminfooter');  
@@ -65,8 +66,15 @@ class Add extends MY_Controller {
         {
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('descr', 'Description', 'required');
+            $this->form_validation->set_rules('location_id[]', 'Locations', 'required');
             if($this->form_validation->run() == true){
                 $data=$this->input->post();
+                if($data['min_charges']==''){
+                    $data['min_charges']=null;
+                }
+                $location_ids=$data['location_id'];
+                unset($data['location_id']);
+                // echo '<pre>'; var_dump($data); exit;
                 $path ='assets/images/extra-services-img/';
                 $initialize = array(
                     "upload_path" => $path,
@@ -108,8 +116,18 @@ class Add extends MY_Controller {
                 // echo '<pre>'; var_dump($data); exit;
 
                 $data['slug']=$this->generate_url_slug($data['name'],'services');
-                $status= $this->save->saveInfo('services',$data);
-                if($status){
+                $insert_id= $this->save->saveInfo('services',$data);
+                if($insert_id){
+                    $count = sizeof($location_ids);
+         
+                    for($i = 0; $i<$count; $i++){
+                        $entries[] = array(
+                            'service_id'=>$insert_id,
+                            'location_id'=>$location_ids[$i]
+                            );
+                    }
+                    // echo '<pre>'; var_dump($entries); exit;
+                    $status=$this->save->batchInsert($entries);
                     $this->session->set_flashdata('success','New Service added !' );
                     redirect('Admin/Services');
                 }
@@ -123,6 +141,42 @@ class Add extends MY_Controller {
                 redirect('Add/Services');
             } 
         }
+   
+        public function subService($svid)
+        {
+                $svc=$this->fetch->getInfoById($svid,'services');
+                $this->load->view('admin/adminheader',['title'=>'Add sub service','svc'=>$svc,'submissionPath'=>base_url('Add/saveSubService/').$svid]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/sub-service-form'); 
+                $this->load->view('admin/adminfooter');  
+        }
+
+        
+        public function saveSubService($svid)
+        {
+            $this->form_validation->set_rules('text', 'Sub service name', 'required');
+            if($this->form_validation->run() == true){
+                $data=$this->input->post();
+                if($data['min_charges']==''){
+                    $data['min_charges']=null;
+                }
+                $data['service_id']=$svid;
+                $insert_id= $this->save->saveInfo('sub_services',$data);
+                if($insert_id){
+                    $this->session->set_flashdata('success','New Service added !' );
+                    redirect('Admin/subService/'.$svid);
+                }
+                else{
+                    $this->session->set_flashdata('failed','Error !');
+                    redirect('Admin/subService/'.$svid);
+                }
+            }
+            else{
+                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
+                redirect('Admin/subService/'.$svid);
+            } 
+        }
+   
 
         public function Feedback()
         {

@@ -49,3 +49,7 @@ aside #website-link:hover{
 aside #website-link:hover p, aside #website-link:hover i{
     /* color:white !important; */
 }
+.select2-container--default .select2-selection--multiple {
+    overflow: hidden !important;
+    height: auto !important;
+}

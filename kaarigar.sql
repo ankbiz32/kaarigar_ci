@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2020 at 08:47 PM
+-- Generation Time: Aug 13, 2020 at 03:06 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -48,7 +48,8 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `user_id`, `amt`, `service_id`, `pin_code`, `address`, `schedule_date`, `schedule_time`, `customer_remarks`, `admin_remarks`, `status`, `created`, `modified`) VALUES
-(3, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', '', '', 'BOOKED', '2020-08-12 11:25:25', '2020-08-12 11:25:25');
+(3, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', '', '', 'BOOKED', '2020-08-12 11:25:25', '2020-08-12 11:25:25'),
+(5, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', 'For testing', '', 'BOOKED', '2020-08-12 11:25:25', '2020-08-12 11:25:25');
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,8 @@ CREATE TABLE `booking_info` (
 
 INSERT INTO `booking_info` (`id`, `booking_id`, `sub_service_id`) VALUES
 (5, 3, 2),
-(6, 3, 3);
+(6, 3, 3),
+(7, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -196,8 +198,7 @@ INSERT INTO `services` (`id`, `name`, `img_src`, `icon_src`, `min_charges`, `min
 (4, 'Electrician', 'extra-service-item-02.jpg', 'electricity.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'electrician', 1),
 (5, 'Painter', 'extra-service-item-05.jpg', 'brush.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'painter', 1),
 (6, 'Home hair cut', 'extra-service-item-06.jpg', 'hair-cut.png', NULL, '', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'home-hair-cut', 1),
-(7, 'Car repair', 'extra-service-item-07.jpg', 'car-repair.png', '300', 'Includes consultation and minor repairings. Any parts replaced will be charged extra', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'car-repair', 1),
-(9, 'New service', 'fb.jpg', 'whatsapp.jpg', '', '', 'dcdsdscds', 1, 'new-service', 1);
+(7, 'Car repair', 'extra-service-item-07.jpg', 'car-repair.png', '300', 'Includes consultation and minor repairings. Any parts replaced will be charged extra', 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto neque doloremque omnis! Quae saepe dolore aliquid incidunt! Assumenda laboriosam dolorem sint a commodi magni sit repudiandae, enim, minima et veritatis dicta sequi incidunt dolor maiores nihil, id officia quam aperiam. Nulla quisquam nostrum molestiae deleniti sed. Quis harum corrupti non.', 1, 'car-repair', 1);
 
 -- --------------------------------------------------------
 
@@ -263,7 +264,8 @@ CREATE TABLE `sub_services` (
 INSERT INTO `sub_services` (`id`, `service_id`, `text`, `min_charges`, `can_be_postpaid`, `is_active`) VALUES
 (1, 3, 'Tap change', '150', 0, 1),
 (2, 3, 'Seapage/Leakeage solution', NULL, 0, 1),
-(3, 3, 'New pipeline connection', '1000', 0, 1);
+(3, 3, 'New pipeline connection', '1000', 0, 1),
+(10, 6, 'Hair cut', '150', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -437,13 +439,13 @@ ALTER TABLE `webprofile`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `booking_info`
 --
 ALTER TABLE `booking_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `enquiries`
@@ -479,13 +481,13 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `services_locations`
 --
 ALTER TABLE `services_locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `subscriptions`
@@ -497,7 +499,7 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `sub_services`
 --
 ALTER TABLE `sub_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`

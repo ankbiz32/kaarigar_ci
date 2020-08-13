@@ -57,7 +57,8 @@
                         </td>
                         <td>
                           <a href="<?=base_url('Delete/Service/'.$d->id)?>" onclick="confirmation(event)" class="btn del-btn btn-danger mb-1" title="Delete Service"><i class="fa fa-trash-alt"></i></a>
-                          <button class="btn btn-primary mb-1" data-toggle="modal" data-target="#edit<?=$d->id?>" title="Edit Service"><i class="fa fa-edit"></i></button>
+                          <a href="<?=base_url('Edit/Service/'.$d->id)?>" class="btn btn-primary mb-1" title="Edit Service"><i class="fa fa-edit"></i></a>
+                          <a href="<?=base_url('Admin/subService/'.$d->id)?>" class="btn del-btn btn-warning mb-1" title="View Sub services"><i class="fa fa-eye"></i></a>
                         </td>
                       </tr>
                     <?php }?>

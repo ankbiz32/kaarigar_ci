@@ -50,78 +50,142 @@ class Edit extends MY_Controller {
 
         public function Service($id)
         {
-            $data=$this->input->post();
-
-            if($_FILES['img']['name']!=null){
-                $path ='assets/images';
-                $initialize = array(
-                    "upload_path" => $path,
-                    "allowed_types" => "*",
-                    "remove_spaces" => TRUE,
-                    "max_size" => 350
-                );
-                $this->load->library('upload', $initialize);
-                if (!$this->upload->do_upload('img')) {
-                    $this->session->set_flashdata('failed',strip_tags($this->upload->display_errors() ) );
-                    redirect('Admin/Services');
-                } 
-                else {
-                    $imgdata = $this->upload->data();
-                    $data['img_src'] = $imgdata['file_name'];
-                    $d= $this->fetch->getInfoById($id,'services');
-                    $path= 'assets/images/'.$d->img_src;
-                }
+            $svc=$this->fetch->getInfoById($id,'services');
+            $locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
+            $inLocs=$this->fetch->getInfoConds('services_locations',['service_id'=>$id]);
+            foreach($inLocs as $inL){
+                $locs[]=$inL->location_id;
             }
-
-            $status= $this->edit->updateInfo($data, $id, 'services');
-            if($status){
-                unlink($path);
-                $this->session->set_flashdata('success','Service Updated !');
-                redirect('Admin/Services');
-            }
-            else{
-                $this->session->set_flashdata('failed','Error !');
-                redirect('Admin/Services');
-            }
+            // echo '<pre>'; print_r($locs); exit;
+            $this->load->view('admin/adminheader',['title'=>'Edit service','svc'=>$svc,'locations'=>$locations,'locs'=>$locs,'submissionPath'=>base_url('Edit/updateService/').$id]); 
+            $this->load->view('admin/adminaside'); 
+            $this->load->view('admin/service-form'); 
+            $this->load->view('admin/adminfooter');  
         }
 
-        public function Scheme($id)
+        public function updateService($id)
         {
-            $data=$this->input->post();
+            $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('descr', 'Description', 'required');
+            $this->form_validation->set_rules('location_id[]', 'Locations', 'required');
+            if($this->form_validation->run() == true){
+                $data=$this->input->post();
+                if($data['min_charges']==''){
+                    $data['min_charges']=null;
+                }
+                $location_ids=$data['location_id'];
+                unset($data['location_id']);
+                if($_FILES['img']['name']!=null){
+                    $path ='assets/images/extra-services-img/';
+                    $initialize = array(
+                        "upload_path" => $path,
+                        "allowed_types" => "*",
+                        "remove_spaces" => TRUE,
+                        "max_size" => 1100
+                    );
+                    $this->load->library('upload', $initialize, 'imgupload');
+                    $this->imgupload->initialize($initialize);
+                    if (!$this->imgupload->do_upload('img')) {
+                        $this->session->set_flashdata('failed',strip_tags($this->upload->display_errors() ) );
+                        redirect('Admin/Services');
+                    } 
+                    else {
+                        $imgdata = $this->imgupload->data();
+                        $data['img_src'] = $imgdata['file_name'];
+                        $d= $this->fetch->getInfoById($id,'services');
+                        $upath= 'assets/images/extra-services-img/'.$d->img_src;
+                    }
+                }
 
-            if($_FILES['img']['name']!=null){
-                $path ='assets/images';
-                $initialize = array(
-                    "upload_path" => $path,
-                    "allowed_types" => "*",
-                    "remove_spaces" => TRUE,
-                    "max_size" => 350
-                );
-                $this->load->library('upload', $initialize);
-                if (!$this->upload->do_upload('img')) {
-                    $this->session->set_flashdata('failed',strip_tags($this->upload->display_errors() ) );
-                    redirect('Admin/Schemes');
-                } 
-                else {
-                    $imgdata = $this->upload->data();
-                    $data['img_src'] = $imgdata['file_name'];
-                    $d= $this->fetch->getInfoById($id,'schemes');
-                    $path= 'assets/images/'.$d->img_src;
+                if($_FILES['icon']['name']!=null){
+                    $path ='assets/images/services-img/';
+                    $initialize = array(
+                        "upload_path" => $path,
+                        "allowed_types" => "*",
+                        "remove_spaces" => TRUE,
+                        "max_size" => 1100
+                    );
+                    $this->load->library('upload', $initialize, 'iconupload');
+                    $this->iconupload->initialize($initialize);
+                    if (!$this->iconupload->do_upload('icon')) {
+                        $this->session->set_flashdata('failed',strip_tags($this->upload->display_errors() ) );
+                        redirect('Admin/Services');
+                    } 
+                    else {
+                        $imgdata = $this->iconupload->data();
+                        $data['icon_src'] = $imgdata['file_name'];
+                        $d= $this->fetch->getInfoById($id,'services');
+                        $upath2= 'assets/images/services-img/'.$d->icon_src;
+                    }
+                }
+
+                // echo '<pre>'; var_dump($data); exit;
+                $status= $this->edit->updateInfo($data, $id, 'services');
+                if($status){
+                    $this->load->model('DeleteModel','delete');
+                    $status= $this->delete->deleteInfoConds(['service_id'=>$id], 'services_locations');
+
+                    $this->load->model('AddModel','save');
+                    $count = sizeof($location_ids);
+                    for($i = 0; $i<$count; $i++){
+                        $entries[] = array(
+                            'service_id'=>$id,
+                            'location_id'=>$location_ids[$i]
+                            );
+                    }
+                    $status=$this->save->batchInsert($entries);
+
+                    unlink($upath);
+                    unlink($upath2);
+                    $this->session->set_flashdata('success','Service Updated !');
+                    redirect('Admin/Services');
+                }
+                else{
+                    $this->session->set_flashdata('failed','Error !');
+                    redirect('Admin/Services');
                 }
             }
-
-            $status= $this->edit->updateInfo($data, $id, 'schemes');
-            if($status){
-                unlink($path);
-                $this->session->set_flashdata('success','Scheme Updated !');
-                redirect('Admin/Schemes');
-            }
             else{
-                $this->session->set_flashdata('failed','Error !');
-                redirect('Admin/Schemes');
-            }
+                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
+                redirect('Admin/Services');
+            } 
+        }
+        
+        public function subService($svid, $sbid)
+        {
+                $svc=$this->fetch->getInfoById($svid,'services');
+                $subsvc=$this->fetch->getInfoById($sbid,'sub_services');
+                $this->load->view('admin/adminheader',['title'=>'Edit sub service','svc'=>$svc,'subsvc'=>$subsvc,'submissionPath'=>base_url('Edit/updateSubService/').$svid.'/'.$sbid]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/sub-service-form'); 
+                $this->load->view('admin/adminfooter');  
         }
 
+        
+        public function updateSubService($svid, $sbid)
+        {
+            $this->form_validation->set_rules('text', 'Sub service name', 'required');
+            if($this->form_validation->run() == true){
+                $data=$this->input->post();
+                if($data['min_charges']==''){
+                    $data['min_charges']=null;
+                }
+                $status= $this->edit->updateInfo($data, $sbid, 'sub_services');
+                if($status){
+                    $this->session->set_flashdata('success','Service updated !' );
+                    redirect('Admin/subService/'.$svid);
+                }
+                else{
+                    $this->session->set_flashdata('failed','Error !');
+                    redirect('Admin/subService/'.$svid);
+                }
+            }
+            else{
+                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
+                redirect('Admin/subService/'.$svid);
+            } 
+        }
+   
 
         public function Feedback($id)
         {
@@ -217,6 +281,32 @@ class Edit extends MY_Controller {
             else{
                 $this->session->set_flashdata('failed','Error !');
                 redirect('Admin/webProfile');
+            }
+        }
+
+        public function deactivateSubService($id,$svid)
+        {
+            $status= $this->edit->updateInfoConds('sub_services',['id'=>$id],['is_active'=>0]);
+            if($status){
+                $this->session->set_flashdata('success','Sub service status Updated !');
+                redirect('Admin/subService/'.$svid);
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/subService/'.$svid);
+            }
+        }
+
+        public function activateSubService($id, $svid)
+        {
+            $status= $this->edit->updateInfoConds('sub_services',['id'=>$id],['is_active'=>1]);
+            if($status){
+                $this->session->set_flashdata('success','Sub service status Updated !');
+                redirect('Admin/subService/'.$svid);
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/subService/'.$svid);
             }
         }
 

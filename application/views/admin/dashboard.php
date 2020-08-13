@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark"><i class="fa fa-user"></i>&nbsp;Farmer Registrations</h1>
+                <h1 class="m-0 text-dark"><i class="fa fa-columns"></i>&nbsp;Dashboard</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -20,6 +20,75 @@
     <!-- Content Main-->
     <div class="content">
       <div class="container-fluid">
+
+      
+      <div class="row my-3">
+
+          
+          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Bookings')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-gradient-primary elevation-1"><i class="fas fa-bookmark"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Bookings received</span>
+                <span class="info-box-number text-lg"><?=$usr_count?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          
+          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Applications')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-gradient-warning elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Registered Users</span>
+                <span class="info-box-number text-lg"><?=$usr_count?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-gradient-info elevation-1"><i class="fas fa-question"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Enquiries recieved</span>
+                <span class="info-box-number text-lg">
+                  <?=$enq_count?>
+                  <!-- <small>%</small> -->
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Subscriptions')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-gradient-success elevation-1"><i class="fas fa-newspaper"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Newsletter Subscriptions</span>
+                <span class="info-box-number text-lg"><?=$sub_count?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+
+
+          <!-- /.col -->
+        </div>
+
         <div class="row mt-3">
           <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card">

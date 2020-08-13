@@ -26,4 +26,14 @@ class AddModel extends CI_Model{
 		return false;
     }
 
+    public function batchInsert($data) {
+		if(!empty($data)){
+            $result = $this->db->insert_batch('services_locations',$data);
+            if($result){
+                return true;
+            }
+		}
+		return false;
+    }
+
 }
