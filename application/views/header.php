@@ -166,7 +166,7 @@
                 <div class="logo float--left show-xxs">
                     <div class="vc--parent">
                         <div class="vc--child">
-                            <a href="index.html"><img src="<?=base_url()?>assets/images/logo.png" alt="Kaarigar Logo" data-rjs="2"></a>
+                            <a href="<?=base_url()?>"><img src="<?=base_url()?>assets/images/logo.png" alt="Kaarigar Logo"></a>
                         </div>
                     </div>
                 </div>
