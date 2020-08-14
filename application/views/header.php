@@ -42,7 +42,7 @@
 <body>
     
     <!-- Preloader Start -->
-    <!-- <div class="preloader bg--color-theme"></div> -->
+    <div class="preloader bg--color-theme"></div>
     <!-- Preloader End -->
     
     
