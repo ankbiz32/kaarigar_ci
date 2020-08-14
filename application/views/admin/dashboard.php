@@ -30,17 +30,17 @@
               <span class="info-box-icon bg-gradient-primary elevation-1"><i class="fas fa-bookmark"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Bookings received</span>
-                <span class="info-box-number text-lg"><?=$usr_count?></span>
+                <span class="info-box-text">Total Bookings received</span>
+                <span class="info-box-number text-lg"><?=$book_count?></span>
               </div>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
           </div>
           
-          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Applications')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
+          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Users')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-gradient-warning elevation-1"><i class="fas fa-users"></i></span>
+              <span class="info-box-icon bg-gradient-warning elevation-1"><i class="fas fa-user"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Registered Users</span>
@@ -70,13 +70,13 @@
           <!-- fix for small devices only -->
           <div class="clearfix hidden-md-up"></div>
 
-          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Subscriptions')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
+          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Services')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-gradient-success elevation-1"><i class="fas fa-newspaper"></i></span>
+              <span class="info-box-icon bg-gradient-success elevation-1"><i class="fas fa-cog"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Newsletter Subscriptions</span>
-                <span class="info-box-number text-lg"><?=$sub_count?></span>
+                <span class="info-box-text">Services listed</span>
+                <span class="info-box-number text-lg"><?=$svc_count?></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -100,27 +100,24 @@
                 <table id="bookdt" class="table table-bordered table-hover" style="width:100%;">
                   <thead>
                     <tr>
-                      <th>Reg. Date</th>
+                      <th>Enq. No</th>
+                      <th>Enq. Date</th>
                       <th>Name</th>
                       <th>Phone</th>
-                      <th>City</th>
-                      <th>Adress</th>
-                      <th></th>
+                      <th>E-mail</th>
+                      <th>Message</th>
                     </tr>
                   </thead>
                   <tbody>
                     <!-- display Enquiries-->
-                    <?php foreach($fr as $f){?>
+                    <?php foreach($enq as $f){?>
                       <tr>
+                        <td><?=$f->id?></td>
                         <td><?=date("d-m-Y",strtotime("$f->date"))?></td>
                         <td><?=$f->name?></td>
+                        <td><?=$f->email?></td>
                         <td><?=$f->phone?></td>
-                        <td><?=$f->city?></td>
-                        <td><?=$f->address?></td>
-                        <td>
-                          <a href="<?=base_url('Delete/Farmer_reg/'.$f->id)?>" onclick="confirmation(event)" class="btn del-btn btn-danger my-1" title="Delete Registration"><i class="fa fa-trash-alt"></i></a>
-                          <button data-id='<?=$f->id?>' title="Registration details" class="btn btn-warning text-bold regDet"><i class="fa fa-info"></i></button>
-                        </td>
+                        <td><?=$f->message?></td>
                       </tr>
                     <?php }?>
                   </tbody>
@@ -130,29 +127,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Reg details modal -->
-            <div class="modal fade" id="details">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Registration details:</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                            
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-        <!-- /Reg details modal -->
 
       </div><!-- /.container-fluid -->
     </div>
@@ -186,24 +160,8 @@
     });
   });
 
-  $(function () {
-    $('.regDet').click(function(){
-      var id=$(this).data('id');
-      $.ajax({
-          url: '<?=base_url('Admin/RegDetails')?>',
-          type:'post',
-          data: {id: id},
-          beforeSend : function(){
-              $('.modal-body').html('<i class="fa fa-spinner fa-spin"></i>');
-              $('#details').modal('show');
-          },
-          success: function(response){
-              $('.modal-body').html(response);
-          },
-          error: function(response){
-              $('.modal-body').html('Error');
-          }
-      });
-    });
-  });
+  // page redirection
+  function redirectTo(sUrl) {
+            window.location = sUrl
+        }
 </script>

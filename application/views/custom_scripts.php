@@ -158,4 +158,25 @@ $('#mobile_no').keyup(function(){
 });
 
 
+    $("#bookdt").on("click", ".details", function(){
+          var id=$(this).data('id');
+          $('#booking-modal').modal('show');
+          $.ajax({
+              url: base_url+'Home/bookDetails',
+              type:'post',
+              data: {id: id},
+              cache:false,
+              dataType:'json',
+              beforeSend : function(){
+                  $('#booking-modal .modal-body').html(`<i class="fa fa-spinner fa-spin"></i>&nbsp; Loading...`);
+              },
+              success: function(data){
+                  $('#booking-modal .modal-body').html(data);
+              },
+              error: function() {
+                Swal.fire(' ','server error','warning');
+              }
+          });
+      });
+
 </script>

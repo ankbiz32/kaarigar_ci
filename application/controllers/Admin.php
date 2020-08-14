@@ -11,9 +11,32 @@ class Admin extends MY_Controller {
 
         public function index()
         {
-                $this->load->view('admin/adminheader',['title'=>'Dashboard']); 
+                $bc=$this->fetch->record_countConds('bookings');
+                $uc=$this->fetch->record_countConds('users',['role'=>'user']);
+                $ec=$this->fetch->record_countConds('enquiries');
+                $sc=$this->fetch->record_countConds('services');
+                $enq=$this->fetch->getInfo('enquiries');
+                $this->load->view('admin/adminheader',['title'=>'Dashboard', 'enq'=>$enq, 'book_count'=>$bc, 'usr_count'=>$uc, 'enq_count'=>$ec, 'svc_count'=>$sc]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/dashboard'); 
+                $this->load->view('admin/adminfooter');  
+        }
+
+        public function Users()
+        {
+                $data=$this->fetch->getInfoConds('users',['role'=>'user']);
+                $this->load->view('admin/adminheader',['title'=>'Users','data' => $data]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/users'); 
+                $this->load->view('admin/adminfooter');  
+        }
+
+        public function Locations()
+        {
+                $data=$this->fetch->getInfo('locations');
+                $this->load->view('admin/adminheader',['title'=>'Loations','data' => $data]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/locations'); 
                 $this->load->view('admin/adminfooter');  
         }
 
@@ -23,6 +46,15 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/adminheader',['title'=>'Bookings','status'=>'New','data' => $data]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/bookings'); 
+                $this->load->view('admin/adminfooter');  
+        }
+
+        public function Subscriptions()
+        {
+                $data=$this->fetch->getInfo('subscriptions');
+                $this->load->view('admin/adminheader',['title'=>'Subscriptions','data' => $data]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/subscriptions'); 
                 $this->load->view('admin/adminfooter');  
         }
 
@@ -47,12 +79,11 @@ class Admin extends MY_Controller {
         public function Hero_sliders()
         {
                 $data=$this->fetch->getInfo('hero_slider');
-                $this->load->view('admin/adminheader',['title'=>'Slider images','data' => $data]); 
+                $this->load->view('admin/adminheader',['title'=>'Sliders','data' => $data]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/sliders'); 
                 $this->load->view('admin/adminfooter');  
         }
-
 
         public function Feedbacks()
         {
@@ -63,7 +94,6 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/adminfooter');  
         }
 
-        
         public function Services()
         {
                 $data=$this->fetch->getInfoByOrder('services');
@@ -78,13 +108,11 @@ class Admin extends MY_Controller {
         {
                 $svc=$this->fetch->getInfoById($sid,'services');
                 $data=$this->fetch->getInfoConds('sub_services',['service_id'=>$sid]);
-                // echo'<pre>';var_dump($data,$svc);exit;
                 $this->load->view('admin/adminheader',['title'=>'Sub services','data' => $data,'svc' => $svc]); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/sub-services'); 
                 $this->load->view('admin/adminfooter');  
         }
-        
 
         public function Gallery()
         {
@@ -97,7 +125,7 @@ class Admin extends MY_Controller {
 
         public function editableImages()
         {
-                $this->load->view('admin/adminheader'); 
+                $this->load->view('admin/adminheader',['title'=>'Editable images']); 
                 $this->load->view('admin/adminaside'); 
                 $this->load->view('admin/header_images'); 
                 $this->load->view('admin/adminfooter');  
@@ -264,12 +292,8 @@ class Admin extends MY_Controller {
                 // exit; 
         }
 
-        public function tester($id)
-        {
-                $data=$this->fetch->getBookingDetails($id);
-                echo'<pre>';var_dump($data);exit;
-               
-        }
+
+        // -------------------------  ROOT CODE --------------------
 
         public function webProfile()
         {

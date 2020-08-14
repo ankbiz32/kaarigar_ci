@@ -10,7 +10,7 @@ class Home extends MY_Controller {
 	public function index()
 	{
 		// echo'<pre>';var_dump($_SESSION);exit;
-		$locations=$this->fetch->getInfo('locations');
+		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 
@@ -43,7 +43,7 @@ class Home extends MY_Controller {
 
 	public function About()
 	{
-		$locations=$this->fetch->getInfo('locations');
+		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 
@@ -59,7 +59,7 @@ class Home extends MY_Controller {
 
 	public function Contact()
 	{
-		$locations=$this->fetch->getInfo('locations');
+		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		
@@ -75,7 +75,7 @@ class Home extends MY_Controller {
 
 	public function Forgot()
 	{
-		$locations=$this->fetch->getInfo('locations');
+		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'Forgot password',
@@ -91,7 +91,7 @@ class Home extends MY_Controller {
 	public function Profile()
 	{
         $this->redirectUserNotLoggedIn();
-		$locations=$this->fetch->getInfo('locations');
+		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$bookings=$this->fetch->getBookings($this->session->reg->id);
@@ -107,11 +107,12 @@ class Home extends MY_Controller {
 					);
 		$this->load->view('profile');
 		$this->load->view('footer');
+		$this->load->view('custom_scripts');
 	}
 
 	public function Services()
 	{
-		$locations=$this->fetch->getInfo('locations');
+		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		if(isset($this->session->loc_id)){
@@ -137,7 +138,7 @@ class Home extends MY_Controller {
 
 	public function Service_details($id)
 	{
-		$locations=$this->fetch->getInfo('locations');
+		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		if(isset($this->session->loc_id)){
@@ -209,7 +210,7 @@ class Home extends MY_Controller {
 	public function Checkout()
 	{
 		// var_dump($_POST);exit;
-		$locations=$this->fetch->getInfo('locations');
+		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'Checkout',
@@ -299,51 +300,55 @@ class Home extends MY_Controller {
 	}
 
 
+	public function bookDetails()
+	{
+			$bkid=$this->input->post('id');
+			$data=$this->fetch->getBookingDetails($bkid);
+			$response='
+					<div class="row mb--2">
+							<div class="col-xs-6">
+									<div class="col-md-12 mb--1"><strong>Name:</strong> '.$data['info']->fname.'</div>
+									<div class="col-md-12 mb--1"><strong>Phone:</strong> '.$data['info']->mobile_no.'</div>
+									<div class="col-md-12 mb--1"><strong>Pin Code:</strong> '.$data['info']->pin_code.'</div>
+									<div class="col-md-12 mb--1"><strong>Address:</strong> '.$data['info']->address.'</div>
+									<div class="col-md-12 mb--1"><strong>Booked on:</strong> '.date('d-M-Y',strtotime($data['info']->created)).'</div>
+									<div class="col-md-12"><strong>Service needed:</strong> '.$data['info']->name.'</div>
+							</div>
+							<div class="col-xs-6">
+									<div class="col-md-12 mb--1"><strong>Schedule date:</strong> <mark>'.date('d-M-Y',strtotime($data['info']->schedule_date)).'</mark></div>
+									<div class="col-md-12 mb--1"><strong>Schedule time:</strong> <mark> '.date('g:i a',strtotime($data['info']->schedule_time)).'</mark></div>
+									<div class="col-md-12 mb--1"><strong>Min bill amt.:</strong> <mark> ₹'.$data['info']->amt.'/-</mark></div>
+									<div class="col-md-12 mb--1"><strong>Your remarks:</strong> '.$data['info']->customer_remarks.'</div>
+									<div class="col-md-12 mb--1"><strong>Status:</strong> '.$data['info']->status.'</div>
+							</div>
+					</div>
+					<div class="row mb--2 pl--1 pr--1">
+					<table class="table col-md-12 table-bordered table-striped">
+							<tr>
+							  <th>Sub services requested</th>
+							  <th>Min charges *</th>
+							</tr>
+			';
+			foreach($data['sub_svc'] as $sub){
+					$response.='
+							<tr>
+							  <td>'.$sub->text.'</td>
+							   <td>'.$sub->min_charges.'</td>
+							</tr>
+					';
+			}
+			$response.='</table>
+					</div>
+					<div class="row mb-2">
+						<div class="col-md-12 mb-1"><strong>Admin remarks:</strong> '.$data['info']->admin_remarks.'</div>
+					</div>
+					';
+			echo json_encode($response);
+			// exit; 
+	}
+
 
 	// ---------------- REF --------------------
-
-	public function Event($id)
-	{
-		$event=$this->fetch->getInfoById($id,'events');
-		$prods=$this->fetch->getInfoByLim('products',4);
-		$services=$this->fetch->getInfoByLim('services',4);
-		$social_meta='';
-		if(!empty($event)){
-			$social_meta='
-				<meta name="og:title" content="'.$event->heading.'">
-				<meta name="og:description" content="'.substr(trim(strip_tags($event->descr)),0,100).'">
-				<meta name="og:image" content="'.base_url("assets/images/").$event->img_src.'">
-				<meta name="og:url" content="'.base_url().'">
-				<meta name="og:site_name" content="Total Agrisolutions by Ramraj services Pvt. Ltd.">
-
-				<meta name="twitter:card" content="summary">
-				<meta name="twitter:title" content="'.$event->heading.'">
-				<meta name="twitter:description" content="'.substr(trim(strip_tags($event->descr)),0,100).'">
-				<meta name="twitter:site" content="@'.base_url().'">
-				<meta name="twitter:image" content="'.base_url("assets/images/").$event->img_src.'">
-
-				<meta itemprop="name" content="'.$event->heading.'">
-				<meta itemprop="description" content="'.substr(trim(strip_tags($event->descr)),0,100).'">
-				<meta itemprop="image" content="'.base_url("assets/images/").$event->img_src.'">
-			';
-			}
-		$states=$this->fetch->getInfo('states');
-		$roles=$this->fetch->getInfo('reg_roles');
-		$recents=$this->fetch->getInfoByLim('events',4);
-		$web=$this->fetch->getWebProfile('webprofile');
-		$this->load->view('header',['title'=>'Event',
-									'roles'=>$roles,
-									'states'=>$states,
-									'event'=>$event,
-									'prods'=>$prods,
-									'services'=>$services,
-									'recents'=>$recents,
-									'social_meta'=>$social_meta,
-									'web'=>$web
-									]);
-		$this->load->view('event');
-		$this->load->view('footer');
-	}
 
 	public function Enquiry()
 	{

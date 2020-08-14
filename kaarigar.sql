@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2020 at 08:50 PM
+-- Generation Time: Aug 14, 2020 at 10:40 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.8
 
@@ -43,14 +43,6 @@ CREATE TABLE `bookings` (
   `modified` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `bookings`
---
-
-INSERT INTO `bookings` (`id`, `user_id`, `amt`, `service_id`, `pin_code`, `address`, `schedule_date`, `schedule_time`, `customer_remarks`, `admin_remarks`, `status`, `created`, `modified`) VALUES
-(3, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', '', '', 'APPROVED', '2020-08-12 11:25:25', '2020-08-12 11:25:25'),
-(5, 45, '1000', 3, '492001', 'Budhapara, Raipur (C.G.)', '13-08-2020', '18:00', 'For testing', '', 'REJECTED', '2020-08-12 11:25:25', '2020-08-12 11:25:25');
-
 -- --------------------------------------------------------
 
 --
@@ -62,15 +54,6 @@ CREATE TABLE `booking_info` (
   `booking_id` int(11) NOT NULL,
   `sub_service_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `booking_info`
---
-
-INSERT INTO `booking_info` (`id`, `booking_id`, `sub_service_id`) VALUES
-(5, 3, 2),
-(6, 3, 3),
-(7, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -108,8 +91,8 @@ CREATE TABLE `feedbacks` (
 --
 
 INSERT INTO `feedbacks` (`id`, `name`, `designation`, `rating`, `content`, `img_src`) VALUES
-(4, 'Mr. patwa', '', 5, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage rassing hidden.', 'dummy_feedback_img.png'),
-(5, 'Mr. Jain', '', 4, 'Randomised words which don\'t look even slightly believable. If you are going to use a passage rassing hidden.', 'dummy_feedback_img.png');
+(1, 'Mr. patwa', '', 5, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. If you are going to use a passage rassing hidden.', 'dummy_feedback_img.png'),
+(2, 'Mr. Jain', '', 4, 'Randomised words which don\'t look even slightly believable. If you are going to use a passage rassing hidden.', 'dummy_feedback_img.png');
 
 -- --------------------------------------------------------
 
@@ -140,10 +123,10 @@ CREATE TABLE `hero_slider` (
 --
 
 INSERT INTO `hero_slider` (`id`, `img_src`, `heading`, `descr`) VALUES
-(5, 'carpenter.jpg', 'Now find Carpenters online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
-(6, 'packers.jpg', 'Now find Packers & Movers online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
-(7, 'painter.jpg', 'Now find Painters online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
-(8, 'car-repair.jpg', '...and many more Kaarigar online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.');
+(1, 'carpenter.jpg', 'Now find Carpenters online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
+(2, 'packers.jpg', 'Now find Packers & Movers online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
+(3, 'painter.jpg', 'Now find Painters online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
+(4, 'car-repair.jpg', '...and many more Kaarigar online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.');
 
 -- --------------------------------------------------------
 
@@ -165,7 +148,7 @@ CREATE TABLE `locations` (
 --
 
 INSERT INTO `locations` (`id`, `area`, `city`, `state`, `pin_code`, `is_active`) VALUES
-(1, '', 'Raipur', 'C.G.', '492001', 1),
+(1, ' ', 'Raipur', 'C.G.', '492001', 1),
 (2, '', 'Abhanpur', 'C.G.', '493661', 1);
 
 -- --------------------------------------------------------
@@ -294,7 +277,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `mobile_no`, `username`, `pwd`, `fname`, `lname`, `email`, `role`, `is_verified`, `status`, `created_at`, `modified_at`) VALUES
 (1, '', 'admin_kaarigar', '$2y$10$3.f2PnKfTq/J0Y7z2vwOoOc8e5yNj4c1Li6aAo4S/7LqiaizZSXOi', 'Demo', 'User', 'connect@kaarigaronline.in', 'admin', 1, 1, '2020-08-06 18:01:55', '2020-08-06 18:01:55'),
-(45, '7894561230', '', '$2y$10$.0sEFrHroHiJyAfgSVBFk.uhmj8dC1Az2XIEKP.BPpKdeXaGWgW0O', 'Test', '', '', 'user', 1, 1, '2020-08-10 07:53:46', '2020-08-10 07:53:46');
+(2, '7894561230', '', '$2y$10$.0sEFrHroHiJyAfgSVBFk.uhmj8dC1Az2XIEKP.BPpKdeXaGWgW0O', 'Test', '', '', 'user', 1, 1, '2020-08-10 07:53:46', '2020-08-10 07:53:46');
 
 -- --------------------------------------------------------
 
@@ -314,7 +297,7 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`id`, `user_id`, `pin_code`, `address`) VALUES
-(43, 45, '492001', 'Budhapara, Raipur (C.G.)');
+(43, 2, '492001', 'Budhapara, Raipur (C.G.)');
 
 -- --------------------------------------------------------
 
@@ -333,15 +316,16 @@ CREATE TABLE `webprofile` (
   `fblink` varchar(50) NOT NULL,
   `instalink` varchar(50) NOT NULL,
   `twitterlink` varchar(50) NOT NULL,
-  `youtubelink` varchar(1024) NOT NULL
+  `youtubelink` varchar(1024) NOT NULL,
+  `video_url` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `webprofile`
 --
 
-INSERT INTO `webprofile` (`id`, `email`, `phone1`, `phone2`, `whatsapp_no`, `address_line1`, `address_line2`, `fblink`, `instalink`, `twitterlink`, `youtubelink`) VALUES
-(1, 'connect@kaarigaronline.in', '9039310833', '9039310833', '9039310833', 'Raipur,', 'Chhattisgarh', 'https://www.facebook.com/', 'https://instagram.com', 'https://twitter.com', 'https://www.youtube.com/');
+INSERT INTO `webprofile` (`id`, `email`, `phone1`, `phone2`, `whatsapp_no`, `address_line1`, `address_line2`, `fblink`, `instalink`, `twitterlink`, `youtubelink`, `video_url`) VALUES
+(1, 'connect@kaarigaronline.in', '9039310833', '9039310833', '9039310833', 'Raipur,', 'Chhattisgarh', 'https://www.facebook.com/', 'https://instagram.com', 'https://twitter.com', 'https://www.youtube.com', 'https://www.youtube.com/watch?v=2GqExKSwTEA');
 
 --
 -- Indexes for dumped tables
@@ -439,37 +423,37 @@ ALTER TABLE `webprofile`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `booking_info`
 --
 ALTER TABLE `booking_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `enquiries`
 --
 ALTER TABLE `enquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `gallery`
 --
 ALTER TABLE `gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hero_slider`
 --
 ALTER TABLE `hero_slider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -481,13 +465,13 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `services_locations`
 --
 ALTER TABLE `services_locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `subscriptions`
@@ -499,19 +483,19 @@ ALTER TABLE `subscriptions`
 -- AUTO_INCREMENT for table `sub_services`
 --
 ALTER TABLE `sub_services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `webprofile`

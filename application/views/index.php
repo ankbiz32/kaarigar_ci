@@ -837,9 +837,9 @@
                             <div class="col-md-6 col-md-offset-6">
                                 <!-- Testimonial Video Content Start -->
                                 <div class="testimonial--video-content text-center">
-                                    <a href="https://www.youtube.com/watch?v=2GqExKSwTEA" class="play-btn" data-popup="video"><i class="fa fa-play"></i></a>
+                                    <a href="<?=$web->video_url?>" class="play-btn" data-popup="video"><i class="fa fa-play"></i></a>
 
-                                    <h3 class="h3">Watch Video Tour</h3>
+                                    <h3 class="h3">Watch Video</h3>
                                 </div>
                                 <!-- Testimonial Video Content End -->
                             </div>

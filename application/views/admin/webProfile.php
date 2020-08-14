@@ -48,6 +48,8 @@
                       <span><?=$profile->twitterlink; ?></span><br><br>
                       <label class="label">Youtube link:</label><br>
                       <span><?=$profile->youtubelink; ?></span><br><br>
+                      <label class="label">Video Url:</label><br>
+                      <span><?=$profile->video_url; ?></span><br><br>
                     </div>
                 </div>
                 <!-- /.card-body -->
@@ -106,19 +108,23 @@
                   <div class="col">
                     <div class="form-group">
                         <label for="fblink">Facebook link:</label>
-                        <input type="text" class="form-control" name="fblink" id="fblink" value="<?=$profile->fblink;?>" required>
+                        <input type="url" class="form-control" name="fblink" id="fblink" value="<?=$profile->fblink;?>" required>
                     </div>
                     <div class="form-group">
                         <label for="instalink">Instagram Link:</label>
-                        <input type="text" class="form-control" name="instalink" id="instalink" value="<?=$profile->instalink;?>" required>
+                        <input type="url" class="form-control" name="instalink" id="instalink" value="<?=$profile->instalink;?>" required>
                     </div>
                     <div class="form-group">
                         <label for="twitterlink">Twitter Link:</label>
-                        <input type="text" class="form-control" name="twitterlink" id="twitterlink" value="<?=$profile->twitterlink;?>" required>
+                        <input type="url" class="form-control" name="twitterlink" id="twitterlink" value="<?=$profile->twitterlink;?>" required>
                     </div>
                     <div class="form-group">
                         <label for="youtubelink">Youtube Link:</label>
-                        <input type="text" class="form-control" name="youtubelink" id="youtubelink" value="<?=$profile->youtubelink;?>" required>
+                        <input type="url" class="form-control" name="youtubelink" id="youtubelink" value="<?=$profile->youtubelink;?>" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="youtubelink">Video Url:</label>
+                        <input type="url" class="form-control" name="video_url" id="video_url" value="<?=$profile->video_url;?>" required>
                     </div>
                   </div>
           </div>

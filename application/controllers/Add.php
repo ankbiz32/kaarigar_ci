@@ -15,12 +15,12 @@ class Add extends MY_Controller {
             $this->form_validation->set_rules('heading', 'Heading', 'required');
             $this->form_validation->set_rules('descr', 'Description', 'required');
             if($this->form_validation->run() == true){
-                $path ='assets/images';
+                $path ='assets/images/banner-img';
                 $initialize = array(
                     "upload_path" => $path,
-                    "allowed_types" => "jpg|jpeg|png|bmp|webp|gif",
+                    "allowed_types" => "*",
                     "remove_spaces" => TRUE,
-                    "max_size" => 350
+                    "max_size" => 1100
                 );
                 $this->load->library('upload', $initialize);
                 if (!$this->upload->do_upload('img')) {
@@ -30,11 +30,12 @@ class Add extends MY_Controller {
                 else {
                     $imgdata = $this->upload->data();
                     $imagename = $imgdata['file_name'];
+                    $data=array();
                     $data=array('heading'=>$this->input->post('heading'),
                             'descr'=>$this->input->post('descr'),
                             'img_src'=>$imagename
                             );
-                    $status= $this->save->saveInfo($data, 'hero_slider');
+                    $status= $this->save->saveInfo('hero_slider',$data);
 
                     if($status){
                         $this->session->set_flashdata('success','New Slide added !' );
@@ -51,7 +52,6 @@ class Add extends MY_Controller {
                 redirect('Admin/Hero_sliders');
             } 
         }
-
         
         public function Services()
         {
@@ -178,17 +178,40 @@ class Add extends MY_Controller {
         }
    
 
+        public function Location()
+        {
+            $this->form_validation->set_rules('area', 'Area', 'required');
+            $this->form_validation->set_rules('city', 'City', 'required');
+            $this->form_validation->set_rules('state', 'State', 'required');
+            $this->form_validation->set_rules('pin_code', 'Pin code', 'required');
+            if($this->form_validation->run() == true){
+                $data=$this->input->post();
+                $status= $this->save->saveInfo('locations', $data);
+                if($status){
+                    $this->session->set_flashdata('success','New location added !' );
+                    redirect('Admin/Locations');
+                }
+                else{
+                    $this->session->set_flashdata('failed','Error !');
+                    redirect('Admin/Locations');
+                }
+            }
+            else{
+                $this->session->set_flashdata('failed',trim(strip_tags(validation_errors())));
+                redirect('Admin/Locations');
+            } 
+        }
+
         public function Feedback()
         {
             $this->form_validation->set_rules('content', 'Feedback', 'required');
             $this->form_validation->set_rules('name', 'Name', 'required');
+            $this->form_validation->set_rules('rating', 'Rating', 'required');
             if($this->form_validation->run() == true){
-                $data=array('content'=>$this->input->post('content'),
-                        'name'=>$this->input->post('name')
-                        );
-                $status= $this->save->saveInfo($data, 'feedbacks');
+                $data=$this->input->post();
+                $status= $this->save->saveInfo('feedbacks', $data);
                 if($status){
-                    $this->session->set_flashdata('success','New Success story added !' );
+                    $this->session->set_flashdata('success','New feedback added !' );
                     redirect('Admin/Feedbacks');
                 }
                 else{

@@ -65,12 +65,19 @@
               <p>Bookings</p>
             </a>
           </li>
+
           <li class="nav-item">
-            <a href="<?=base_url('Admin/Enquiries')?>" class="nav-link <?php if($this->uri->segment(2)=="Enquiries"){echo ' CustomActive';}?>">
-              <i class="far fa-sticky-note nav-icon"></i>
-              <p>Enquiries</p>
+            <a href="<?=base_url('Admin/Locations')?>" class="nav-link <?php if($this->uri->segment(2)=="Locations"){echo ' CustomActive';}?>">
+              <i class="far fa-map-marker-alt nav-icon"></i>
+              <p>Locations master</p>
             </a>
           </li>
+          <!-- <li class="nav-item">
+            <a href="<?=base_url('Admin/Subscriptions')?>" class="nav-link <?php if($this->uri->segment(2)=="Subscriptions"){echo ' CustomActive';}?>">
+              <i class="far fa-rss nav-icon"></i>
+              <p>Subscriptions</p>
+            </a>
+          </li> -->
           <li class="nav-item">
             <a href="<?=base_url('Admin/Users')?>" class="nav-link <?php if($this->uri->segment(2)=="Users"){echo ' CustomActive';}?>">
               <i class="far fa-user nav-icon"></i>
@@ -95,18 +102,18 @@
               <p>Feedbacks</p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="<?=base_url('Admin/Gallery')?>" class="nav-link <?php if($this->uri->segment(2)=="Gallery"){echo ' CustomActive';}?>">
               <i class="fa fa-image nav-icon"></i>
               <p>Gallery</p>
             </a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a href="<?=base_url('Admin/editableImages')?>" class="nav-link <?php if($this->uri->segment(2)=="editableImages"){echo ' CustomActive';}?>">
               <i class="fa fa-square nav-icon"></i>
               <p>Editable images</p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="<?=base_url('Admin/webProfile')?>" class="nav-link <?php if($this->uri->segment(2)=="webProfile"){echo ' CustomActive';}?>">
               <i class="fa fa-globe nav-icon"></i>

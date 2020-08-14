@@ -46,7 +46,7 @@
                       <tr>
                         <td><?=$d->heading?></td>
                         <td class=""><?=substr($d->descr,0,100)." . . ."?></td>
-                        <td><img src="<?=base_url()."assets/images/$d->img_src"?>" alt="Image" height="50" style="object-fit:cover;"></td>
+                        <td><img src="<?=base_url()."assets/images/banner-img/$d->img_src"?>" alt="Image" height="50" style="object-fit:cover;"></td>
                         <td>
                           <a href="<?=base_url('Delete/Slide/'.$d->id)?>" onclick="confirmation(event)" class="btn del-btn btn-danger mb-1" title="Delete Slide"><i class="fa fa-trash-alt"></i></a>
                           <button class="btn btn-primary mb-1" data-toggle="modal" data-target="#edit<?=$d->id?>" title="Edit Slide"><i class="fa fa-edit"></i></button>
@@ -69,9 +69,9 @@
                                         <div class="form-group">
                                           <label for="img" class="m-0">Image for Slide:</label>
                                           <p class="m-0 text-muted">( Choose only if you want to change the current image )</p>
-                                          <p class="text-sm text-muted mt-0 mb-2">( Max image size : 300kb )</p>
+                                          <p class="text-sm text-muted mt-0 mb-2">( Max image size : 1MB)</p>
                                           <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="img" name="img">
+                                            <input type="file" class="custom-file-input" accept=".jpg, .jpeg, .svg, .png, .gif, .bmp, .webp" id="img" name="img">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
                                           </div>
                                         </div>
@@ -130,9 +130,9 @@
               <div class="col">
                 <div class="form-group">
                   <label for="img" class="mb-2">Image for Slide:</label>
-                  <p class="text-sm text-muted mt-0 mb-2">( Max image size : 300kb )</p>
+                  <p class="text-sm text-muted mt-0 mb-2">( Max image size : 1MB )</p>
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input m-0" id="img" name="img" required>
+                    <input type="file" class="custom-file-input m-0" accept=".jpg, .jpeg, .svg, .png, .gif, .bmp, .webp" id="img" name="img" required>
                     <label class="custom-file-label" for="customFile">Choose file</label>
                   </div>
                 </div>

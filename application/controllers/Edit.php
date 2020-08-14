@@ -13,15 +13,16 @@ class Edit extends MY_Controller {
 
         public function Slide($id)
         {
+            $data=array();
             $data=$this->input->post();
 
             if($_FILES['img']['name']!=null){
-                $path ='assets/images';
+                $path ='assets/images/banner-img';
                 $initialize = array(
                     "upload_path" => $path,
-                    "allowed_types" => "jpg|jpeg|png|bmp|webp|gif",
+                    "allowed_types" => "*",
                     "remove_spaces" => TRUE,
-                    "max_size" => 350
+                    "max_size" => 1100
                 );
                 $this->load->library('upload', $initialize);
                 if (!$this->upload->do_upload('img')) {
@@ -32,13 +33,13 @@ class Edit extends MY_Controller {
                     $imgdata = $this->upload->data();
                     $data['img_src'] = $imgdata['file_name'];
                     $d= $this->fetch->getInfoById($id,'hero_slider');
-                    $path= 'assets/images/'.$d->img_src;
+                    $upath= 'assets/images/banner-img/'.$d->img_src;
                 }
             }
 
             $status= $this->edit->updateInfo($data, $id, 'hero_slider');
             if($status){
-                unlink($path);
+                unlink($upath);
                 $this->session->set_flashdata('success','Slide Updated !');
                 redirect('Admin/Hero_sliders');
             }
@@ -161,7 +162,6 @@ class Edit extends MY_Controller {
                 $this->load->view('admin/adminfooter');  
         }
 
-        
         public function updateSubService($svid, $sbid)
         {
             $this->form_validation->set_rules('text', 'Sub service name', 'required');
@@ -185,7 +185,6 @@ class Edit extends MY_Controller {
                 redirect('Admin/subService/'.$svid);
             } 
         }
-   
 
         public function approveBooking($id)
         {
@@ -217,13 +216,27 @@ class Edit extends MY_Controller {
             }
         }
 
+        public function Location($id)
+        {
+            $data=$this->input->post();
+            $status= $this->edit->updateInfo($data, $id, 'locations');
+            if($status){
+                $this->session->set_flashdata('success','Location Updated !');
+                redirect('Admin/Locations');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Locations');
+            }
+        }
+ 
+
         public function Feedback($id)
         {
             $data=$this->input->post();
             $status= $this->edit->updateInfo($data, $id, 'feedbacks');
             if($status){
-                unlink($path);
-                $this->session->set_flashdata('success','Success Story Updated !');
+                $this->session->set_flashdata('success','Feedback Updated !');
                 redirect('Admin/Feedbacks');
             }
             else{
@@ -366,6 +379,73 @@ class Edit extends MY_Controller {
             }
         }
 
+        public function deactivateUser($id)
+        {
+            $status= $this->edit->updateInfoConds('users',['id'=>$id],['status'=>0]);
+            if($status){
+                $this->session->set_flashdata('success','User status updated !');
+                redirect('Admin/Users');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Users');
+            }
+        }
+
+        public function activateUser($id)
+        {
+            $status= $this->edit->updateInfoConds('users',['id'=>$id],['status'=>1]);
+            if($status){
+                $this->session->set_flashdata('success','User status updated !');
+                redirect('Admin/Users');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Users');
+            }
+        }
+
+        public function deactivateLoc($id)
+        {
+            $status= $this->edit->updateInfoConds('locations',['id'=>$id],['is_active'=>0]);
+            if($status){
+                $this->session->set_flashdata('success','Location status updated !');
+                redirect('Admin/Locations');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Locations');
+            }
+        }
+
+        public function activateLoc($id)
+        {
+            $status= $this->edit->updateInfoConds('locations',['id'=>$id],['is_active'=>1]);
+            if($status){
+                $this->session->set_flashdata('success','Location status updated !');
+                redirect('Admin/Locations');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Locations');
+            }
+        }
+
+        public function verifyUser($id,$mob)
+        {
+            $hash=password_hash( $mob, PASSWORD_DEFAULT );
+            // echo'<pre>';var_dump($hash);exit;
+            $status= $this->edit->updateInfoConds('users',['id'=>$id],['is_verified'=>1,'pwd'=>"$hash", 'modified_at'=>date('Y-m-d H:i:s')]);
+            if($status){
+                $this->session->set_flashdata('success','User verified! Password set to same as mobile no.');
+                redirect('Admin/Users');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error !');
+                redirect('Admin/Users');
+            }
+        }
+
         public function enqStatus($id)
         {
             $status= $this->edit->updateEnqStatus($id);
@@ -395,7 +475,6 @@ class Edit extends MY_Controller {
             }
         }
 
-        
         function generate_url_slug($string,$table,$field='slug',$key=NULL,$value=NULL){
             $t =& get_instance();
             $slug = url_title($string);

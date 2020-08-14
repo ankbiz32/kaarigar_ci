@@ -85,12 +85,12 @@
                                 <h2 class="title h4">Booking history</h2>
 
                                 <div class="cart--items">
-                                    <table class="table">
+                                    <table class="table" id="bookdt">
                                         <thead>
                                             <tr>
                                                 <th>Booked on</th>
                                                 <th>Service</th>
-                                                <th>Bill amt.</th>
+                                                <th>Min bill amt.</th>
                                                 <th>Status</th>
                                                 <th></th>
                                             </tr>
@@ -104,7 +104,7 @@
                                                     <span><?=$bo->name?> service</span> 
                                                 </td>
             
-                                                <td data-label="Bill amt.">₹<?=$bo->amt?>/-</td>
+                                                <td data-label="Min bill amt.">₹<?=$bo->amt?>/-</td>
                                                 <?php if($bo->status=='BOOKED'){?>
                                                 <td data-label="Status"><span class="text--primary">BOOKED</span></td>
                                                 <?php } elseif($bo->status=='CANCELLED'){?>
@@ -113,7 +113,7 @@
                                                     <td data-label="Status"><span class="text--success">COMPLETED</span></td>
                                                 <?php }?>
             
-                                                <td data-label=" "><button class=" font-14"><i class="fa fa-info"></i>&nbsp; details</a></td>
+                                                <td data-label=" "><button class="details font-14" data-id="<?=$bo->id?>"><i class="fa fa-info"></i>&nbsp; details</a></td>
                                             </tr>
                                             <?php } } else{?>
                                                 <tr>
@@ -214,6 +214,39 @@
               <button type="submit" class="btn btn-primary mb--1">Save changes</button>
             </div>
             </form>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="booking-modal">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+            <div class="modal-header pt--2">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Booking</h4>
+              </div>
+            <div class="modal-body">
+                <p>Hi</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary mb--1" data-dismiss="modal">close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- <div class="modal fade" id="bookings">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"> <i class="fa fa-info-circle"></i> Booking </h4>
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div> -->

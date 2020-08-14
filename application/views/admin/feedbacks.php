@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="<?=base_url('Admin')?>">Dashboard</a></li>
-                  <li class="breadcrumb-item active">feedbacks</li>
+                  <li class="breadcrumb-item active">Feedbacks</li>
                 </ol>
             </div><!-- /.col -->
             </div><!-- /.row -->
@@ -36,6 +36,8 @@
                     <tr>
                       <th>Feedback</th>
                       <th>Name</th>
+                      <th>Designation</th>
+                      <th>Rating</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -43,8 +45,10 @@
                     <!-- display Data-->
                     <?php foreach ($data as $d){?>
                       <tr>
-                        <td><?=substr($d->content,0,100)." . . ."?></td>
-                        <td class=""><?=$d->name?></td>
+                        <td><?=$d->content?></td>
+                        <td><?=$d->name?></td>
+                        <td><?=$d->designation?></td>
+                        <td><?=$d->rating?></td>
                         <td>
                           <a href="<?=base_url('Delete/Feedback/'.$d->id)?>" onclick="confirmation(event)" class="btn del-btn btn-danger mb-1" title="Delete Feedback"><i class="fa fa-trash-alt"></i></a>
                           <button class="btn btn-primary mb-1" data-toggle="modal" data-target="#edit<?=$d->id?>" title="Edit Feedback"><i class="fa fa-edit"></i></button>
@@ -64,15 +68,32 @@
                                 <div class="modal-body">
                                     <form role="form" method="post" action="<?php echo base_url();?>Edit/Feedback/<?=$d->id?>" enctype="multipart/form-data">
                                       <div class="col">
-                                      <div class="form-group">
-                                            <label for="content" class="m-0">Feedback:</label>
+                                        <div class="form-group px-0 col-md-4 col-sm-12">
+                                            <label for="rating" class="m-0">Rating (out of 5 stars): *</label>
+                                            <select name="rating" id="rating" class="form-control m-0">
+                                              <option value="1" <?=$d->rating=='1'?' selected':''?> >1 star</option>
+                                              <option value="2" <?=$d->rating=='2'?' selected':''?>>2 star</option>
+                                              <option value="3" <?=$d->rating=='3'?' selected':''?>>3 star</option>
+                                              <option value="4" <?=$d->rating=='4'?' selected':''?>>4 star</option>
+                                              <option value="5" <?=$d->rating=='5'?' selected':''?>>5 star</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="content" class="m-0">Feedback: *</label>
                                             <p class="m-0 text-sm text-muted">(Max. 200 Characters)</p>
                                             <textarea name="content" id="content" minlength="1" maxlength="200" class="form-control mt-2" rows="5" required><?=$d->content?></textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="name" class="m-0">Name:</label>
-                                            <p class="text-sm text-muted m-0">(Max. 20 Characters)</p>
-                                            <input type="text" class="form-control mt-2" minlength="1" maxlength="20" name="name" value="<?=$d->name?>" id="name" required>
+                                        <div class="row">
+                                          <div class="form-group col-md-6 col-sm-12">
+                                              <label for="name" class="m-0">Name: *</label>
+                                              <p class="text-sm text-muted m-0">(Max. 20 Characters)</p>
+                                              <input type="text" class="form-control mt-2" minlength="1" maxlength="20" name="name" value="<?=$d->name?>" id="name" required>
+                                          </div>
+                                          <div class="form-group col-md-6 col-sm-12">
+                                              <label for="designation" class="m-0">Designation:</label>
+                                              <p class="text-sm text-muted m-0">(Max. 30 Characters)</p>
+                                              <input type="text" class="form-control mt-2" minlength="1" maxlength="30" name="designation" value="<?=$d->designation?>" id="designation">
+                                          </div>
                                         </div>
                                       </div>
                                 </div>
@@ -115,17 +136,34 @@
             </button>
         </div>
         <div class="modal-body">
-            <form role="form" method="post" action="<?php echo base_url();?>Add/Feedback" enctype="multipart/form-data">
+            <form role="form" method="post" action="<?=base_url();?>Add/Feedback">
               <div class="col">
-                <div class="form-group">
-                    <label for="content" class="m-0">Feedback: *</label>
-                    <p class="text-sm text-muted mt-0 mb-2">(Max. 200 Characters)</p>
-                    <textarea name="content" id="content" class="form-control" minlength="1" maxlength="200" rows="5" required></textarea>
+                <div class="form-group px-0 col-md-4 col-sm-12">
+                    <label for="rating" class="m-0">Rating (out of 5 stars): *</label>
+                    <select name="rating" id="rating" class="form-control m-0">
+                      <option value="1">1 star</option>
+                      <option value="2">2 star</option>
+                      <option value="3">3 star</option>
+                      <option value="4">4 star</option>
+                      <option value="5" selected>5 star</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="m-0">Name: *</label>
-                    <p class="text-sm text-muted">(Max. 20 Characters)</p>
-                    <input type="text" class="form-control" name="name" maxlength="20" id="name" required>
+                    <label for="content" class="m-0">Feedback: *</label>
+                    <p class="text-sm text-muted mt-0 mb-2">(Max. 300 Characters)</p>
+                    <textarea name="content" id="content" class="form-control" minlength="1" maxlength="300" rows="5" required></textarea>
+                </div>
+                <div class="row mt-5">
+                  <div class="form-group col-md-4 col-sm-12">
+                      <label for="name" class="m-0">Name: *</label>
+                      <p class="text-sm text-muted mb-1">(Max. 20 Characters)</p>
+                      <input type="text" class="form-control m-0" name="name" maxlength="20" id="name" required>
+                  </div>
+                  <div class="form-group col-md-4 col-sm-12">
+                      <label for="designation" class="m-0">Designation:</label>
+                      <p class="text-sm text-muted mb-1">(Max. 30 Characters)</p>
+                      <input type="text" class="form-control m-0" name="designation" maxlength="30" id="designation">
+                  </div>
                 </div>
               </div>
         </div>

@@ -61,7 +61,7 @@
 
                         <?php if(isset($this->session->reg)){?>
                         <li class="hidden-xxs customDropper"><a href="javascript:;">
-                            <i class="fa fa-user"></i>&nbsp; <?=$this->session->reg->fname?></a>
+                            <i class="fa fa-user"></i>&nbsp; <?=$this->session->reg->fname?> <i class="fa fa-caret-down"></i></a>
                             <div class="customDrop">
                                 <a href="<?=base_url('profile')?>">Profile</a>
                                 <a href="<?=base_url('logout')?>">Logout</a>
@@ -77,7 +77,7 @@
                         
                         <?php if(isset($this->session->reg)){?>
                         <li class="login-top-bar customDropper show-xxs">
-                            <a href="javascript:;"><i class="fa fa-user"></i>&nbsp; Profile</a>
+                            <a href="javascript:;"><i class="fa fa-user"></i>&nbsp; Profile <i class="fa fa-caret-down"></i></a>
                             <div class="customDrop">
                                 <a href="<?=base_url('profile')?>">Profile</a>
                                 <a href="<?=base_url('logout')?>">Logout</a>

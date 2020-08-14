@@ -86,7 +86,7 @@ class GetModel extends CI_Model{
     
      public function getBookings($id)
      {
-        return $this->db->select('*, s.name')
+        return $this->db->select('b.*, s.name')
                 ->from('bookings b')
                 ->where('b.user_id',$id)
                 ->join('services s', 's.id = b.service_id', 'LEFT')
@@ -128,6 +128,16 @@ class GetModel extends CI_Model{
     public function record_count($table) 
     {
         return $this->db->count_all($table);
+    }
+    
+    // Count no. of rows in table 
+    public function record_countConds($table, $conds=null) 
+    {
+        if($conds!=null){
+            return $this->db->where($conds)->get($table)->num_rows();
+        }else{
+            return $this->db->get($table)->num_rows();
+        }
     }
     
     // Fetch Admin Profile

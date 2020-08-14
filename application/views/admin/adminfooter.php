@@ -54,6 +54,27 @@
   });
 
 
+  //  Sweet alert for verification
+  function confirmation2(ev) {
+    ev.preventDefault();
+    var urlToRedirect = ev.currentTarget.getAttribute('href'); 
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "Password will be set to be same as the user's mobile no.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#888888',
+        confirmButtonText: 'Verify'
+      }).then((result) => {
+        if (result.value) {
+          window.location = urlToRedirect;
+        }
+      })
+
+  }
+
   //  Sweet alert for delete
   function confirmation(ev) {
     ev.preventDefault();

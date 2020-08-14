@@ -83,14 +83,13 @@
                             <!-- Footer Widget Start -->
                             <div class="footer--widget col-md-4">
                                 <div class="widget--title">
-                                    <h2 class="h4">Sign Up For Newsletter</h2>
+                                    <h2 class="h4">Social media handles</h2>
                                 </div>
 
-                                <!-- Subscribe Widget Start -->
                                 <div class="subscribe--widget" data-form-validation="true">
-                                    <p>Sign Up Our Newsletter to Get Notification Our New Services</p>
+                                    <!-- <p>Sign Up Our Newsletter to Get Notification Our New Services</p>
 
-                                    <form action="https://themelooks.us13.list-manage.com/subscribe/post?u=79f0b132ec25ee223bb41835f&amp;id=f4e0e93d1d" method="post" name="mc-embedded-subscribe-form" target="_blank">
+                                    <form action="" method="post" name="mc-embedded-subscribe-form" target="_blank">
                                         <div class="input-group">
                                             <input type="email" name="EMAIL" class="form-control" placeholder="E-mail Address" required>
                                             
@@ -98,20 +97,19 @@
                                                 <button type="submit" class="btn btn-default active"><i class="fa fa-send"></i></button>
                                             </span>
                                         </div>
-                                    </form>
+                                    </form> -->
 
                                     <div class="social">
                                         <h3 class="h6">Find Us On</h3>
 
                                         <ul class="nav">
-                                            <li><a href="<?=$web->fblink?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="<?=$web->twitterlink?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="<?=$web->instalink?>" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                                            <li><a href="https://api.whatsapp.com/send?phone=91<?=$web->whatsapp_no?>&text=Hi Kaarigaronline. I need your services. Please assist me on this." target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                                            <li><a href="<?=$web->fblink?>" target="_blank"><i class="fa fa-lg fa-facebook"></i></a></li>
+                                            <li><a href="<?=$web->twitterlink?>" target="_blank"><i class="fa fa-lg fa-twitter"></i></a></li>
+                                            <li><a href="<?=$web->instalink?>" target="_blank"><i class="fa fa-lg fa-instagram"></i></a></li>
+                                            <li><a href="https://api.whatsapp.com/send?phone=91<?=$web->whatsapp_no?>&text=Hi Kaarigaronline. I need your services. Please assist me on this." target="_blank"><i class="fa fa-lg fa-whatsapp"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- Subscribe Widget End -->
                             </div>
                             <!-- Footer Widget End -->
                         </div>
