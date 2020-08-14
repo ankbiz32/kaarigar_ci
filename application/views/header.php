@@ -175,9 +175,9 @@
                     <!-- Header Nav Links Start -->
                     <ul class="header--nav-links nav navbar-nav font--secondary">
                         <li class="header-svc footer-nav bg--color-lightgray d-xxs-flex mb--1">
-                            <a href="about.html" class="font-14" style="white-space: nowrap;">About us</a>
-                            <a href="contact.html" class="font-14">Contact</a>
-                            <a href="index.html" class="font-14">T&C</a>
+                            <a href="<?=base_url('about-us')?>" class="font-14" style="white-space: nowrap;">About us</a>
+                            <a href="<?=base_url('contact-us')?>" class="font-14">Contact</a>
+                            <a href="#" class="font-14">T&C</a>
                         </li>
                         <?php foreach($services_nav as $svc_nav){ if($svc_nav->is_active==1){?>
                             <li class="header-svc">
