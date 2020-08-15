@@ -11,7 +11,7 @@ class Home extends MY_Controller {
 	{
 		// echo'<pre>';var_dump($_SESSION);exit;
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
-		$services_nav=$this->fetch->getInfo('services',4);
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 
 		$sliders=$this->fetch->getInfo('hero_slider');

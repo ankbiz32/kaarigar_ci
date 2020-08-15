@@ -222,7 +222,7 @@
                     <!-- Feature Item Start -->
                     <div class="feature--item col-md-3 col-xs-6 col-xxs-12">
                         <div class="icon">
-                            <img src="<?=base_url()?>assets/images/features-img/icon-01.png" alt="" data-rjs="2">
+                            <img src="<?=base_url()?>assets/images/features-img/icon-01.png" alt="">
                         </div>
 
                         <div class="title">

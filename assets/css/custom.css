@@ -379,6 +379,9 @@ input#date + input.input, input#time.flatpickr-input{
         right: 15px;
         bottom: 20px;
     }
+    .header--navbar.navbar .container #headerNav > ul > li {
+        height: initial;
+    }
 }
 
 @media screen and (min-width: 1400px) and (max-width:1920px) {

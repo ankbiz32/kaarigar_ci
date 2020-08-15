@@ -188,7 +188,7 @@
                                 </a>
                             </li>
                         <?php } }?>
-                        <li class="header-svc">
+                        <li class="header-svc show-xxs">
                             <a href="<?=base_url('services')?>">
                                 <span>See all services</span>
                             </a>
