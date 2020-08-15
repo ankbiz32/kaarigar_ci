@@ -342,11 +342,20 @@ input#date + input.input, input#time.flatpickr-input{
         margin-top: 0;
         padding-top: 40px;
     }
-    #appointment .services{
+    #appointment .services {
+        justify-content: space-between;
         width: 100%;
+        padding: 30px 10px;
     }
     #appointment .services .service{
-        flex-basis: 50%;
+        flex-basis: 30%;
+        padding: 15px 15px 20px !important;
+    }
+    #appointment .service .sv-img {
+        --img-size: 35px !important;
+    }
+    #appointment .service h4 {
+        font-size: 14px !important;
     }
     .d-xxs-block{
         display: block !important;

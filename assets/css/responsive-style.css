@@ -122,7 +122,8 @@ WE MAY RELEASE FUTURE UPDATES SO IT WILL OVERWRITE THIS FILE. IT'S BETTER AND SA
         top: 70px;
         left: 15px;
         right: 15px;
-        max-height: 320px;
+        /* max-height: 320px; */
+        height: auto;
         margin: 0;
         background-color: #fff;
         z-index: 999;
@@ -138,6 +139,7 @@ WE MAY RELEASE FUTURE UPDATES SO IT WILL OVERWRITE THIS FILE. IT'S BETTER AND SA
     }
     .header--navbar .navbar-collapse.collapsing,
     .header--navbar .navbar-collapse.collapse.in {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         display: block !important;
     }
 

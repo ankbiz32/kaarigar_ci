@@ -188,6 +188,11 @@
                                 </a>
                             </li>
                         <?php } }?>
+                        <li class="header-svc">
+                            <a href="<?=base_url('services')?>">
+                                <span>See all services</span>
+                            </a>
+                        </li>
                     </ul>
                     <!-- Header Nav Links End -->
                 </div>
