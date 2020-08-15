@@ -87,9 +87,9 @@
                                 
                                 <label class="error errTxt d-block mb--1"></label>
                                 <?php if(isset($this->session->reg)){?>
-                                    <button type="submit" class="btn btn-primary" id="svc_submit" <?=isset($this->session->loc_id)?'':' disabled'?>>Book now</button>
+                                    <button type="submit" class="btn btn-primary bookBtn" id="svc_submit" <?=isset($this->session->loc_id)?'':' disabled'?>>Book now</button>
                                 <?php } else{?>
-                                    <a href="<?=base_url('login')?>?return_url=<?=$service->id?>" class="btn btn-primary">Login to book service</a>
+                                    <a href="<?=base_url('login')?>?return_url=<?=$service->id?>" class="btn btn-primary bookBtn">Login to book service</a>
                                 <?php }?>
                             </form>
 

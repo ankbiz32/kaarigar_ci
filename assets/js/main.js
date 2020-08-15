@@ -514,14 +514,14 @@
                 success: function(data){
                     if(!data.error){
                         $('#svc_loc_modal').modal('toggle');
-                        $(`<label class="success d-block mt--1 pl--1 svc-info"><strong>Service available.</strong></label>`).insertAfter('#svc_submit');
+                        $(`<label class="success d-block mt--1 pl--1 svc-info"><strong>Service available.</strong></label>`).insertAfter('.bookBtn');
                         $('#loc_block').html('Location: '+data.area+' '+data.city);
                         $('#svc_submit').removeAttr('disabled');
                     }
                     else{
                         $('#svc_loc_modal').modal('toggle');
-                        $(`<label class="error d-block mt--1 pl--1 svc-info"><strong>Sorry! Service currently not available in this location.</strong></label>`).insertAfter('#svc_submit');
-                        $('#loc_block').html(data.area+' '+data.city);
+                        $(`<label class="error d-block mt--1 pl--1 svc-info"><strong>Sorry! Service currently not available in this location.</strong></label>`).insertAfter('.bookBtn');
+                        $('#loc_block').html('Location: '+data.area+' '+data.city);
                         $('#svc_submit').attr('disabled','true');
                     }
                 },

@@ -26,8 +26,22 @@ class GetModel extends CI_Model{
     {
         $query= $this->db->select('*')
                         ->where('mobile_no',$phn)
+                        ->where('role','user')
                         ->get('users');
-        return $query->num_rows();
+        if($query->num_rows()>0){
+            if($query->row()->is_verified==1){
+                $resp="YES";
+                return $resp;
+            }
+            else{
+                $resp="DEL";
+                return $resp;
+            }
+
+        }else{
+            $resp='NO';
+            return $resp;
+        }
     }
     public function checkSvc($sid, $lid)
     {

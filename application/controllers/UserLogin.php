@@ -63,7 +63,7 @@ class UserLogin extends MY_Controller {
             $uid=$this->add->create_user('users',$data);
             if($uid){
                 $response=array();
-                $_SESSION["mobile_no"] =$data['mobile_no'];
+                $_SESSION['mobile_no'] =$data['mobile_no'];
                 $response['uid']=$uid;
                 $_SESSION["uid"] =$response['uid'];
 
@@ -110,14 +110,28 @@ class UserLogin extends MY_Controller {
         }
     }
     
+    public function resend_otp()
+	{
+        // Send below info using SMS gateway
+        // $_SESSION['mobile_no']
+        // $_SESSION['vno'] (--- this is the OTP ---)
+        sleep(1);
+        echo true;
+    }
+    
     public function regPhoneCheck()
 	{
-       if($this->fetch->getPhone($this->input->post('mobile_no')) > 0){
-           echo true;
-       }
-       else{
+        if($this->fetch->getPhone($this->input->post('mobile_no')) == 'DEL'){
+            $this->load->model('DeleteModel', 'del');
+            $del=$this->del->deleteInfoConds(['mobile_no'=>$this->input->post('mobile_no'),'role'=>'user'], 'users');
+            echo false;
+        }
+        elseif($this->fetch->getPhone($this->input->post('mobile_no')) == 'YES'){
+            echo true;
+        }
+        else{
            echo false;
-       }
+        }
 	}
     
 	public function VerifyOtp()

@@ -44,7 +44,7 @@ class Home extends MY_Controller {
 	public function About()
 	{
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
-		$services_nav=$this->fetch->getInfo('services',4);
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 
 		$this->load->view('header',['title'=>'About us',
@@ -60,7 +60,7 @@ class Home extends MY_Controller {
 	public function Contact()
 	{
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
-		$services_nav=$this->fetch->getInfo('services',4);
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		
 		$this->load->view('header',['title'=>'Contact us',
@@ -76,7 +76,7 @@ class Home extends MY_Controller {
 	public function Forgot()
 	{
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
-		$services_nav=$this->fetch->getInfo('services',4);
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'Forgot password',
 								'locations'=>$locations,
@@ -92,7 +92,7 @@ class Home extends MY_Controller {
 	{
         $this->redirectUserNotLoggedIn();
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
-		$services_nav=$this->fetch->getInfo('services',4);
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$bookings=$this->fetch->getBookings($this->session->reg->id);
 		// var_dump($bookings);exit;
@@ -113,7 +113,7 @@ class Home extends MY_Controller {
 	public function Services()
 	{
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
-		$services_nav=$this->fetch->getInfo('services',4);
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		if(isset($this->session->loc_id)){
 			$svc_ids=$this->fetch->getServicesInLoc('services_locations',['location_id'=>$this->session->loc_id]);
@@ -139,7 +139,7 @@ class Home extends MY_Controller {
 	public function Service_details($id)
 	{
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
-		$services_nav=$this->fetch->getInfo('services',4);
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		if(isset($this->session->loc_id)){
 			$svc_ids=$this->fetch->getServicesInLoc('services_locations',['location_id'=>$this->session->loc_id]);
@@ -211,7 +211,7 @@ class Home extends MY_Controller {
 	{
 		// var_dump($_POST);exit;
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
-		$services_nav=$this->fetch->getInfo('services',4);
+		$services_nav=$this->fetch->getInfo('services',5);
 		$web=$this->fetch->getWebProfile('webprofile');
 		$this->load->view('header',['title'=>'Checkout',
 								'locations'=>$locations,

@@ -248,6 +248,12 @@ input#date + input.input, input#time.flatpickr-input{
     top:37px;
     visibility: visible;
 }
+#resendOTP{
+    float:right;
+    cursor: pointer;
+}
+
+
 @media(max-width:992px){
     #appointment{
        margin-top: 350px;

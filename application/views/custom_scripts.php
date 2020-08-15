@@ -22,10 +22,11 @@ $('#regSubmit').click(function(){
                 $('#regSubmit').hide().html('Next').fadeIn(500);
                 if(data){
                     $('.form-block').hide().html(`
-                        <div class="form-group">
+                        <div class="form-group mb--0">
                             <label>We have sent you a 4-digit otp. Please verify your phone no. *</label>
                             <input type="text" class="form-control digits required" id="otp" name="otp" placeholder="Enter OTP here" required>
                         </div>
+                        <div class="mb--2"><a id="resendOTP" class="ml--auto">Resend OTP</a></div>
                         <button type="button" id="otpSubmit" class="btn btn-default">Verify</button>
                     `).fadeIn(500);
                     vno=data.vno;
@@ -48,6 +49,29 @@ $('#regSubmit').click(function(){
 });
 
 
+$(".register").on("click", "#resendOTP", function(){
+    $('#reg_form .error-block').remove();
+    $.ajax({
+        url: base_url+'UserLogin/resend_otp',
+        processData: false,
+        contentType: false,
+        cache: false,
+        dataType: 'json',
+        type: 'POST',
+        beforeSend: function(){
+            $('#resendOTP').html('<i class="fa fa-spin fa-circle-o-notch"></i>');
+        },
+        success: function(data){
+            $('#resendOTP').html('Resend OTP');
+            Swal.fire('OTP sent','','success');
+        },
+        error:function(){
+            $('#resendOTP').html('Resend OTP');
+            Swal.fire('Server error','','warning');
+        }
+    });
+});
+
 $(".register").on("click", "#otpSubmit", function(){
     $('#reg_form .error-block').remove();
     if($('#reg_form').valid()){
@@ -55,6 +79,7 @@ $(".register").on("click", "#otpSubmit", function(){
             $(`<label class="success d-block mb--1">Correct OTP. Phone no. verified.</label>`).insertBefore( "#otpSubmit" );
             $(`<button type="button" id="next" class="btn btn-default">Next</button>`).insertBefore( "#otpSubmit" );
             $('#otp').attr('disabled','true');
+            $('#resendOTP').remove();
             $(this).remove();
         }
         else{
@@ -158,25 +183,25 @@ $('#mobile_no').keyup(function(){
 });
 
 
-    $("#bookdt").on("click", ".details", function(){
-          var id=$(this).data('id');
-          $('#booking-modal').modal('show');
-          $.ajax({
-              url: base_url+'Home/bookDetails',
-              type:'post',
-              data: {id: id},
-              cache:false,
-              dataType:'json',
-              beforeSend : function(){
-                  $('#booking-modal .modal-body').html(`<i class="fa fa-spinner fa-spin"></i>&nbsp; Loading...`);
-              },
-              success: function(data){
-                  $('#booking-modal .modal-body').html(data);
-              },
-              error: function() {
-                Swal.fire(' ','server error','warning');
-              }
-          });
-      });
+$("#bookdt").on("click", ".details", function(){
+        var id=$(this).data('id');
+        $('#booking-modal').modal('show');
+        $.ajax({
+            url: base_url+'Home/bookDetails',
+            type:'post',
+            data: {id: id},
+            cache:false,
+            dataType:'json',
+            beforeSend : function(){
+                $('#booking-modal .modal-body').html(`<i class="fa fa-spinner fa-spin"></i>&nbsp; Loading...`);
+            },
+            success: function(data){
+                $('#booking-modal .modal-body').html(data);
+            },
+            error: function() {
+            Swal.fire(' ','server error','warning');
+            }
+        });
+    });
 
 </script>
