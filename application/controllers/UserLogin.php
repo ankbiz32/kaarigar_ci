@@ -65,6 +65,7 @@ class UserLogin extends MY_Controller {
                 $response=array();
                 $_SESSION['mobile_no'] =$data['mobile_no'];
                 $response['uid']=$uid;
+                $response['mobile_no'] =$data['mobile_no'];
                 $_SESSION["uid"] =$response['uid'];
 
                 $data2['user_id'] = $uid;
@@ -123,7 +124,9 @@ class UserLogin extends MY_Controller {
 	{
         if($this->fetch->getPhone($this->input->post('mobile_no')) == 'DEL'){
             $this->load->model('DeleteModel', 'del');
+            $usr_id=$this->fetch->getInfoCondsId('users',['mobile_no'=>$this->input->post('mobile_no')]);
             $del=$this->del->deleteInfoConds(['mobile_no'=>$this->input->post('mobile_no'),'role'=>'user'], 'users');
+            $del=$this->del->deleteInfoConds(['user_id'=>$usr_id->id], 'user_info');
             echo false;
         }
         elseif($this->fetch->getPhone($this->input->post('mobile_no')) == 'YES'){

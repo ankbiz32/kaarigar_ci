@@ -23,11 +23,13 @@ $('#regSubmit').click(function(){
                 if(data){
                     $('.form-block').hide().html(`
                         <div class="form-group mb--0">
-                            <label>We have sent you a 4-digit otp. Please verify your phone no. *</label>
-                            <input type="text" class="form-control digits required" id="otp" name="otp" placeholder="Enter OTP here" required>
+                            <h5 class="h5 mb--1">Verify phone no. :</h5>
+                            <label>OTP sent to `+data.mobile_no+`</label>
+                            <input type="text" class="form-control digits required mt--2" id="otp" name="otp" placeholder="Enter OTP here" required>
                         </div>
                         <div class="mb--2"><a id="resendOTP" class="ml--auto">Resend OTP</a></div>
                         <button type="button" id="otpSubmit" class="btn btn-default">Verify</button>
+                        <div class="mt--2">Wrong phone no.? <a href="`+base_url+`register" class="text--primary">Start again</a></div>
                     `).fadeIn(500);
                     vno=data.vno;
                     console.log(vno);

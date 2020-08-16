@@ -13,7 +13,7 @@
                     <button type="submit" class="btn btn-default">Send OTP</button>
                 </div>
                 <hr>
-                <p class="h6 text-center">Remembered your password? <a href="login.html" class="text--primary">Login now</a></p>
+                <p class="h6 text-center">Remember your password? <a href="login.html" class="text--primary">Login now</a></p>
             </form>
         </div>
     </section>
