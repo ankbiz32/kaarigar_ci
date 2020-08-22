@@ -1517,7 +1517,8 @@ a:active, .btn-link:active {
 }
 
 .banner--slider .banner--item:before {
-    background-color: #000;
+    /* background-color: #000; */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8));
     opacity: 0.7;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 }

@@ -71,13 +71,13 @@
                         <li class="hidden-xxs"><a href="<?=base_url()?>login"><i class="fa fa-user"></i>&nbsp; Login</a></li>
                         <?php }?>
 
-                        <li class="show-xxs top-bar-call"><a href="tel:+91<?=$web->phone1?>"><i class="fa fa-phone"></i>&nbsp; +91<?=$web->phone1?></a></li>
+                        <li class="show-xxs top-bar-call mr-auto"><a href="tel:+91<?=$web->phone1?>"><i class="fa fa-phone"></i>&nbsp; +91<?=$web->phone1?></a></li>
 
                         <li class="loc-top-bar show-xxs"><a href="#" data-toggle="modal" data-target="#loc-modal"><i class="fa fa-map-marker"></i>&nbsp; <span id="loc"><?=isset($this->session->loc_id)?$this->session->loc_city:' Select location'?></span></a></li>
                         
                         <?php if(isset($this->session->reg)){?>
                         <li class="login-top-bar customDropper show-xxs">
-                            <a href="javascript:;"><i class="fa fa-user"></i>&nbsp; Profile <i class="fa fa-caret-down"></i></a>
+                            <a href="javascript:;"><i class="fa fa-user"></i> <?=explode(' ',$this->session->reg->fname)['0']?>&nbsp; <i class="fa fa-caret-down"></i></a>
                             <div class="customDrop">
                                 <a href="<?=base_url('profile')?>">Profile</a>
                                 <a href="<?=base_url('logout')?>">Logout</a>
