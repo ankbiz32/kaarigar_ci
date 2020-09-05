@@ -22,6 +22,15 @@ class Admin extends MY_Controller {
                 $this->load->view('admin/adminfooter');  
         }
 
+        public function Applications()
+        {
+                $enq=$this->fetch->getInfo('job_appl');
+                $this->load->view('admin/adminheader',['title'=>'Job applications', 'appl'=>$enq]); 
+                $this->load->view('admin/adminaside'); 
+                $this->load->view('admin/applications'); 
+                $this->load->view('admin/adminfooter');  
+        }
+
         public function Users()
         {
                 $data=$this->fetch->getInfoConds('users',['role'=>'user']);

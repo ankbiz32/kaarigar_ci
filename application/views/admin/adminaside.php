@@ -60,6 +60,13 @@
           </li>
 
           <li class="nav-item">
+            <a href="<?=base_url('Admin/Applications')?>" class="nav-link <?php if($this->uri->segment(2)=="Applications"){echo ' CustomActive';}?>">
+              <i class="fa fa-file nav-icon"></i>
+              <p>Applications</p>
+            </a>
+          </li>
+
+          <!-- <li class="nav-item">
             <a href="<?=base_url('Admin/Bookings')?>" class="nav-link <?php if($this->uri->segment(2)=="Bookings"){echo ' CustomActive';}?>">
               <i class="far fa-bookmark nav-icon"></i>
               <p>Bookings</p>
@@ -72,12 +79,7 @@
               <p>Locations master</p>
             </a>
           </li>
-          <!-- <li class="nav-item">
-            <a href="<?=base_url('Admin/Subscriptions')?>" class="nav-link <?php if($this->uri->segment(2)=="Subscriptions"){echo ' CustomActive';}?>">
-              <i class="far fa-rss nav-icon"></i>
-              <p>Subscriptions</p>
-            </a>
-          </li> -->
+
           <li class="nav-item">
             <a href="<?=base_url('Admin/Users')?>" class="nav-link <?php if($this->uri->segment(2)=="Users"){echo ' CustomActive';}?>">
               <i class="far fa-user nav-icon"></i>
@@ -102,7 +104,31 @@
               <p>Feedbacks</p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="<?=base_url('Admin/webProfile')?>" class="nav-link <?php if($this->uri->segment(2)=="webProfile"){echo ' CustomActive';}?>">
+              <i class="fa fa-globe nav-icon"></i>
+              <p>Web profile</p>
+            </a>
+          </li> -->
+
+
+          <li class="nav-item mt-4" id="website-link">
+            <a href="<?=base_url()?>" target=_blank class="nav-link">
+              <i class="fas fa-external-link-alt nav-icon"></i>
+              <p>Open Website</p>
+            </a>
+          </li>
+          
+
           <!-- <li class="nav-item">
+            <a href="<?=base_url('Admin/Subscriptions')?>" class="nav-link <?php if($this->uri->segment(2)=="Subscriptions"){echo ' CustomActive';}?>">
+              <i class="far fa-rss nav-icon"></i>
+              <p>Subscriptions</p>
+            </a>
+          </li> 
+          
+           <li class="nav-item">
             <a href="<?=base_url('Admin/Gallery')?>" class="nav-link <?php if($this->uri->segment(2)=="Gallery"){echo ' CustomActive';}?>">
               <i class="fa fa-image nav-icon"></i>
               <p>Gallery</p>
@@ -114,21 +140,6 @@
               <p>Editable images</p>
             </a>
           </li> -->
-          <li class="nav-item">
-            <a href="<?=base_url('Admin/webProfile')?>" class="nav-link <?php if($this->uri->segment(2)=="webProfile"){echo ' CustomActive';}?>">
-              <i class="fa fa-globe nav-icon"></i>
-              <p>Web profile</p>
-            </a>
-          </li>
-
-
-          <li class="nav-item mt-4" id="website-link">
-            <a href="<?=base_url()?>" target=_blank class="nav-link">
-              <i class="fas fa-external-link-alt nav-icon"></i>
-              <p>Open Website</p>
-            </a>
-          </li>
-          
            
         </ul>
       </nav>

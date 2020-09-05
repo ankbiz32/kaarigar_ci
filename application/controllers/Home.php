@@ -9,6 +9,11 @@ class Home extends MY_Controller {
 
 	public function index()
 	{
+		$this->load->view('landing');
+	}
+
+	public function index2()
+	{
 		// echo'<pre>';var_dump($_SESSION);exit;
 		$locations=$this->fetch->getInfoConds('locations',['is_active'=>1]);
 		$services_nav=$this->fetch->getInfo('services',5);
@@ -347,9 +352,6 @@ class Home extends MY_Controller {
 			// exit; 
 	}
 
-
-	// ---------------- REF --------------------
-
 	public function Enquiry()
 	{
 		$this->form_validation->set_rules('name', 'Name', 'required');
@@ -372,6 +374,60 @@ class Home extends MY_Controller {
 		else{
 			$this->session->set_flashdata('failed',strip_tags(trim(validation_errors())));
 			redirect('contact-us');
+		} 
+	}
+
+	
+	public function landingEnquiry()
+	{
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[10]|max_length[10]');
+		$this->form_validation->set_rules('message', 'Address', 'required|max_length[300]');
+		$this->form_validation->set_rules('email', 'Email', 'valid_email');
+		if($this->form_validation->run() == true){
+			$data=$this->input->post();
+			$data['date']=date('Y-m-d');
+			$this->load->model('AddModel','save');
+			$status= $this->save->saveInfo('enquiries',$data);
+			if($status){
+				$this->session->set_flashdata('success','Your booking enquiry has been received. We will contact you soon.' );
+				redirect('Home');
+			}
+			else{
+				$this->session->set_flashdata('failed','Error! Please try again after sometime or call us on 9753344220.');
+				redirect('Home');
+			}
+		}
+		else{
+			$this->session->set_flashdata('failed',strip_tags(trim(validation_errors())));
+			redirect('Home');
+		} 
+	}
+
+	public function landingAppl()
+	{
+		// $data=$this->input->post();
+		// echo'<pre>';var_dump($data);exit;
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('phone', 'Phone', 'required|min_length[10]|max_length[10]');
+		$this->form_validation->set_rules('details', 'Details', 'max_length[300]');
+		if($this->form_validation->run() == true){
+			$data=$this->input->post();
+			$data['date']=date('Y-m-d');
+			$this->load->model('AddModel','save');
+			$status= $this->save->saveInfo('job_appl',$data);
+			if($status){
+				$this->session->set_flashdata('success','Your application has been received. We will contact you soon.');
+				redirect('Home');
+			}
+			else{
+				$this->session->set_flashdata('failed','Error! Please try again after sometime or call us on 9753344220.');
+				redirect('Home');
+			}
+		}
+		else{
+			$this->session->set_flashdata('failed',strip_tags(trim(validation_errors())));
+			redirect('Home');
 		} 
 	}
 

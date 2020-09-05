@@ -50,26 +50,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Home';
-$route['404_override'] = 'Error404';
+// $route['404_override'] = 'Error404';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['about-us'] = 'Home/About';
-$route['contact-us'] = 'Home/Contact';
-$route['privacy-policy'] = 'Home/Privacy';
-$route['profile'] = 'Home/Profile';
-$route['sitemap.xml'] = 'Sitemap';
+// $route['about-us'] = 'Home/About';
+// $route['contact-us'] = 'Home/Contact';
+// $route['privacy-policy'] = 'Home/Privacy';
+// $route['profile'] = 'Home/Profile';
+// $route['sitemap.xml'] = 'Sitemap';
 
 $route['admin'] = 'Admin';
-$route['login'] = 'UserLogin';
-$route['logout'] = 'UserLogin/logout';
-$route['register'] = 'UserLogin/Register';
-$route['book-service']['post']= 'Home/bookService';
-$route['checkout']= 'Home/Checkout';
-$route['booking-finish']['post']= 'Home/finishBooking';
+// $route['login'] = 'UserLogin';
+// $route['logout'] = 'UserLogin/logout';
+// $route['register'] = 'UserLogin/Register';
+// $route['book-service']['post']= 'Home/bookService';
+// $route['checkout']= 'Home/Checkout';
+// $route['booking-finish']['post']= 'Home/finishBooking';
 
-$route['forgot-password'] = 'Home/Forgot';
+// $route['forgot-password'] = 'Home/Forgot';
 
-$route['services'] = 'Home/Services';
-$route['service/(:num)/(:any)'] = 'Home/Service_details/$1';
-$route['service-booked'] = 'Home/Booked';
+// $route['services'] = 'Home/Services';
+// $route['service/(:num)/(:any)'] = 'Home/Service_details/$1';
+// $route['service-booked'] = 'Home/Booked';

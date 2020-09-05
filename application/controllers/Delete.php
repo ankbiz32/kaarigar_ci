@@ -87,6 +87,19 @@ class Delete extends MY_Controller {
             }
         }
         
+        public function Application($id)
+        {
+            $status= $this->delete->deleteInfo($id, 'job_appl');
+            if($status){
+                $this->session->set_flashdata('success','Application deleted!');
+                redirect('Admin/Applications');
+            }
+            else{
+                $this->session->set_flashdata('failed','Error!');
+                redirect('Admin/Applications');
+            }
+        }
+        
         public function Feedback($id)
         {
             $status= $this->delete->deleteInfo($id, 'feedbacks');

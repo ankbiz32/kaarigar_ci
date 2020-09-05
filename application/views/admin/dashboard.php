@@ -25,7 +25,7 @@
       <div class="row my-3">
 
           
-          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Bookings')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
+          <!-- <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Bookings')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-gradient-primary elevation-1"><i class="fas fa-bookmark"></i></span>
 
@@ -33,12 +33,10 @@
                 <span class="info-box-text">Total Bookings received</span>
                 <span class="info-box-number text-lg"><?=$book_count?></span>
               </div>
-              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
-          </div>
+          </div> -->
           
-          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Users')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
+          <!-- <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Users')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-gradient-warning elevation-1"><i class="fas fa-user"></i></span>
 
@@ -46,10 +44,8 @@
                 <span class="info-box-text">Registered Users</span>
                 <span class="info-box-number text-lg"><?=$usr_count?></span>
               </div>
-              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
-          </div>
+          </div> -->
 
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
@@ -62,15 +58,12 @@
                   <!-- <small>%</small> -->
                 </span>
               </div>
-              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
           </div>
 
-          <!-- fix for small devices only -->
           <div class="clearfix hidden-md-up"></div>
 
-          <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Services')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
+          <!-- <div class="col-12 col-sm-6 col-md-3" onclick="redirectTo('Admin/Services')" style="cursor:pointer; transition:0.1s ease" onMouseOver="this.style.transform='scale(1.02)'" onMouseOut="this.style.transform='scale(1)'">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-gradient-success elevation-1"><i class="fas fa-cog"></i></span>
 
@@ -78,10 +71,9 @@
                 <span class="info-box-text">Services listed</span>
                 <span class="info-box-number text-lg"><?=$svc_count?></span>
               </div>
-              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
-          </div>
+          </div> -->
+
           <!-- /.col -->
 
 
@@ -105,7 +97,7 @@
                       <th>Name</th>
                       <th>Phone</th>
                       <th>E-mail</th>
-                      <th>Message</th>
+                      <th>Details</th>
                     </tr>
                   </thead>
                   <tbody>
