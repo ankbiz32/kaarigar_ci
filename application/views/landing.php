@@ -112,7 +112,7 @@
 					</div>
 				</div>
 				<div class="col-sm-7 col-md-push-1">
-					<h2>Book your professional <br> kaarigar in sec.</h2>
+					<h2>Book your professional <br> kaarigar now.</h2>
 					<div class="row">
 						<div class="col-md-10">
 							<div class="intro-box">
@@ -146,14 +146,11 @@
 		<!-- ELEMENTS-CLIENTS -->
 		<div class="elements-content">
 			<div class="container">
-				<div class="row">
-					<ul class="clients no-padding text-center">
-						<li><img src="<?=base_url('assets/landing/')?>images/clients/1.png" class="img-responsive center-block" alt=""/></li>
-						<li><img src="<?=base_url('assets/landing/')?>images/clients/2.png" class="img-responsive center-block" alt=""/></li>
-						<li><img src="<?=base_url('assets/landing/')?>images/clients/3.png" class="img-responsive center-block" alt=""/></li>
-						<li><img src="<?=base_url('assets/landing/')?>images/clients/4.png" class="img-responsive center-block" alt=""/></li>
-						<li><img src="<?=base_url('assets/landing/')?>images/clients/5.png" class="img-responsive center-block" alt=""/></li>
-					</ul>
+				<div class="row flex">
+					<div class="img-container">
+						<img src="<?=base_url('assets/landing/images/logo-man.png')?>" alt="Mascot">
+					</div>
+					<h3>अब होगा हर काम पूरा !</h3>
 				</div>
 			</div>
 		</div>
@@ -211,7 +208,7 @@
 					<h4>200+ customers already use Kaarigar Online.</h4>
 				</div>
 				<div class="col-md-4">
-					<a href="tel:9753344220" class="btn btn-lg btn-primary"><i class="fa fa-phone"></i>&nbsp;9753 344 220</a>
+					<a href="tel:9753344220" class="btn btn-lg btn-primary"><i class="fa fa-phone fa-lg"></i>&nbsp;Call now</a>
 				</div>
 			</div>
         </div>
@@ -242,7 +239,7 @@
 						<li><i class="icon-check"></i> and many more...</li>
 					</ul>
 					<div class="space30"></div>
-					<a href="tel:9753344220" class="btn btn-lg btn-primary"><i class="fa fa-phone"></i>&nbsp;9753 344 220</a>
+					<a href="tel:9753344220" class="btn btn-lg btn-primary"><i class="fa fa-phone"></i>&nbsp;Call now</a>
 				</div>
 				<div class="col-md-8 text-center">
 					<img src="<?=base_url('assets/landing/')?>images/services/1.jpg" class="pull-right img-responsive" alt="">
@@ -325,7 +322,7 @@
     <div class="container" id="faq">
 	<div class="about-inline text-center">
         <p>- FREQUENTLY ASKED QUESTIONS  -</p>
-			<h3>Got questions? We’ve got answers. Send us email to hello@kaarigaronline.in </h3>
+			<h3>Got questions? We’ve got answers. <br> Send us email to hello@kaarigaronline.in </h3>
 		</div>
 	</div>
 
@@ -333,29 +330,29 @@
 			<div class="row">
 				<div class="col-md-6 col-sm-6">
                 	<div class="faq">
-					<h4> <span>*</span> What is FAQ?</h4>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language.</p>
+					<h4> <span>*</span> Are your kaarigars qualified?</h4>
+					<p>Absolutely! We only bring in professionals who have been recommended and certified by experts. We conduct interviews, check referrals, licenses, and do background checks on each and every kaarigar.</p>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-sm-6">
                 	<div class="faq">
-					<h4> <span>*</span> What is FAQ?</h4>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language.</p>
+					<h4> <span>*</span> What happens if the Kaarigar damages anything?</h4>
+					<p>In the unlikely event of our team damaging something, you can email us at hello@kaarigaronline.in <br> OR give us a call @ 9753344220</p>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-sm-6">
                 	<div class="faq">
-					<h4> <span>*</span> What is FAQ?</h4>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language.</p>
+					<h4> <span>*</span> What happens in case the requested job takes more time than expected?</h4>
+					<p>We understand that your time is valuable and are always striving to limit the time spent by kaarigars at your home. However the kaarigars are trained to update you if the job might take longer than expected. Please do expect a buffer of half an hour more or less than the stated time to complete the task.</p>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-sm-6">
                 	<div class="faq">
-					<h4> <span>*</span> What is FAQ?</h4>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language.</p>
+					<h4> <span>*</span> Does someone have to be home when the kaarigar comes?</h4>
+					<p>Yes, it is advisable for you to be around when the job is getting done. You are requested to take care of your personal belongings or valuables in the presence of our kaarigars. Kaarigar online will not be liable for any damage or theft arising in case of failure to do so.</p>
                     </div>
                 </div>
                 

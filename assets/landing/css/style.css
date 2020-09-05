@@ -37,6 +37,7 @@ Author: Divine-Store
 -------------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Comfortaa:300,400,700');
+@import url('https://fonts.googleapis.com/css2?family=Khand:wght@600&display=swap');
 /* 1. GLOBAL STYLES */
 
 body {
@@ -397,14 +398,14 @@ ul, ol, li {
 
 .intro1 h2 {
 	color: #fff;
-	font-size: 53px;
+	font-size: 35px;
 	text-transform: none;
 	font-weight: 700;
 	margin: 0 0 15px;
 }
 
 .intro1 p {
-	font-size: 16px;
+	font-size: 14px;
 	color: #fff;
 	opacity: 0.8;
 }
@@ -485,7 +486,7 @@ ul, ol, li {
 
 .intro-box h4 {
 	color: #fff;
-	font-size: 17px;
+	font-size: 14px;
 	text-transform: uppercase;
 	font-weight: 600;
 	letter-spacing: 0.2px;
@@ -1580,10 +1581,10 @@ ul, ol, li {
 }
 
 .btn .fa {
-	margin-left: 12px;
+	margin-right: 10px;
 	position: relative;
 	top: 0px;
-	font-size: 14px;
+	font-size: 22px;
 }
 
 .btn.btn-primary {
@@ -1624,7 +1625,7 @@ ul, ol, li {
 }
 
 .btn.btn-lg {
-	font-size: 14px;
+	font-size: 18px;
 }
 
 .btn-cta {
@@ -3041,7 +3042,31 @@ ul, ol, li {
 
 .elements-content {
 	background:#0D6EAA;
-	padding: 70px 0;
+	padding: 40px 0;
+}
+
+.elements-content .row.flex {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+.elements-content .row.flex h3{
+	font-family: 'Khand', sans-serif;
+	font-size: 50px;
+	font-weight: 600;
+	color: white;
+	margin-left: 100px;
+}
+.elements-content .row.flex .img-container{
+	padding: 30px;
+	border-radius: 5000px;
+	background:white ;
+	box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+	/* box-shadow: 5px 5px 2px #FF8B2B; */
+}
+.elements-content .row.flex img{
+	height: 120px;
 }
 
 .border-top {
@@ -4644,6 +4669,20 @@ footer .list-inline li {
 	#service .about-inline {
 		padding: 80px 0 10px;
 	}
+	.elements-content .row.flex {
+		flex-direction: column;
+	}
+	.elements-content .row.flex .img-container{
+		padding: 20px;
+	}
+	.elements-content .row.flex img{
+		height: 100px;
+	}
+	.elements-content .row.flex h3{
+		margin-left: 0px;
+		margin-top: 30px;
+		font-size:35px;
+	}
 	
 }
 
@@ -6224,7 +6263,7 @@ input:focus, textarea:focus {
 	}
 
 	.info-content .btn.btn-lg {
-		font-size: 11px;
+		font-size: 20px;
 		margin-bottom: 50px;
 	}
 
