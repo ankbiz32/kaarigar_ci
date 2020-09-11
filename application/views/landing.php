@@ -116,24 +116,24 @@
 					<div class="row">
 						<div class="col-md-10">
 							<div class="intro-box">
-								<span class="icon-calendar"></span>
+								<span class="icon-document"></span>
 								<div>
-									<h4>1. Book a Cleaning</h4>
-									<p>Lorem ipsum dolor sit amet consec tetur elit amet voluptas accusamus dolorum veritatis ea odio dolor emque.</p>
+									<h4>1. Send Enquiry</h4>
+									<p>You only need to send us with enquiry with basic details.</p>
 								</div>
 							</div>
 							<div class="intro-box">
-								<span class="icon-lock"></span>
+								<span class="icon-calendar"></span>
 								<div>
-									<h4>2. Confirm Booking </h4>
-									<p>Lorem ipsum dolor sit amet consec tetur elit amet voluptas accusamus dolorum veritatis ea odio dolor emque.</p>
+									<h4>2. Schedule a time </h4>
+									<p>We will call you to fix a schedule.</p>
 								</div>
 							</div>
 							<div class="intro-box">
 								<span class="icon-home"></span>
 								<div>
-									<h4>3. We’ll Clean it</h4>
-									<p>Lorem ipsum dolor sit amet consec tetur elit amet voluptas accusamus dolorum veritatis ea odio dolor emque.</p>
+									<h4>3. Let us fix your problems</h4>
+									<p>Do expect a safety first service.</p>
 								</div>
 							</div>
 						</div>
@@ -322,7 +322,7 @@
     <div class="container" id="faq">
 	<div class="about-inline text-center">
         <p>- FREQUENTLY ASKED QUESTIONS  -</p>
-			<h3>Got questions? We’ve got answers. <br> Send us email to hello@kaarigaronline.in </h3>
+			<h3>Got questions? We’ve got answers. <br> Send us email to kaarigar.info@gmail.com </h3>
 		</div>
 	</div>
 
@@ -338,7 +338,7 @@
                 <div class="col-md-6 col-sm-6">
                 	<div class="faq">
 					<h4> <span>*</span> What happens if the Kaarigar damages anything?</h4>
-					<p>In the unlikely event of our team damaging something, you can email us at hello@kaarigaronline.in <br> OR give us a call @ 9753344220</p>
+					<p>In the unlikely event of our team damaging something, you can email us at kaarigar.info@gmail.com <br> OR give us a call @ 9753344220</p>
                     </div>
                 </div>
                 
@@ -371,7 +371,7 @@
 					<h4>Join Kaarigar online as a Professional!</h4>
 					<p>Become a kaarigar . We offer great staff incentives, excellent industry opportunities and an unparalleled work culture.</p>
            			 <a href="javascript:;" data-toggle="modal" data-target="#formKaarigar" class="btn btn-lg btn-primary">APPLY AS A KAARIGAR </a>
-            		<p>or email us: hello@kaarigaronline.in</p>
+            		<p>or email us: kaarigar.info@gmail.com</p>
 				</div>
        		 </div>
         </div>
@@ -402,7 +402,7 @@
 					<div class="c-info">
 						<i class="icon-envelope"></i>
 						<h5><b>Email</b></h5>
-						<p><a href="mailto:hello@kaarigaronline.in">hello@kaarigaronline.in</a></p>
+						<p><a href="mailto:kaarigar.info@gmail.com">kaarigar.info@gmail.com</a></p>
 					</div>
 				</div>
 
@@ -452,7 +452,7 @@
                 <div class="col-md-3 footerP">
 					<h5>CONTACT INFO</h5><ul>
 					<li><a href="tel:9753344220"><p><i class="fa fa-phone"></i>&nbsp; 9753344220</p></a></li>
-					<li><a href="mailto:hello@kaarigaronline.in"><p><i class="fa fa-envelope"></i>&nbsp; hello@kaarigaronline.in</p></a></li>
+					<li><a href="mailto:kaarigar.info@gmail.com"><p><i class="fa fa-envelope"></i>&nbsp; kaarigar.info@gmail.com</p></a></li>
 				</div>
 
 				<div class="col-md-2 socialLinks">
