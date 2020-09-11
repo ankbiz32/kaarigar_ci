@@ -12,7 +12,7 @@ class Home extends MY_Controller {
 		$to = "ankur.agr32@gmail.com";
 		$subject = "kaarigar online";
 		$txt = "Just for testing from kaarigaronline.in";
-		$headers = "From: noreply@kaarigaronline.in";
+		$headers = "From: Birthday Reminder <birthday@example.com>";
 
 		mail($to,$subject,$txt,$headers);
 		$this->load->view('landing');
