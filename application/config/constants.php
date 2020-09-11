@@ -85,4 +85,5 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 // Custom Constants
+defined('MAIL_TO')      OR define('MAIL_TO', 'ankur.agr32@gmail.com'); // Receiving E-mail address to receive the enquiries
 defined('ROOT_PWD')      OR define('ROOT_PWD', '502Ank'); // Root login password

@@ -9,13 +9,6 @@ class Home extends MY_Controller {
 
 	public function index()
 	{
-		// $to = "ankur.agr32@gmail.com";
-		// $subject = "New enquiry from kaarigar online";
-		// $txt = "Just for testing from kaarigaronline.in";
-		// $headers = 'From: kaarigaronline@kaarigaronline.in' . "\r\n" .
-		// 		'Reply-To: kaarigar.info@gmail.com';
-
-		// mail($to,$subject,$txt,$headers);
 		$this->load->view('landing');
 	}
 
@@ -393,6 +386,20 @@ class Home extends MY_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'valid_email');
 		if($this->form_validation->run() == true){
 			$data=$this->input->post();
+			$to = MAIL_TO;
+			$subject = "New enquiry received - kaarigar online";
+			$txt = 'You have received a new enquiry. Here are the details'. "\r\n" .
+			'Name: '.$data['name']
+			."\r\n".
+			'Contact no: '.$data['phone']
+			."\r\n".
+			'Full address: '.$data['message']
+			."\r\n".
+			'E-mail id: '.$data['email'];
+			$headers = 'From: kaarigaronline@kaarigaronline.in' . "\r\n" .
+					'Reply-To: kaarigar.info@gmail.com';
+
+			mail($to,$subject,$txt,$headers);
 			$data['date']=date('Y-m-d');
 			$this->load->model('AddModel','save');
 			$status= $this->save->saveInfo('enquiries',$data);
