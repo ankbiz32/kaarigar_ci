@@ -10,9 +10,10 @@ class Home extends MY_Controller {
 	public function index()
 	{
 		$to = "ankur.agr32@gmail.com";
-		$subject = "kaarigar online";
+		$subject = "New enquiry from kaarigar online";
 		$txt = "Just for testing from kaarigaronline.in";
-		$headers = "From: Birthday Reminder <birthday@example.com>";
+		$headers = 'From: kaarigaronline@kaarigaronline.in' . "\r\n" .
+				'Reply-To: kaarigar.info@gmail.com';
 
 		mail($to,$subject,$txt,$headers);
 		$this->load->view('landing');
