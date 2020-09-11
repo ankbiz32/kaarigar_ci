@@ -87,4 +87,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 // Custom Constants
-defined('MAIL_TO')      OR define('MAIL_TO', 'ankur.agr32@gmail.com'); // Receiving E-mail address to receive the enquiries
+defined('MAIL_TO')      OR define('MAIL_TO', 'kaarigar.info@gmail.com'); // Receiving E-mail address to receive the enquiries

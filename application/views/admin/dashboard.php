@@ -148,7 +148,7 @@
       "info": true,
       "autoWidth": true,
       "scrollX": true,
-      "order": [[ 5, "asc" ]]
+      "order": [[ 0, "desc" ]]
     });
   });
 
