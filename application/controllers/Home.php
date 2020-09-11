@@ -9,7 +9,7 @@ class Home extends MY_Controller {
 
 	public function index()
 	{
-		mail("ankur.agr32@gmail.com","kaarigar online",'just for testing from kaarigaronline.in');
+		// mail("ankur.agr32@gmail.com","kaarigar online",'just for testing from kaarigaronline.in');
 		$this->load->view('landing');
 	}
 
