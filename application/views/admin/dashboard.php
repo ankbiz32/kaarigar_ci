@@ -107,8 +107,8 @@
                         <td><?=$f->id?></td>
                         <td><?=date("d-m-Y",strtotime("$f->date"))?></td>
                         <td><?=$f->name?></td>
-                        <td><?=$f->email?></td>
                         <td><?=$f->phone?></td>
+                        <td><?=$f->email?></td>
                         <td><?=$f->message?></td>
                       </tr>
                     <?php }?>

@@ -388,7 +388,7 @@ class Home extends MY_Controller {
 			$data=$this->input->post();
 			$to = MAIL_TO;
 			$subject = "New enquiry received - kaarigar online";
-			$txt = 'You have received a new enquiry. Here are the details'. "\r\n" .
+			$txt = 'You have received a new booking enquiry. Here are the details-'. "\r\n" .
 			'Name: '.$data['name']
 			."\r\n".
 			'Contact no: '.$data['phone']
@@ -427,6 +427,19 @@ class Home extends MY_Controller {
 		$this->form_validation->set_rules('details', 'Details', 'max_length[300]');
 		if($this->form_validation->run() == true){
 			$data=$this->input->post();
+			$to = MAIL_TO;
+			$subject = "New kaarigar application received - kaarigar online";
+			$txt = 'You have received a new job application for working as a kaarigar from:'
+			. "\r\n" .
+			'Name: '.$data['name']
+			."\r\n".
+			'Contact no: '.$data['phone']
+			."\r\n".
+			'Details: '.$data['details'];
+			$headers = 'From: kaarigaronline@kaarigaronline.in' . "\r\n" .
+					'Reply-To: kaarigar.info@gmail.com';
+
+			mail($to,$subject,$txt,$headers);
 			$data['date']=date('Y-m-d');
 			$this->load->model('AddModel','save');
 			$status= $this->save->saveInfo('job_appl',$data);
