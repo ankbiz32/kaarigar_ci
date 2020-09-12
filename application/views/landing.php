@@ -143,17 +143,13 @@
 		</div>
 	</div>
 	
-		<!-- ELEMENTS-CLIENTS -->
-		<div class="elements-content">
-			<div class="container">
-				<div class="row flex">
-					<div class="img-container">
-						<img src="<?=base_url('assets/landing/images/logo-man.png')?>" alt="Mascot">
-					</div>
-					<h3>अब होगा हर काम पूरा !</h3>
-				</div>
-			</div>
+	<!-- ELEMENTS-CLIENTS -->
+	<div class="elements-content">
+		<h3>अब होगा हर काम पूरा !</h3>
+		<div class="img-container">
+			<img src="<?=base_url('assets/landing/images/logo-man.png')?>" alt="Mascot">
 		</div>
+	</div>
 	
 	<!-- TESTIMONIALS -->
 	<div id="reviews" class="testimonials-white">
