@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 14, 2020 at 10:40 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Host: localhost:3306
+-- Generation Time: Sep 30, 2020 at 10:31 AM
+-- Server version: 10.3.24-MariaDB-log-cll-lve
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kaarigar`
+-- Database: `sidddnbn_kaarigar_db`
 --
 
 -- --------------------------------------------------------
@@ -70,6 +71,15 @@ CREATE TABLE `enquiries` (
   `message` varchar(2048) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'new'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `enquiries`
+--
+
+INSERT INTO `enquiries` (`id`, `date`, `name`, `email`, `phone`, `message`, `status`) VALUES
+(1, '2020-09-02', 'Siddharth   Dani', 'srdani12@gmail.com', '9021073372', 'Testing!', 'new'),
+(2, '2020-09-05', 'Siddharth   Dani', 'srdani12@gmail.com', '9021073372', 'HIG C-65, Near Navkar Hospital, Shailendra Nagar Sqr.,', 'new'),
+(3, '2020-09-12', 'Siddharth   Dani', 'srdani12@gmail.com', '9021073372', 'HIG C-65, Near Navkar Hospital, Shailendra Nagar Sqr.,', 'new');
 
 -- --------------------------------------------------------
 
@@ -127,6 +137,20 @@ INSERT INTO `hero_slider` (`id`, `img_src`, `heading`, `descr`) VALUES
 (2, 'packers.jpg', 'Now find Packers & Movers online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
 (3, 'painter.jpg', 'Now find Painters online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.'),
 (4, 'car-repair.jpg', '...and many more Kaarigar online.', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_appl`
+--
+
+CREATE TABLE `job_appl` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `phone` varchar(50) NOT NULL,
+  `details` varchar(500) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -277,7 +301,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `mobile_no`, `username`, `pwd`, `fname`, `lname`, `email`, `role`, `is_verified`, `status`, `created_at`, `modified_at`) VALUES
 (1, '', 'admin_kaarigar', '$2y$10$3.f2PnKfTq/J0Y7z2vwOoOc8e5yNj4c1Li6aAo4S/7LqiaizZSXOi', 'Demo', 'User', 'connect@kaarigaronline.in', 'admin', 1, 1, '2020-08-06 18:01:55', '2020-08-06 18:01:55'),
-(2, '7894561230', '', '$2y$10$.0sEFrHroHiJyAfgSVBFk.uhmj8dC1Az2XIEKP.BPpKdeXaGWgW0O', 'Test', '', '', 'user', 1, 1, '2020-08-10 07:53:46', '2020-08-10 07:53:46');
+(2, '7894561230', '', '$2y$10$.0sEFrHroHiJyAfgSVBFk.uhmj8dC1Az2XIEKP.BPpKdeXaGWgW0O', 'Test', '', '', 'user', 1, 1, '2020-08-10 07:53:46', '2020-08-10 07:53:46'),
+(3, '9999999999', '', '', 'Testing for adm', '', '', 'user', 0, 1, '2020-08-15 12:37:09', '2020-08-15 12:37:09'),
+(4, '7869627961', '', '', 'sahil quraishi', '', '', 'user', 0, 1, '2020-08-31 07:40:17', '2020-08-31 07:40:17');
 
 -- --------------------------------------------------------
 
@@ -297,7 +323,9 @@ CREATE TABLE `user_info` (
 --
 
 INSERT INTO `user_info` (`id`, `user_id`, `pin_code`, `address`) VALUES
-(43, 2, '492001', 'Budhapara, Raipur (C.G.)');
+(43, 2, '492001', 'Budhapara, Raipur (C.G.)'),
+(44, 3, '492000', 'Testing fo'),
+(45, 4, '492001', 'chaprasi colony pandri raipir');
 
 -- --------------------------------------------------------
 
@@ -325,7 +353,7 @@ CREATE TABLE `webprofile` (
 --
 
 INSERT INTO `webprofile` (`id`, `email`, `phone1`, `phone2`, `whatsapp_no`, `address_line1`, `address_line2`, `fblink`, `instalink`, `twitterlink`, `youtubelink`, `video_url`) VALUES
-(1, 'connect@kaarigaronline.in', '9039310833', '9039310833', '9039310833', 'Raipur,', 'Chhattisgarh', 'https://www.facebook.com/', 'https://instagram.com', 'https://twitter.com', 'https://www.youtube.com', 'https://www.youtube.com/watch?v=2GqExKSwTEA');
+(1, 'connect@kaarigaronline.in', '9753344220', '9753344220', '9753344220', 'Raipur,', 'Chhattisgarh', 'https://www.facebook.com/', 'https://instagram.com', 'https://twitter.com', 'https://www.youtube.com', 'https://www.youtube.com/watch?v=2GqExKSwTEA');
 
 --
 -- Indexes for dumped tables
@@ -365,6 +393,12 @@ ALTER TABLE `gallery`
 -- Indexes for table `hero_slider`
 --
 ALTER TABLE `hero_slider`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `job_appl`
+--
+ALTER TABLE `job_appl`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -435,7 +469,7 @@ ALTER TABLE `booking_info`
 -- AUTO_INCREMENT for table `enquiries`
 --
 ALTER TABLE `enquiries`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `feedbacks`
@@ -454,6 +488,12 @@ ALTER TABLE `gallery`
 --
 ALTER TABLE `hero_slider`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `job_appl`
+--
+ALTER TABLE `job_appl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `locations`
@@ -489,13 +529,13 @@ ALTER TABLE `sub_services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_info`
 --
 ALTER TABLE `user_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `webprofile`
